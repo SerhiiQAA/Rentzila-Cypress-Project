@@ -1,10 +1,10 @@
 import { config } from '../../../config';
-import BasePage from '../pages/BasePage';
-import Header from '../components/Header';
+import BasePage from '../pages/basePage';
 
 describe('Base Page Test', () => {
   it('should visit the homepage', () => {
     cy.viewport(config.viewportWidth, config.viewportHeight);
-    BasePage.visit(); 
+    const basePage = new BasePage();
+    basePage.visit(); 
   });
 });
