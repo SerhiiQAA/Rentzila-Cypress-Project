@@ -1,5 +1,5 @@
 import { config } from '../../../config';
-import BasePage from '../pages/basePage';
+import BasePage from '../pages/BasePage';
 
 describe('Base Page Test', () => {
   it('should visit the homepage', () => {
