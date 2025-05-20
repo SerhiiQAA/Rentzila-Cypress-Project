@@ -4,12 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",                        
+    "open": "cypress open",
+    "allure:generate": "allure generate ./allure-results -o ./allure-report",
+    "allure:open": "allure open ./allure-report",
+    "allure:run": "npm run test && npm run allure:generate && npm run allure:open"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "allure-cypress": "^3.2.2",
     "cypress": "^14.3.3",
     "typescript": "^5.8.3"
   }
 }
+
