@@ -9,11 +9,11 @@ class LoginPage extends BasePage {
         signInBtn: () => cy.get('.LoginForm_form__7G3Zk > div:nth-child(3) > button'),
     };
 
-    typeInMailInput(text: string) {
+    fillInMailInput(text: string) {
         this.elements.mailInput().type(text);
     }
 
-    typeInPasswordInput(city: string) {
+    fillInPasswordInput(city: string) {
         this.elements.passwordInput().type(city);
     }
 
@@ -22,8 +22,8 @@ class LoginPage extends BasePage {
     }
 
     login(email: string, password: string) {
-        this.typeInMailInput(email);
-        this.typeInPasswordInput(password);
+        this.fillInMailInput(email);
+        this.fillInPasswordInput(password);
         this.clickSignInBtn();
     }
 }

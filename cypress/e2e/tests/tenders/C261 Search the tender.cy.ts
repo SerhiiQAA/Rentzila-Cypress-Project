@@ -8,7 +8,7 @@ describe('Tenders functionality', () => {
     Header.clickTendersBtn()
     // 2. Set a valid keyword ""testing"" in the Search field. 
     const searchQuery = 'v';
-    TendersMapPage.typeInSearchTenderField(searchQuery);
+    TendersMapPage.fillInSearchTenderField(searchQuery);
     TendersMapPage.elements.tenderCard()
       .its('length') 
       .then((count) => {
@@ -23,7 +23,7 @@ describe('Tenders functionality', () => {
     // 3. Click the ""x"" button on the right side of the search field.
     TendersMapPage.clickClearSearchTenderFieldBtn()
     // 4. Set a not valid keyword ""j"" in the Search field.
-    TendersMapPage.typeInSearchTenderField('j')
+    TendersMapPage.fillInSearchTenderField('j')
     TendersMapPage.elements.tendersInformativeTitle().should('have.text', 'Знайдено 0 тендерів на видимій території за запитом "j"')
   });
 });

@@ -52,11 +52,11 @@ class TendersMapPage extends BasePage {
         this.elements.tenderCardFirst().click();
     }
 
-    typeInSearchTenderField(text: string) {
+    fillInSearchTenderField(text: string) {
         this.elements.searchTenderField().type(text);
     }
 
-    typeInOrganizatorInputField(text: string) {
+    fillInOrganizatorInputField(text: string) {
         this.elements.organizatorInputField().type(text);
     }
 
@@ -92,11 +92,11 @@ class TendersMapPage extends BasePage {
         this.elements.categorySubItem().click();
     }
 
-    typeBudgetFrom(amount) {
+    fillBudgetFrom(amount) {
         this.elements.budgetFromItem().clear().type(amount);
     }
 
-    typeBudgetTo(amount) {
+    fillBudgetTo(amount) {
         this.elements.budgetToItem().clear().type(amount);
     }
 

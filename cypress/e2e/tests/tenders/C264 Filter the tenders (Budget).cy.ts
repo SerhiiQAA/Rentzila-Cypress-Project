@@ -12,7 +12,7 @@ describe('Tenders functionality', () => {
        TendersMapPage.elements.budgetToItem().clear();
         TendersMapPage.elements.tendersInformativeTitle().should('have.text', 'Знайдено 0 тендерів на видимій території')
         // 4. Insert the ""999999999"" in the ""до"" input field.
-        TendersMapPage.typeBudgetTo(999999999)
+        TendersMapPage.fillBudgetTo(999999999)
         TendersMapPage.elements.budgetToItem().should('have.value', '999999999')
         TendersMapPage.elements.tendersInformativeTitle().should('include.text', 'Знайдено')
         TendersMapPage.elements.tenderCard().should('have.length.greaterThan', 1);
@@ -20,7 +20,7 @@ describe('Tenders functionality', () => {
         TendersMapPage.elements.budgetToItem().clear();
         TendersMapPage.elements.tendersInformativeTitle().should('have.text', 'Знайдено 0 тендерів на видимій території')
         // 6. Insert the ""1234567890"" in the ""до"" input field.
-        TendersMapPage.typeBudgetTo(1234567890)  
+        TendersMapPage.fillBudgetTo(1234567890)  
         TendersMapPage.elements.tendersInformativeTitle().should('include.text', 'Знайдено')
         TendersMapPage.elements.tenderCard().should('have.length.greaterThan', 1);
         // 7. Clear the ""до"" and ""вiд"" input fields.
@@ -28,10 +28,10 @@ describe('Tenders functionality', () => {
         TendersMapPage.elements.budgetToItem().clear();
         TendersMapPage.elements.tendersInformativeTitle().should('have.text', 'Знайдено 0 тендерів на видимій території')
         // 8. Insert the ""11"" in the ""вiд"" input field.
-        TendersMapPage.typeBudgetFrom(11)
+        TendersMapPage.fillBudgetFrom(11)
         TendersMapPage.elements.budgetFromItem().should('have.value', '11')
         // 9. Insert the ""1"" in the ""до"" input field.
-        TendersMapPage.typeBudgetTo(1)
+        TendersMapPage.fillBudgetTo(1)
         TendersMapPage.elements.budgetToItem().should('have.value', '1')
         TendersMapPage.elements.tendersInformativeTitle().should('have.text', 'Знайдено 0 тендерів на видимій території')        
     });

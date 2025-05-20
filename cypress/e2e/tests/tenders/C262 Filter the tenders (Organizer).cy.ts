@@ -7,7 +7,7 @@ describe('Tenders functionality', () => {
         // 1. Click on the ""Тендери"" button in the header.
         Header.clickTendersBtn()
         // 2. Enter ""Test"" in the ""Організатор"" input field
-        TendersMapPage.typeInOrganizatorInputField('Test')
+        TendersMapPage.fillInOrganizatorInputField('Test')
         TendersMapPage
         // 3. Mark the ""Test, ТОВ"" checkbox on the left sidebar filter.
         TendersMapPage.clickOrganizatorCheckboxFirst()
