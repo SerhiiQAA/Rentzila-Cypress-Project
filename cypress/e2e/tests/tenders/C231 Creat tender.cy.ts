@@ -3,7 +3,7 @@ import TendersOwnerPage from '../../pages/tendersPages/TendersOwnerPage';
 import TenderCreatePage from '../../pages/tendersPages/TenderCreatePage';
 
 describe('Tenders functionality', () => {
-  it('should create a tender with correct date selection', () => {
+  it('C231 Creat tender', () => {
     TenderCreatePage.visit('tenders-map/');
     LoginPage.login('testuserrentzila@gmail.com', 'Testuser10');
     TenderCreatePage.clickCloseTelegramBtn()

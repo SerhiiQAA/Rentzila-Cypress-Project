@@ -2,7 +2,7 @@ import TendersMapPage from '../../pages/tendersPages/TendersMapPage';
 import Header from '../../components/HeaderPage';
 
 describe('Tenders functionality', () => {
-    it('C262 Search the tender', () => {
+    it('C262 Filter the tenders (Organizer)', () => {
         TendersMapPage.visit();;
         // 1. Click on the ""Тендери"" button in the header.
         Header.clickTendersBtn()
