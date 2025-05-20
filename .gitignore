@@ -4,6 +4,8 @@ package-lock.json
 cypress/screenshots/
 cypress/videos/
 
+allure-results/
+
 *.log
 *.tmp
 

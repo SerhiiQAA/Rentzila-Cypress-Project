@@ -34,7 +34,6 @@ class TendersMapPage extends BasePage {
         budgetToItem: () => cy.get('[data-testid="budgetTo"]'),
         regionFilter: () => cy.get('div.TendersRegionFilter_captions__Jbd1l'),
         regionAllCheckbox: () => cy.get('#all'),
-
         regionItem: () => cy.get('.RegionsList_check_label__PY3uq[data-testid="label"]'),
         regionCheckbox: () => cy.get('.RegionsList_region__8dslR [type="checkbox"]'),
 
@@ -101,7 +100,6 @@ class TendersMapPage extends BasePage {
     }
 
     verifyFirstAndLastTenderCardElements() {
-    // Перевіряємо першу картку
     this.elements.tenderCard().first().within(() => {
         this.elements.tenderCardName().should('exist');
         this.elements.tenderCardPrice().should('exist');
@@ -109,7 +107,6 @@ class TendersMapPage extends BasePage {
         this.elements.tenderCardTimer().should('exist');
     });
 
-    // Перевіряємо останню картку
     this.elements.tenderCard().last().within(() => {
         this.elements.tenderCardName().should('exist');
         this.elements.tenderCardPrice().should('exist');
