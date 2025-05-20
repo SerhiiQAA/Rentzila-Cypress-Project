@@ -26,22 +26,6 @@ describe("Tenders functionality", () => {
     TendersMapPage.clickOrganizatorCheckboxFirst();
     TendersMapPage.clickOrganizatorCheckboxSecond();
     TendersMapPage.clickOrganizatorCheckboxThird();
-    TendersMapPage.elements.filterAppliedName().then((filterElements) => {
-      const filterTexts = filterElements
-        .map((index, el) => Cypress.$(el).text().trim())
-        .get();
-      TendersMapPage.elements
-        .tenderCardOrganizationName()
-        .then((cardElements) => {
-          const cardTexts = cardElements
-            .map((index, el) => Cypress.$(el).text().trim())
-            .get();
-          expect(
-            filterTexts.some((filterText) =>
-              cardTexts.some((cardText) => cardText.includes(filterText))
-            )
-          ).to.be.true;
-        });
-    });
+    TendersMapPage.validateFilterAppliedToTenders();
   });
 });

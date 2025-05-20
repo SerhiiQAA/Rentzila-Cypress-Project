@@ -130,6 +130,52 @@ class TendersMapPage extends BasePage {
         this.elements.tenderCardTimer().should("exist");
       });
   }
+
+  validateFilterAppliedToTenders() {
+    this.elements.filterAppliedName().then((filterElements) => {
+      const filterTexts = filterElements
+        .map((index, el) => Cypress.$(el).text().trim())
+        .get();
+
+      this.elements.tenderCardOrganizationName().then((cardElements) => {
+        const cardTexts = cardElements
+          .map((index, el) => Cypress.$(el).text().trim())
+          .get();
+
+        expect(
+          filterTexts.some((filterText) =>
+            cardTexts.some((cardText) => cardText.includes(filterText))
+          )
+        ).to.be.true;
+      });
+    });
+  }
+
+  selectAndValidateRandomRegions() {
+    this.elements.regionItem().then((regions) => {
+      const allRegions = regions
+        .map((index, el) => Cypress.$(el).text().trim())
+        .get();
+
+      const randomRegions = Cypress._.sampleSize(allRegions, 3);
+
+      randomRegions.forEach((region) => {
+        this.elements.regionItem().contains(region).click();
+      });
+
+      this.elements
+        .filterAppliedName()
+        .invoke("text")
+        .then((filterText) => {
+          const normalizedText = filterText.replace(/\s*\(\d+\)$/, "");
+
+          randomRegions.forEach((region) => {
+            const cleanRegion = region.replace(/\s*\(\d+\)$/, "");
+            expect(normalizedText).to.include(cleanRegion);
+          });
+        });
+    });
+  }
 }
 
 export default new TendersMapPage();
