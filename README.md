@@ -19,6 +19,16 @@ npx cypress open  # Opens Cypress GUI
 npx cypress run   # Runs tests in headless mode
 ```
 
+🛠️ Available Scripts
+You can also use the following scripts for running tests and generating reports:
+```bash
+"test": "cypress run",                        
+"open": "cypress open",
+"allure:generate": "allure generate ./allure-results -o ./allure-report",
+"allure:open": "allure open ./allure-report",
+"allure:run": "npm run test && npm run allure:generate && npm run allure:open"
+```
+
 ## ✅ Key Features
 - UI and API automated testing
 - TypeScript support

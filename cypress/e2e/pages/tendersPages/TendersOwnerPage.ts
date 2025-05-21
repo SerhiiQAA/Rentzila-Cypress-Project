@@ -18,8 +18,12 @@ class TendersOwnerPage extends BasePage {
       cy.get("div.ParagraphWithIcon_paragraph__5i0nJ").eq(0),
   };
 
-  clickCreateTenderBtn() {
-    this.elements.createTenderBtn().click();
+  clickCreateTenderUpBtn() {
+    this.elements.createTenderUpBtn().click();
+  }
+
+  clickCreateTenderDownBtn() {
+    this.elements.createTenderDownBtn().click();
   }
 }
 export default new TendersOwnerPage();

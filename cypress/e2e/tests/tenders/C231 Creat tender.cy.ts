@@ -4,10 +4,10 @@ import TenderCreatePage from "../../pages/tendersPages/TenderCreatePage";
 
 describe("Tenders functionality", () => {
   it("C231 Creat tender", () => {
-    TenderCreatePage.visit("tenders-map/");
+    TenderCreatePage.visit("owner-tenders-page/");
     LoginPage.login("testuserrentzila@gmail.com", "Testuser10");
     TenderCreatePage.clickCloseTelegramBtn();
-    TendersOwnerPage.clickCreateTenderBtn();
+    TendersOwnerPage.clickCreateTenderDownBtn();
     TenderCreatePage.clickNextBtn();
     TenderCreatePage.validateAllErrorMsg();
     TenderCreatePage.fillAllFields();
