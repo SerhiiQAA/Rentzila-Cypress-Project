@@ -109,6 +109,23 @@ class TendersMapPage extends BasePage {
     this.elements.budgetToItem().clear().type(amount);
   }
 
+  getTenderCardsCount() {
+    return this.elements.tenderCard().then((cards) => cards.length);
+  }
+
+  getTenderWordEnding(count) {
+    if (count === 1) return "тендер";
+    if (count >= 2 && count <= 4) return "тендери";
+    return "тендерів";
+  }
+
+  getCleanTitleText() {
+    return this.elements
+      .tendersInformativeTitle()
+      .invoke("text")
+      .then((text) => text.trim().replace(/\s+/g, " "));
+  }
+
   verifyFirstAndLastTenderCardElements() {
     this.elements
       .tenderCard()
