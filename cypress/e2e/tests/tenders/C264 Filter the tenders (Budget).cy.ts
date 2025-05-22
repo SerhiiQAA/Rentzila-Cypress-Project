@@ -1,5 +1,5 @@
 import TendersMapPage from "../../pages/tendersPages/TendersMapPage";
-import Header from "../../components/HeaderPage";
+import Header from "../../components/Header";
 
 describe("Tenders functionality", () => {
   it("C264 Filter the tenders (Budget)", () => {

@@ -1,6 +1,6 @@
 import TendersMapPage from "../../pages/tendersPages/TendersMapPage";
-import Header from "../../components/HeaderPage";
-import Map from "../../components/MapPage";
+import Header from "../../components/Header";
+import Map from "../../components/Map";
 
 describe("Tenders functionality", () => {
   it("C259 View the tenders on the map", () => {
