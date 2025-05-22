@@ -123,7 +123,7 @@ class TendersMapPage extends BasePage {
   fillInOrganizatorInputField(text: string) {
     this.elements.organizatorInputField().type(text);
   }
-  
+
   fillBudgetFrom(amount) {
     this.elements.budgetFromItem().clear().type(amount);
   }

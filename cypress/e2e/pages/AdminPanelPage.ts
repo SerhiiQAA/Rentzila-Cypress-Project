@@ -48,13 +48,17 @@ class AdminPanelPage extends BasePage {
       cy
         .get("li li .AdminNavigationLink_button__jD4Gm")
         .contains("Список сервісів"),
-        queryAnalyticsDropdown: () => cy.get("span.AdminPanelSelect_value__JQsa4"),
-        analyticsOfUsers: () => cy.get('[data-testid="selectedItem"]').contains("Аналітика користувачів"),
-        analyticsOfAd: () => cy.get('[data-testid="selectedItem"]').contains("Аналітика оголошень"),
-        analyticsOfTenders: () => cy.get('[data-testid="selectedItem"]').contains("Аналітика тендерів"),
-        analyticsOfQuery: () => cy.get('[data-testid="selectedItem"]').contains("Аналітика запитів"),
-        graphArea: () => cy.get('div.AdminPanel_chart_wrapper__enxhw'),
 
+    queryAnalyticsDropdown: () => cy.get("span.AdminPanelSelect_value__JQsa4"),
+    analyticsOfUsers: () =>
+      cy.get('[data-testid="selectedItem"]').contains("Аналітика користувачів"),
+    analyticsOfAd: () =>
+      cy.get('[data-testid="selectedItem"]').contains("Аналітика оголошень"),
+    analyticsOfTenders: () =>
+      cy.get('[data-testid="selectedItem"]').contains("Аналітика тендерів"),
+    analyticsOfQuery: () =>
+      cy.get('[data-testid="selectedItem"]').contains("Аналітика запитів"),
+    graphArea: () => cy.get("div.AdminPanel_chart_wrapper__enxhw"),
   };
 
   clickPanelConditionBtn() {
@@ -105,34 +109,29 @@ class AdminPanelPage extends BasePage {
     this.elements.switcherNowOrAllTime().click();
   }
 
-
-
   clickQueryAnalyticsDropdown() {
     this.elements.queryAnalyticsDropdown().click();
   }
 
   clickAnalyticsOfUsers() {
-        this.clickQueryAnalyticsDropdown();
-        this.elements.analyticsOfUsers().click();
-    }
+    this.clickQueryAnalyticsDropdown();
+    this.elements.analyticsOfUsers().click();
+  }
 
-    clickAnalyticsOfAd() {
-        this.clickQueryAnalyticsDropdown();
-        this.elements.analyticsOfAd().click();
-    }
+  clickAnalyticsOfAd() {
+    this.clickQueryAnalyticsDropdown();
+    this.elements.analyticsOfAd().click();
+  }
 
-    clickAnalyticsOfTenders() {
-        this.clickQueryAnalyticsDropdown();
-        this.elements.analyticsOfTenders().click();
-    }
+  clickAnalyticsOfTenders() {
+    this.clickQueryAnalyticsDropdown();
+    this.elements.analyticsOfTenders().click();
+  }
 
-    clickAnalyticsOfQuery() {
-        this.clickQueryAnalyticsDropdown();
-        this.elements.analyticsOfQuery().click();
-    }
-
-
-
+  clickAnalyticsOfQuery() {
+    this.clickQueryAnalyticsDropdown();
+    this.elements.analyticsOfQuery().click();
+  }
 
   clickSubItemCategoryMachineryBtn() {
     this.elements.subItemCategoryMachineryBtn().click();
