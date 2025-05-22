@@ -7,9 +7,14 @@ class Header {
     adAnnouncementBtn: () => cy.get(".Navbar_addAnnouncement__ZFXeC"),
     languageBtn: () => cy.get(".Navbar_variantsContainer__stc8e"),
     catalogBtn: () => cy.get("div .NavbarCatalog_label__s1meA"),
-    mainSearchInput: () => cy.get("div .MainSearch_input__Kr9pB"),
+    searchFieldInput: ()=> cy.get('header input[data-testid="searchInput"]').first(),
     mainSearchInputCity: () => cy.get("div .AutocompleteInput_city__p_OgU"),
     signInBtn: () => cy.get("div .NavbarAuthBlock_buttonEnter__c9siH"),
+    searchDropdown: ()=> cy.get('header .MainSearch_popup_wrapper__w7qVk'),
+    searchHistoryPopup: ()=> cy.get('h6').contains('Історія пошуку'),
+    servicesInSearchDropdown: ()=> cy.get('[data-testid="services"]>.SearchResultItem_item_name__SXnXJ'),
+    categoriesInSearchDropdown: ()=> cy.get('[data-testid="services"]>.SearchResultItem_item_name__SXnXJ'),
+    settingsBtn: () => cy.get('div[data-testid="superuserIcon_Navbar"]'),    
   };
 
   clickLogoBtn() {
@@ -40,8 +45,8 @@ class Header {
     this.elements.catalogBtn().click();
   }
 
-  typeInMainSearchInput(text: string) {
-    this.elements.mainSearchInput().type(text);
+  fillSearchFieldInput(text: string) {
+    this.elements.searchFieldInput().type(text);
   }
 
   typeInMainSearchInputCity(city: string) {
@@ -50,6 +55,14 @@ class Header {
 
   clickSignInBtn() {
     this.elements.signInBtn().click();
+  }
+
+   clickSearchFieldInput(){
+    this.elements.searchFieldInput().click();
+  }
+
+  pressEnterOnSearchFieldInput(){
+    this.elements.searchFieldInput().type('{enter}');
   }
 }
 
