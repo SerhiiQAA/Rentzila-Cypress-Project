@@ -21,6 +21,10 @@ class Header {
     this.elements.logoBtn().click();
   }
 
+  clickSettingsBtn() {
+    this.elements.settingsBtn().click();
+  }
+
   clickAnnouncementBtn() {
     this.elements.announcementBtn().click();
   }
