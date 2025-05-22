@@ -14,7 +14,7 @@ describe("Tenders functionality", () => {
       );
     });
     Map.clickMultipleTendersBadgeOnMap();
-    cy.wait(500)
+    cy.wait(500);
     Map.clickSingleTendersBadgeOnMap();
     TendersMapPage.elements.tenderCard().should("have.length", 1);
     cy.reload();
