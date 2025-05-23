@@ -1,31 +1,35 @@
 import AdminPanelPage from "../../pages/AdminPanelPage";
 import LoginPage from "../../pages/LoginPage";
 import HeaderPage from "../../components/Header";
+import { envs } from "../../utils/testData";
 
-describe("Test", () => {
-  it("ClickDifBtn", () => {
+describe("Admin functionality", () => {
+  it("C399 The Аналітика menu functionality", () => {
     AdminPanelPage.visit();
     HeaderPage.clickSignInBtn();
-    LoginPage.login("txt2021@ukr.net", "Qwerty123+");
+    LoginPage.login(envs.email_admin, envs.password_admin);
     cy.wait(1000);
     cy.reload();
     HeaderPage.clickSettingsBtn();
-    cy.wait(1000);
     AdminPanelPage.clickQueryAnalyticsDropdown();
     AdminPanelPage.clickAnalyticsOfUsers();
     AdminPanelPage.elements
-      .graphArea()
-      .should("have.attr", "aria-label", "Створені оголошення за день");
-      cy.wait(1000);
+      .queryAnalyticsDropdown()
+      .should("have.text", "Аналітика користувачів");
     AdminPanelPage.clickQueryAnalyticsDropdown();
     AdminPanelPage.clickAnalyticsOfAd();
     AdminPanelPage.elements
-      .graphArea()
-      .should("have.text", "Створені оголошення за день");
+      .queryAnalyticsDropdown()
+      .should("have.text", "Аналітика оголошень");
     AdminPanelPage.clickQueryAnalyticsDropdown();
     AdminPanelPage.clickAnalyticsOfTenders();
     AdminPanelPage.elements
-      .graphArea()
-      .should("have.text", "Створені тендери за день");
+      .queryAnalyticsDropdown()
+      .should("have.text", "Аналітика тендерів");
+    AdminPanelPage.clickQueryAnalyticsDropdown();
+    AdminPanelPage.clickAnalyticsOfQuery();
+    AdminPanelPage.elements
+      .queryAnalyticsDropdown()
+      .should("have.text", "Аналітика запитів");
   });
 });

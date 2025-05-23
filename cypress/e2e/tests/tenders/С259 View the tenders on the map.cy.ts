@@ -14,10 +14,9 @@ describe("Tenders functionality", () => {
       );
     });
     Map.clickMultipleTendersBadgeOnMap();
-    cy.wait(500);
     Map.clickSingleTendersBadgeOnMap();
     TendersMapPage.elements.tenderCard().should("have.length", 1);
-    cy.reload();
+    cy.reload();  // Instead of: 4. Click the "Показати всі результати" button (The button is missing). 
     TendersMapPage.getTenderCardsCount().then((count) => {
       const tenderWordEnding = TendersMapPage.getTenderWordEnding(count);
       TendersMapPage.getCleanTitleText().should(
