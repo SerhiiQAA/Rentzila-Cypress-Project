@@ -124,6 +124,22 @@ class TendersMapPage extends BasePage {
     this.elements.organizatorInputField().type(text);
   }
 
+  clickCategoryBuildingOpenListBtn() {
+    this.elements.categoryBuildingOpenListBtn().click();
+  }
+
+  clickCategoryOthersOpenListBtn() {
+    this.elements.categoryOthersOpenListBtn().click();
+  }
+
+  clickCategoryAgriculturalOpenListBtn() {
+    this.elements.categoryAgriculturalOpenListBtn().click();
+  }
+
+  clickCategorySubItemByText(text) {
+    this.elements.categorySubItem().contains(text).click();
+  }
+
   fillBudgetFrom(amount) {
     this.elements.budgetFromItem().clear().type(amount);
   }

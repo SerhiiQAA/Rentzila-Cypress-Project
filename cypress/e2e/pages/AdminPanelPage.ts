@@ -59,6 +59,7 @@ class AdminPanelPage extends BasePage {
     analyticsOfQuery: () =>
       cy.get('[data-testid="selectedItem"]').contains("Аналітика запитів"),
     graphArea: () => cy.get("div.AdminPanel_chart_wrapper__enxhw"),
+
   };
 
   clickPanelConditionBtn() {

@@ -10,32 +10,53 @@ class LoginPage extends BasePage {
     registerBtn: () => cy.get(".AuthorizationSwitcher_switcher_link__QX9z_"),
     forgotPasswordButton: () =>
       cy.get("div[class='LoginForm_links_wrapper__k2b1a'] div:nth-child(2)"),
+    hidePasswordBtn: () =>
+      cy.get("div[class='CustomReactHookInput_icon__XAlK2'] svg"),
+    errorMsg: () => cy.get(".CustomReactHookInput_field__ys1mK p"),
   };
 
-  fillEmail(email: string){
+  getErrorMsg() {
+    return this.elements.errorMsg();
+  }
+
+  fillEmail(email: string) {
     this.elements.emailInput().type(email);
   }
 
-  fillPassword(password: string){
+  fillPassword(password: string) {
     this.elements.passwordInput().type(password);
   }
 
-  clickSignInBtn(){
+  clickSignInBtn() {
     this.elements.submitBtn().click();
   }
 
-  clickRegisterBtn(){
+  clickRegisterBtn() {
     this.elements.registerBtn().click();
   }
 
-  clickForgotPasswordButton(){
+  clickForgotPasswordButton() {
     this.elements.forgotPasswordButton().click();
   }
 
-  login(email: string, password: string){
+  clickHidePasswordBtn() {
+    this.elements.hidePasswordBtn().click();
+  }
+
+  login(email: string, password: string) {
     this.fillEmail(email);
     this.fillPassword(password);
     this.clickSignInBtn();
+  }
+
+  loginWithEnter(email: string, password: string){
+    this.fillEmail(email);
+    this.fillPassword(password + "{enter}");
+  }
+
+  cleanInputs() {
+    this.elements.emailInput().clear();
+    this.elements.passwordInput().clear();
   }
 }
 export default new LoginPage();
