@@ -68,44 +68,60 @@ class TendersMapPage extends BasePage {
     this.elements.tenderCardFirst().click();
   }
 
+  clickOrganizatorCheckboxFirst() {
+    this.elements.organizatorCheckboxFirst().click();
+  }
+  
+  clickOrganizatorCheckboxSecond() {
+    this.elements.organizatorCheckboxSecond().click();
+  }
+  
+  clickOrganizatorCheckboxThird() {
+    this.elements.organizatorCheckboxThird().click();
+  }
+  
+  clickResertFiltersBtn() {
+    this.elements.resertFiltersBtn().click();
+  }
+  
+  clickCategoryCheckbox() {
+    this.elements.categoryCheckbox().click();
+  }
+  
+  clickCategorySubCheckbox() {
+    this.elements.categorySubCheckbox().click();
+  }
+  
+  clickCategoryItem() {
+    this.elements.categoryItem().click();
+  }
+  
+  clickCategorySubItem() {
+    this.elements.categorySubItem().click();
+  }
+  
+  clickCategoryBuildingOpenListBtn() {
+    this.elements.categoryBuildingOpenListBtn().click();
+  }
+  
+  clickCategoryOthersOpenListBtn() {
+    this.elements.categoryOthersOpenListBtn().click();
+  }
+  
+  clickCategoryAgriculturalOpenListBtn() {
+    this.elements.categoryAgriculturalOpenListBtn().click();
+  }
+  
+  clickCategorySubItemByText(text) {
+    this.elements.categorySubItem().contains(text).click();
+  }
+
   fillInSearchTenderField(text: string) {
     this.elements.searchTenderField().type(text);
   }
 
   fillInOrganizatorInputField(text: string) {
     this.elements.organizatorInputField().type(text);
-  }
-
-  clickOrganizatorCheckboxFirst() {
-    this.elements.organizatorCheckboxFirst().click();
-  }
-
-  clickOrganizatorCheckboxSecond() {
-    this.elements.organizatorCheckboxSecond().click();
-  }
-
-  clickOrganizatorCheckboxThird() {
-    this.elements.organizatorCheckboxThird().click();
-  }
-
-  clickResertFiltersBtn() {
-    this.elements.resertFiltersBtn().click();
-  }
-
-  clickCategoryCheckbox() {
-    this.elements.categoryCheckbox().click();
-  }
-
-  clickCategorySubCheckbox() {
-    this.elements.categorySubCheckbox().click();
-  }
-
-  clickCategoryItem() {
-    this.elements.categoryItem().click();
-  }
-
-  clickCategorySubItem() {
-    this.elements.categorySubItem().click();
   }
 
   clickCategoryBuildingOpenListBtn() {
