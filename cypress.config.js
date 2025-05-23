@@ -13,4 +13,4 @@ module.exports = defineConfig({
     },
     baseUrl: "https://dev.rentzila.com.ua/",
   },
-});UI
+});

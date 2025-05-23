@@ -15,6 +15,21 @@ class Header {
     servicesInSearchDropdown: ()=> cy.get('[data-testid="services"]>.SearchResultItem_item_name__SXnXJ'),
     categoriesInSearchDropdown: ()=> cy.get('[data-testid="services"]>.SearchResultItem_item_name__SXnXJ'),
     settingsBtn: () => cy.get('div[data-testid="superuserIcon_Navbar"]'),    
+    searchFieldInput: () =>
+      cy.get('header input[data-testid="searchInput"]').first(),
+    mainSearchInputCity: () => cy.get("div .AutocompleteInput_city__p_OgU"),
+    searchDropdown: () => cy.get("header .MainSearch_popup_wrapper__w7qVk"),
+    searchHistoryPopup: () => cy.get("h6").contains("Історія пошуку"),
+    servicesInSearchDropdown: () =>
+      cy.get('[data-testid="services"]>.SearchResultItem_item_name__SXnXJ'),
+    categoriesInSearchDropdown: () =>
+      cy.get('[data-testid="services"]>.SearchResultItem_item_name__SXnXJ'),
+    settingsBtn: () => cy.get('div[data-testid="superuserIcon_Navbar"]'),
+    signInBtn: () => cy.contains("Вхід"),
+    userBtn: () => cy.get(".NavbarAuthBlock_iconWrapper__tFste"),
+    userDropdownEmail: () => cy.get('div[data-testid="email"]'),
+    userDropdownLogoutBtn: () => cy.get('div[data-testid="logout"]'),
+    userDropdownAccountBtn: () => cy.contains("Мій профіль"),
   };
 
   clickLogoBtn() {
@@ -68,6 +83,27 @@ class Header {
   pressEnterOnSearchFieldInput(){
     this.elements.searchFieldInput().type('{enter}');
   }
+
+  clickSearchFieldInput() {
+    this.elements.searchFieldInput().click();
+  }
+
+  pressEnterOnSearchFieldInput() {
+    this.elements.searchFieldInput().type("{enter}");
+  }
+
+  clickUserBtn() {
+    this.elements.userBtn().click();
+  }
+
+  clickUserDropdownLogoutBtn() {
+    this.elements.userDropdownLogoutBtn().click();
+  }
+
+  clickUserDropdownAccountBtn() {
+    this.elements.userDropdownAccountBtn().click();
+  }
 }
 
 export default new Header();
+
