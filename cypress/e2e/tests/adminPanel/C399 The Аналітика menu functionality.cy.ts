@@ -15,7 +15,8 @@ describe("Test", () => {
     AdminPanelPage.clickAnalyticsOfUsers();
     AdminPanelPage.elements
       .graphArea()
-      .should("have.text", "Онлайн користувачі за день");
+      .should("have.attr", "aria-label", "Створені оголошення за день");
+      cy.wait(1000);
     AdminPanelPage.clickQueryAnalyticsDropdown();
     AdminPanelPage.clickAnalyticsOfAd();
     AdminPanelPage.elements

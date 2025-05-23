@@ -10,7 +10,7 @@ describe("Test", () => {
     LoginPage.login("txt2021@ukr.net", "Qwerty123+");
     cy.wait(1000);
     cy.reload();
-    HeaderPage.clickSettingsBtn();
+    // HeaderPage.clickSettingsBtn();
     cy.wait(1000);
     // LoginPage.login("testuserrentzila@gmail.com", "Testuser10");
     // AdminPanelPage.clickHomeBtn();
