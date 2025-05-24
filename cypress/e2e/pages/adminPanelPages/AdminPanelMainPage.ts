@@ -1,9 +1,10 @@
-import BasePage from "./BasePage";
+import BasePage from "../BasePage";
 
-class AdminPanelPage extends BasePage {
+class AdminPanelMainPage extends BasePage {
   elements = {
-    homeBtn: () => cy.get('[data-testid="homeButton"]'),
     logoBtn: () => cy.get('img[alt="rentzila"]'),
+    homeBtn: () => cy.get('[data-testid="homeButton"]'),
+    title: () => cy.get("div.AdminLayout_title__lqIgo"),
     panelConditionBtn: () =>
       cy
         .get("div.AdminNavigationLink_iconWithTitle__p8TDQ")
@@ -48,7 +49,6 @@ class AdminPanelPage extends BasePage {
       cy
         .get("li li .AdminNavigationLink_button__jD4Gm")
         .contains("Список сервісів"),
-
     queryAnalyticsDropdown: () => cy.get("span.AdminPanelSelect_value__JQsa4"),
     analyticsOfUsers: () =>
       cy.get('[data-testid="selectedItem"]').contains("Аналітика користувачів"),
@@ -58,9 +58,19 @@ class AdminPanelPage extends BasePage {
       cy.get('[data-testid="selectedItem"]').contains("Аналітика тендерів"),
     analyticsOfQuery: () =>
       cy.get('[data-testid="selectedItem"]').contains("Аналітика запитів"),
-
     graphArea: () => cy.get("div.AdminPanel_chart_wrapper__enxhw"),
-
+    loginEmail: () =>
+      cy.get(
+        ':nth-child(3) > [data-testid="authorizationContainer"] > .Authorization_wrapper__Q_bZP > .LoginForm_form__7G3Zk > :nth-child(1) > .CustomReactHookInput_input_wrapper__UTXCw > [data-testid="reactHookInput"]'
+      ),
+    loginPassword: () =>
+      cy.get(
+        ':nth-child(3) > [data-testid="authorizationContainer"] > .Authorization_wrapper__Q_bZP > .LoginForm_form__7G3Zk > :nth-child(2) > .CustomReactHookInput_field__ys1mK > .CustomReactHookInput_input_wrapper__UTXCw > [data-testid="reactHookInput"]'
+      ),
+    loginSignInBtn: () =>
+      cy.get(
+        ':nth-child(3) > [data-testid="authorizationContainer"] > .Authorization_wrapper__Q_bZP > .LoginForm_form__7G3Zk > .ItemButtons_wrapper__bOHMs > .ItemButtons_darkBlueRoundBtn___4GDw'
+      ),
   };
 
   clickPanelConditionBtn() {
@@ -150,6 +160,16 @@ class AdminPanelPage extends BasePage {
   clickSubItemListServicesBtn() {
     this.elements.subItemListServicesBtn().click();
   }
+
+  login(email: string, password: string) {
+    this.elements.loginEmail().should("exist").should("be.visible").type(email);
+    this.elements
+      .loginPassword()
+      .should("exist")
+      .should("be.visible")
+      .type(password, { log: false });
+    this.elements.loginSignInBtn().should("be.visible").click();
+  }
 }
 
-export default new AdminPanelPage();
+export default new AdminPanelMainPage();
