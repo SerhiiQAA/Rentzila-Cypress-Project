@@ -109,6 +109,7 @@ describe("Tenders functionality", () => {
       .budgetInput()
       .scrollIntoView()
       .should("have.value", "1111111110");
+      // first part of the test case includes 9.4 Copypaste 10 symbols to the ""Оголошений бюджет"" field Example: 1111111110
   });
 
   it("C259 View the tenders on the map", () => {
