@@ -5,7 +5,7 @@ import { envs } from "../utils/testData";
 describe("Admin functionality", () => {
   beforeEach(() => {
     AdminPanelMainPage.visit("admin/");
-    cy.wait(1000);
+    cy.wait(2000);
     AdminPanelMainPage.login(envs.email_admin, envs.password_admin);
   });
 
@@ -34,24 +34,31 @@ describe("Admin functionality", () => {
 
   it("C423 The ID, Логін, Ім'я користувача and Дата реєстрації filter buttons functionality", () => {
     AdminPanelMainPage.clickUsersBtn();
+    AdminPanelUsersPage.clickIdSort();
     AdminPanelUsersPage.verifyIdValues("asc");
     AdminPanelUsersPage.clickIdSort();
-    AdminPanelUsersPage.clickIdSort();
+    cy.wait(2000);
     AdminPanelUsersPage.verifyIdValues("desc");
     AdminPanelUsersPage.clickIdSort();
+    cy.wait(2000);
     AdminPanelUsersPage.verifyIdValues("asc");
     AdminPanelUsersPage.clickLoginSort();
+    cy.wait(2000);
     AdminPanelUsersPage.verifyLoginValues("asc");
     AdminPanelUsersPage.clickLoginSort();
     AdminPanelUsersPage.verifyLoginSortBtnStateDescending();
     AdminPanelUsersPage.clickDateSort();
+    cy.wait(2000);
     AdminPanelUsersPage.verifyDateValues('asc');
     AdminPanelUsersPage.clickDateSort();
+    cy.wait(2000);
     AdminPanelUsersPage.verifyDateValues('desc');
     AdminPanelUsersPage.clickNameSort();
+    cy.wait(2000);
     AdminPanelUsersPage.verifyNameValues("asc");
     AdminPanelUsersPage.clickNameSort();
-    AdminPanelUsersPage.verifyNameValues("asc");
+    cy.wait(2000);
+    AdminPanelUsersPage.verifyNameValues("desc");
   });
 
   it("C427 The number of users on the page functionality", () => {

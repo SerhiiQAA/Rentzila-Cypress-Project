@@ -98,22 +98,24 @@ class AdminPanelUsersPage extends BasePage {
       });
   }
 
-verifyIdValues(order = "asc") {
-  return this.elements.idValues()
-    .should("be.visible")
-    .should("have.length.at.least", 2)
-    .should(($els) => {
-      const values = $els.map((_, el) => +Cypress.$(el).text().trim()).get();
-      const sortedValues = order === "desc"
-        ? [...values].sort((a, b) => b - a)
-        : [...values].sort((a, b) => a - b);
+  verifyIdValues(order = "asc") {
+    return this.elements
+      .idValues()
+      .should("be.visible")
+      .should("have.length.at.least", 2)
+      .then(($els) => {
+        const values = $els.map((_, el) => +Cypress.$(el).text().trim()).get();
+        const sortedValues =
+          order === "desc"
+            ? [...values].sort((a, b) => b - a)
+            : [...values].sort((a, b) => a - b);
 
-      console.log("Actual values:", values);
-      console.log("Expected sorted values:", sortedValues);
+        console.log("Actual values:", values);
+        console.log("Expected sorted values:", sortedValues);
 
-      expect(values).to.deep.equal(sortedValues);
-    });
-}
+        expect(values).to.deep.equal(sortedValues);
+      });
+  }
 
   verifyLoginSortBtnStateDescending() {
     return this.elements
@@ -145,11 +147,11 @@ verifyIdValues(order = "asc") {
               );
         cy.log("Actual values: " + JSON.stringify(values));
         cy.log("Expected sorted values: " + JSON.stringify(sortedValues));
-        console.log(
+        cy.log(
           "Character breakdown of actual values:",
           values.map((v) => v.split(""))
         );
-        console.log(
+        cy.log(
           "Character breakdown of expected values:",
           sortedValues.map((v) => v.split(""))
         );
@@ -161,7 +163,7 @@ verifyIdValues(order = "asc") {
       .dateValues()
       .should("be.visible")
       .should("have.length.at.least", 1)
-      .should(($els) => {
+      .then(($els) => {
         const values = $els.map((_, el) => el.innerText.trim()).get();
         const parsedValues = values.map((dateTime) => {
           const [date, time] = dateTime.split(" ");
@@ -178,8 +180,8 @@ verifyIdValues(order = "asc") {
           order === "desc"
             ? [...parsedValues].sort((a, b) => b - a)
             : [...parsedValues].sort((a, b) => a - b);
-        console.log("Actual values:", parsedValues);
-        console.log("Expected sorted values:", sortedValues);
+        cy.log("Actual values:", parsedValues);
+        cy.log("Expected sorted values:", sortedValues);
         expect(parsedValues).to.deep.equal(sortedValues);
       });
   }
