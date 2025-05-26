@@ -109,10 +109,8 @@ class AdminPanelUsersPage extends BasePage {
           order === "desc"
             ? [...values].sort((a, b) => b - a)
             : [...values].sort((a, b) => a - b);
-
         console.log("Actual values:", values);
         console.log("Expected sorted values:", sortedValues);
-
         expect(values).to.deep.equal(sortedValues);
       });
   }
