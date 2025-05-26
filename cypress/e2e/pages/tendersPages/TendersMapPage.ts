@@ -32,12 +32,19 @@ class TendersMapPage extends BasePage {
       cy.get("div.FirmCheckbox_firmName__6oVpu"),
     organizatorCheckboxName: () => cy.get("div.FirmCheckbox_firmName__6oVpu"),
     resertFiltersBtn: () => cy.get('[data-testid="resetFilters"]'),
+
     categoryItem: () => cy.get("div.ItemCategory_checkboxWithLabel__gvz5O"),
     categoryCheckbox: () =>
       cy.get('.ItemCategory_checkbox__NE_uP[type="checkbox"]'),
-    categorySubItem: () => cy.get('label[data-testid="label"]'),
+    categorySubItem: () => cy.get("div.ItemService_service__5wzpW"),
     categorySubCheckbox: () =>
       cy.get('.ItemService_checkbox__15BWs[type="checkbox"]'),
+    categoryBuildingOpenListBtn: () => cy.get('[data-testid="chevron"]').eq(0),
+    categoryOthersOpenListBtn: () => cy.get('[data-testid="chevron"]').eq(1),
+    categoryAgriculturalOpenListBtn: () =>
+      cy.get('[data-testid="chevron"]').eq(2),
+
+    filterAppliedAllNames: () => cy.get("div.AppliedFilters_filter__PwGY_"),
     filterAppliedName: () => cy.get("div.AppliedFilters_filter__PwGY_"),
     budgetFromItem: () => cy.get('[data-testid="budgetFrom"]'),
     budgetToItem: () => cy.get('[data-testid="budgetTo"]'),
@@ -57,8 +64,56 @@ class TendersMapPage extends BasePage {
     this.elements.clearSearchTenderFieldBtn().click();
   }
 
-  clicktenderCardFirst() {
+  clickTenderCardFirst() {
     this.elements.tenderCardFirst().click();
+  }
+
+  clickOrganizatorCheckboxFirst() {
+    this.elements.organizatorCheckboxFirst().click();
+  }
+  
+  clickOrganizatorCheckboxSecond() {
+    this.elements.organizatorCheckboxSecond().click();
+  }
+  
+  clickOrganizatorCheckboxThird() {
+    this.elements.organizatorCheckboxThird().click();
+  }
+  
+  clickResertFiltersBtn() {
+    this.elements.resertFiltersBtn().click();
+  }
+  
+  clickCategoryCheckbox() {
+    this.elements.categoryCheckbox().click();
+  }
+  
+  clickCategorySubCheckbox() {
+    this.elements.categorySubCheckbox().click();
+  }
+  
+  clickCategoryItem() {
+    this.elements.categoryItem().click();
+  }
+  
+  clickCategorySubItem() {
+    this.elements.categorySubItem().click();
+  }
+  
+  clickCategoryBuildingOpenListBtn() {
+    this.elements.categoryBuildingOpenListBtn().click();
+  }
+  
+  clickCategoryOthersOpenListBtn() {
+    this.elements.categoryOthersOpenListBtn().click();
+  }
+  
+  clickCategoryAgriculturalOpenListBtn() {
+    this.elements.categoryAgriculturalOpenListBtn().click();
+  }
+  
+  clickCategorySubItemByText(text) {
+    this.elements.categorySubItem().contains(text).click();
   }
 
   fillInSearchTenderField(text: string) {
@@ -69,36 +124,20 @@ class TendersMapPage extends BasePage {
     this.elements.organizatorInputField().type(text);
   }
 
-  clickOrganizatorCheckboxFirst() {
-    this.elements.organizatorCheckboxFirst().click();
+  clickCategoryBuildingOpenListBtn() {
+    this.elements.categoryBuildingOpenListBtn().click();
   }
 
-  clickOrganizatorCheckboxSecond() {
-    this.elements.organizatorCheckboxSecond().click();
+  clickCategoryOthersOpenListBtn() {
+    this.elements.categoryOthersOpenListBtn().click();
   }
 
-  clickOrganizatorCheckboxThird() {
-    this.elements.organizatorCheckboxThird().click();
+  clickCategoryAgriculturalOpenListBtn() {
+    this.elements.categoryAgriculturalOpenListBtn().click();
   }
 
-  clickResertFiltersBtn() {
-    this.elements.resertFiltersBtn().click();
-  }
-
-  clickCategoryCheckbox() {
-    this.elements.categoryCheckbox().click();
-  }
-
-  clickCategorySubCheckbox() {
-    this.elements.categorySubCheckbox().click();
-  }
-
-  clickCategoryItem() {
-    this.elements.categoryItem().click();
-  }
-
-  clickCategorySubItem() {
-    this.elements.categorySubItem().click();
+  clickCategorySubItemByText(text) {
+    this.elements.categorySubItem().contains(text).click();
   }
 
   fillBudgetFrom(amount) {
@@ -107,6 +146,32 @@ class TendersMapPage extends BasePage {
 
   fillBudgetTo(amount) {
     this.elements.budgetToItem().clear().type(amount);
+  }
+
+  getTenderCardsCount() {
+    return this.elements.tenderCard().then((cards) => cards.length);
+  }
+
+  getTenderWordEnding(count) {
+    if (count === 1) return "тендер";
+    if (count >= 2 && count <= 4) return "тендери";
+    return "тендерів";
+  }
+
+  getCleanTitleText() {
+    return this.elements
+      .tendersInformativeTitle()
+      .invoke("text")
+      .then((text) => text.trim().replace(/\s+/g, " "));
+  }
+
+  verifySelectedFilters(names) {
+    this.elements.filterAppliedName().should(($elements) => {
+      const texts = $elements.map((index, el) => Cypress.$(el).text()).get();
+      names.forEach((name) => {
+        expect(texts).to.include(name);
+      });
+    });
   }
 
   verifyFirstAndLastTenderCardElements() {

@@ -5,6 +5,8 @@ class TenderCreatePage extends BasePage {
     tenderNameInput: () => cy.get('[data-testid="custom-input"]').eq(0),
     findServiceInput: () =>
       cy.get('[data-testid="input-customSelectWithSearch"]'),
+    findServiceInputSelected: () =>
+      cy.get(".CustomSelectWithSearch_serviceText__seBcv"),
     serviceListBtn: () => cy.get('[data-testid="item-customSelectWithSearch"]'),
     serviceListCloseBtn: () => cy.get('[data-testid="closeButton"]'),
     dateBeginningBtn: () => cy.get('[data-testid="datePicker"]').eq(0),
@@ -33,13 +35,15 @@ class TenderCreatePage extends BasePage {
       cy.get('[data-testid="p2-notFound-addNewItem"]'),
     dateEndingErrorMsg: () =>
       cy.get("div.DateContainer_errorTextVisible__of2cc"),
-    budgetInputErrorMsg: () => cy.get('[data-testid="descriptionError"]').eq(1),
+    budgetInputErrorMsg: () => cy.get('[data-testid="descriptionError"]'),
     placeWorkMapErrorMsg: () =>
       cy.get(".AddressSelectionBlock_errorTextVisible__IAGKS"),
     additionalInformationErrorMsg: () =>
       cy.get('[data-testid="textAreaError"]'),
     allErrorMsg: () => cy.get(".error-message"),
     closeTelegramBtn: () => cy.get('[data-testid="crossButton"]'),
+    firstServiceOptionFromInputDropdown: () =>
+      cy.get(':nth-child(1) > [data-testid="item-customSelectWithSearch"]'),
   };
 
   clickNextBtn() {
@@ -58,8 +62,28 @@ class TenderCreatePage extends BasePage {
     this.elements.dateCalendarTimeBtn().click();
   }
 
+  clickDateBeginningBtn() {
+    this.elements.dateBeginningBtn().click();
+  }
+
   clickDateEndingBtn() {
     this.elements.dateEndingBtn().click();
+  }
+
+  clickDatePeriodOfWorkBtn() {
+    this.elements.datePeriodOfWorkBtn().click();
+  }
+
+  clickFirstServiceOptionFromInputDropdown() {
+    this.elements.firstServiceOptionFromInputDropdown().click();
+  }
+
+  fillTenderNameInput(value) {
+    this.elements.tenderNameInput().clear().type(value);
+  }
+
+  fillBudgetInput(value) {
+    this.elements.budgetInput().clear().type(value);
   }
 
   validateAllErrorMsg() {
