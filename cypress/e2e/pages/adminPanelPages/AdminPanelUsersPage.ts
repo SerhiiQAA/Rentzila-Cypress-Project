@@ -39,9 +39,11 @@ class AdminPanelUsersPage extends BasePage {
     dateValues: () => cy.get("tbody tr td:nth-child(5)"),
     actValues: () => cy.get("tbody tr td:nth-child(6)"),
     pagesDropdown: () => cy.get(".MuiSelect-select"),
+    pagesDropdownList: () => cy.get(".MuiMenu-list"),
     pagesSort10: () => cy.get('li[data-value="10"]'),
     pagesSort20: () => cy.get('li[data-value="20"]'),
     pagesSort50: () => cy.get('li[data-value="50"]'),
+    rowsNumberInTable: () => cy.get("tbody tr"),
     pagesCountTitle: () => cy.get(".MuiTablePagination-displayedRows"),
     paginationRight: () => cy.get('[data-testid="KeyboardArrowRightIcon"]'),
     paginationLeft: () => cy.get('data-testid="KeyboardArrowLeftIcon"'),
@@ -71,6 +73,29 @@ class AdminPanelUsersPage extends BasePage {
 
   clickActionSort() {
     this.elements.sortActionBtn().click();
+  }
+
+  clickPagesDropdown() {
+    this.elements.pagesDropdown().click();
+  }
+
+  clickPagesSort10() {
+    this.elements.pagesSort10().click();
+  }
+  clickPagesSort20() {
+    this.elements.pagesSort20().click();
+  }
+  clickPagesSort50() {
+    this.elements.pagesSort50().click();
+  }
+
+  verifyDropdownOptions(...expectedOptions) {
+    return this.elements
+      .pagesDropdownList()
+      .children()
+      .each((option, index) => {
+        cy.wrap(option).should("have.text", expectedOptions[index]);
+      });
   }
 
   checkIdValuesAscending() {
