@@ -9,7 +9,7 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.login(envs.email_admin, envs.password_admin);
   });
 
-  it.skip("C399 The Аналітика menu functionality", () => {
+  it("C399 The Аналітика menu functionality", () => {
     AdminPanelMainPage.clickQueryAnalyticsDropdown();
     AdminPanelMainPage.clickAnalyticsOfUsers();
     AdminPanelMainPage.elements
@@ -54,7 +54,7 @@ describe("Admin functionality", () => {
     AdminPanelUsersPage.verifyNameValues("asc");
   });
 
-  it.skip("C427 The number of users on the page functionality", () => {
+  it("C427 The number of users on the page functionality", () => {
     AdminPanelMainPage.clickUsersBtn();
     AdminPanelUsersPage.elements
       .rowsNumberInTable()
