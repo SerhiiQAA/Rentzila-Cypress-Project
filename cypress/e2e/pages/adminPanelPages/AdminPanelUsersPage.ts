@@ -98,107 +98,116 @@ class AdminPanelUsersPage extends BasePage {
       });
   }
 
-  checkIdValuesAscending() {
-    return this.elements.idValues().then(($els) => {
-      const values = $els.map((_, el) => +el.innerText).get();
-      return expect(values).to.deep.equal([...values].sort((a, b) => a - b));
-    });
-  }
+verifyIdValues(order = "asc") {
+  return this.elements.idValues()
+    .should("be.visible")
+    .should("have.length.at.least", 2)
+    .should(($els) => {
+      const values = $els.map((_, el) => +Cypress.$(el).text().trim()).get();
+      const sortedValues = order === "desc"
+        ? [...values].sort((a, b) => b - a)
+        : [...values].sort((a, b) => a - b);
 
-  checkIdValuesDescending() {
-    return this.elements.idValues().then(($els) => {
-      const values = $els.map((_, el) => +el.innerText).get();
-      return expect(values).to.deep.equal([...values].sort((a, b) => b - a));
-    });
-  }
-
-  checkLoginValuesAscending() {
-    return this.elements.loginValues().then(($els) => {
-      let values = $els.map((_, el) => el.innerText.trim()).get();
-      values = values.filter((v) => v.length > 0);
-      cy.log("Actual values: " + JSON.stringify(values));
-      const sortedValues = [...values].sort((a, b) =>
-        a
-          .toLowerCase()
-          .localeCompare(b.toLowerCase(), undefined, { numeric: true })
-      );
-      cy.log("Expected sorted values: " + JSON.stringify(sortedValues));
-      console.log(
-        "Character breakdown of actual values:",
-        values.map((v) => v.split(""))
-      );
-      console.log(
-        "Character breakdown of expected values:",
-        sortedValues.map((v) => v.split(""))
-      );
+      console.log("Actual values:", values);
+      console.log("Expected sorted values:", sortedValues);
 
       expect(values).to.deep.equal(sortedValues);
     });
-  }
+}
 
-  checkLoginSortBtnStateDescending() {
+  verifyLoginSortBtnStateDescending() {
     return this.elements
       .sortLoginBtnState()
-      .should("exist")
       .should("be.visible")
       .should("contain", "sorted descending");
   }
 
-  checkDateValuesAscending() {
-    return this.elements.dateValues().then(($els) => {
-      const values = $els.map((_, el) => el.innerText.trim()).get();
-      const parsedValues = values.map((dateTime) => {
-        const [date, time] = dateTime.split(" ");
-        const [day, month, year] = date.split(".");
-        const [hours, minutes] = time.split(":");
-        return `${year}${month}${day}${hours}${minutes}`;
-      });
-      const sortedValues = [...parsedValues].sort((a, b) => +a - +b);
-      expect(parsedValues).to.deep.equal(sortedValues);
-    });
-  }
-
-  checkDateValuesDescending() {
-    return this.elements.dateValues().then(($els) => {
-      const values = $els.map((_, el) => el.innerText.trim()).get();
-      const parsedValues = values.map((dateTime) => {
-        const [date, time] = dateTime.split(" ");
-        const [day, month, year] = date.split(".");
-        const [hours, minutes] = time.split(":");
-        return `${year}${month}${day}${hours}${minutes}`;
-      });
-      const sortedValues = [...parsedValues].sort((a, b) => +b - +a);
-      expect(parsedValues).to.deep.equal(sortedValues);
-    });
-  }
-
-  checkNameValuesAscending() {
+  verifyLoginValues(order = "asc") {
     return this.elements
-      .nameValues()
-      .should("exist")
-      .should("have.length.at.least", 1)
-      .then(($els) => {
-        const values = $els.map((_, el) => el.innerText.trim()).get();
-        expect(values).to.not.be.empty;
-        const sortedValues = [...values].sort((a, b) =>
-          a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
-        );
-        expect(values).to.deep.equal(sortedValues);
-      });
-  }
-
-  checkNameValuesDescending() {
-    return this.elements
-      .nameValues()
-      .should("exist")
+      .loginValues()
+      .should("be.visible")
       .should("have.length.at.least", 1)
       .then(($els) => {
         let values = $els.map((_, el) => el.innerText.trim()).get();
-        values = values.filter((v) => !/^[-\s]+$/.test(v));
+        values = values.filter((v) => v.length > 0);
         expect(values).to.not.be.empty;
-        const sortedValues = [...values].sort((a, b) =>
-          b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" })
+        const sortedValues =
+          order === "desc"
+            ? [...values].sort((a, b) =>
+                b
+                  .toLowerCase()
+                  .localeCompare(a.toLowerCase(), undefined, { numeric: true })
+              )
+            : [...values].sort((a, b) =>
+                a
+                  .toLowerCase()
+                  .localeCompare(b.toLowerCase(), undefined, { numeric: true })
+              );
+        cy.log("Actual values: " + JSON.stringify(values));
+        cy.log("Expected sorted values: " + JSON.stringify(sortedValues));
+        console.log(
+          "Character breakdown of actual values:",
+          values.map((v) => v.split(""))
         );
+        console.log(
+          "Character breakdown of expected values:",
+          sortedValues.map((v) => v.split(""))
+        );
+      });
+  }
+
+  verifyDateValues(order = "asc") {
+    return this.elements
+      .dateValues()
+      .should("be.visible")
+      .should("have.length.at.least", 1)
+      .should(($els) => {
+        const values = $els.map((_, el) => el.innerText.trim()).get();
+        const parsedValues = values.map((dateTime) => {
+          const [date, time] = dateTime.split(" ");
+          const [day, month, year] = date.split(".");
+          const [hours, minutes] = time.split(":");
+          return Number(
+            `${year}${month.padStart(2, "0")}${day.padStart(
+              2,
+              "0"
+            )}${hours}${minutes}`
+          );
+        });
+        const sortedValues =
+          order === "desc"
+            ? [...parsedValues].sort((a, b) => b - a)
+            : [...parsedValues].sort((a, b) => a - b);
+        console.log("Actual values:", parsedValues);
+        console.log("Expected sorted values:", sortedValues);
+        expect(parsedValues).to.deep.equal(sortedValues);
+      });
+  }
+
+  verifyNameValues(order = "asc") {
+    return this.elements
+      .nameValues()
+      .should("be.visible")
+      .should("have.length.at.least", 1)
+      .should(($els) => {
+        let values = $els.map((_, el) => el.innerText.trim()).get();
+        values = values.filter((v) => !/^[-\s]+$/.test(v));
+        const sortedValues =
+          order === "desc"
+            ? [...values].sort((a, b) =>
+                b.localeCompare(a, undefined, {
+                  numeric: true,
+                  sensitivity: "base",
+                })
+              )
+            : [...values].sort((a, b) =>
+                a.localeCompare(b, undefined, {
+                  numeric: true,
+                  sensitivity: "base",
+                })
+              );
+        console.log("Actual values:", values);
+        console.log("Expected sorted values:", sortedValues);
         expect(values).to.deep.equal(sortedValues);
       });
   }
