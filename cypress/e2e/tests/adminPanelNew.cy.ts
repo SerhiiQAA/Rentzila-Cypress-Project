@@ -1,7 +1,6 @@
 import AdminPanelMainPage from "../pages/adminPanelPages/AdminPanelMainPage";
 import AdminPanelUsersPage from "../pages/adminPanelPages/AdminPanelUsersPage";
 import AdminPanelAddUserModal from "../pages/adminPanelPages/AdminPanelAddUserModal";
-// import AdminPanelUserInfoPage from "../pages/adminPanelPages/AdminPanelUserInfoPage";
 import AdminPanelEditUserPage from "../pages/adminPanelPages/AdminPanelEditUserPage";
 import AdminPanelMachineryPage from "../pages/adminPanelPages/AdminPanelMachineryPage";
 import { faker } from "@faker-js/faker";
