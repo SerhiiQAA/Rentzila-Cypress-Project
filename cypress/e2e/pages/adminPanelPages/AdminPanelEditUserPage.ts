@@ -1,0 +1,93 @@
+import BasePage from "../BasePage";
+
+class AdminPanelEditUserPage extends BasePage {
+  elements = {
+    title: () => cy.get("div.AdminLayout_title__lqIgo"),
+    allUsersDropdown: () => cy.get('[data-testid="div_CustomSelect"]'),
+    usersDropdownArea: () => cy.get('[data-testid="listItems-customSelect"]'),
+    subCategoryDropdownClient: () =>
+      cy.get('li[data-testid="item-customSelect"]').contains("Клієнт"),
+    lastNameField: () =>
+      cy.get(
+        ".EditUser_info_wrapper__GB7mB > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)"
+      ),
+    firstNameField: () =>
+      cy.get(
+        "div.CustomInput_wrapper__zU62a:nth-child(3) > div:nth-child(2) > input:nth-child(1)"
+      ),
+    middleNameField: () =>
+      cy.get(
+        "div.CustomInput_wrapper__zU62a:nth-child(4) > div:nth-child(2) > input:nth-child(1)"
+      ),
+    mobileField: () => cy.get('[data-testid="OwnerProfileNumber"]'),
+    viberField: () =>
+      cy.get(".OwnerProfileAdditionalInfo_input_wrapper__58OrA div #mobile"),
+    telegramField: () => cy.get('[data-testid="custom-input"]').eq(4),
+    emailField: () =>
+      cy.get(
+        '[data-testid="OwnerProfileEmail"] > [data-testid="customInputWrapper"] > :nth-child(2) > [data-testid="custom-input"]'
+      ),
+    closeBtn: () => cy.get(".EditUser_close_btn__rZBlh"),
+    deleteUserBtn: () => cy.get(".EditUser_delete_btn__gJXux"),
+    submitBtn: () => cy.get('[type="submit"]'),
+  };
+
+  clickAllUsersDropdown() {
+    this.elements.allUsersDropdown().click();
+  }
+
+  clickSubCategoryDropdownClient() {
+    this.elements.subCategoryDropdownClient().click({ force: true });
+  }
+
+  clickCloseBtn() {
+    this.elements.closeBtn().click();
+  }
+
+  clickDeleteUserBtn() {
+    this.elements.deleteUserBtn().click();
+  }
+
+  clickSubmitBtn() {
+    this.elements.submitBtn().click();
+  }
+
+  fillLastName(lastName) {
+    this.elements.lastNameField().clear().type(lastName);
+  }
+
+  fillFirstName(firstName) {
+    this.elements.firstNameField().clear().type(firstName);
+  }
+
+  fillMiddleName(middleName) {
+    this.elements.middleNameField().clear().type(middleName);
+  }
+
+  fillMobileNumber(mobile) {
+    this.elements.mobileField().clear().type(mobile);
+  }
+
+  fillViberField(mobile) {
+    this.elements.viberField().clear().type(mobile);
+  }
+
+  fillTelegramField(mobile) {
+    this.elements.telegramField().clear().type(mobile);
+  }
+
+  fillEmail(mobile) {
+    this.elements.emailField().clear().type(mobile);
+  }
+
+  selectDropdownOption(optionName) {
+    this.elements.allUsersDropdown().click();
+    this.elements
+      .usersDropdownArea()
+      .should("be.visible")
+      .contains(optionName)
+      .click();
+  }
+}
+
+export default new AdminPanelEditUserPage();
