@@ -106,6 +106,7 @@ class CreateUnitPage extends BasePage {
   fillCustomInputField(text: string) {
     this.elements.customInputField().clear().type(text);
   }
+  
   fillSelectManufactureInput(option: string) {
     this.elements.selectManufactureInput().type(option, { delay: 200 });
   }

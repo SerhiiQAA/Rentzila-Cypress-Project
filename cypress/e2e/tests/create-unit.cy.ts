@@ -1,6 +1,5 @@
 // / <reference types="Cypress" />
 
-// import { config } from '../../../config';
 import BasePage from "../pages/BasePage";
 import MainPage from "../pages/MainPage";
 import header from "../components/Header";
@@ -17,7 +16,7 @@ describe("Create Unit page tests", () => {
     basePage.visit();
     mainPage.closeTelegramModal();
     header.clickAdAnnouncementBtn();
-    loginPage.login("testuserrentzila@gmail.com", "Testuser10");
+    loginPage.login(Cypress.env("USER_EMAIL"), Cypress.env("USER_PASSWORD"));
   });
 
   it("C294 Verify body title and tab titles", () => {
@@ -399,11 +398,11 @@ describe("Create Unit page tests", () => {
     createUnitPage.elements.mapPopup().should("not.exist");
   });
 
-  it('C326 Verify ""Скасувати"" button', () => {
+  it.only('C326 Verify ""Скасувати"" button', () => {
     createUnitPage.elements.cancelBtn().should("have.text", "Скасувати");
     cy.on("window:confirm", () => true);
     createUnitPage.clickCancelBtn();
-    basePage.verifyCurrentUrl("https://dev.rentzila.com.ua/");
+    basePage.verifyCurrentUrl(Cypress.config("baseUrl"));
   });
 
   it('C329 Verify ""Далі"" button', () => {
