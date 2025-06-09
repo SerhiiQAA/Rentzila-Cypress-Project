@@ -3,6 +3,8 @@ import { faker } from "@faker-js/faker";
 export const envs = {
   email: Cypress.env("USER_EMAIL"),
   password: Cypress.env("USER_PASSWORD"),
+  email_admin: Cypress.env("ADMIN_EMAIL"),
+  password_admin: Cypress.env("ADMIN_PASSWORD"),
   phone: Cypress.env("USER_PHONE"),
   email_regMail: Cypress.env("USER_EMAIL_MAIL_REG"),
   pass_regMail: Cypress.env("USER_PASSWORD_MAIL_REG"),
@@ -57,7 +59,6 @@ export const invalidNumbers = [
   "+10506743060",
   "+0506743060",
 ];
-
 export const symbols = ["[]", "#", "(", ")", "!", "+", "/", "123"];
 
 export const invalidCities = ["Киев", "Варшава"]

@@ -32,7 +32,6 @@ class TendersMapPage extends BasePage {
       cy.get("div.FirmCheckbox_firmName__6oVpu"),
     organizatorCheckboxName: () => cy.get("div.FirmCheckbox_firmName__6oVpu"),
     resertFiltersBtn: () => cy.get('[data-testid="resetFilters"]'),
-
     categoryItem: () => cy.get("div.ItemCategory_checkboxWithLabel__gvz5O"),
     categoryCheckbox: () =>
       cy.get('.ItemCategory_checkbox__NE_uP[type="checkbox"]'),
@@ -43,7 +42,6 @@ class TendersMapPage extends BasePage {
     categoryOthersOpenListBtn: () => cy.get('[data-testid="chevron"]').eq(1),
     categoryAgriculturalOpenListBtn: () =>
       cy.get('[data-testid="chevron"]').eq(2),
-
     filterAppliedAllNames: () => cy.get("div.AppliedFilters_filter__PwGY_"),
     filterAppliedName: () => cy.get("div.AppliedFilters_filter__PwGY_"),
     budgetFromItem: () => cy.get('[data-testid="budgetFrom"]'),
@@ -124,21 +122,6 @@ class TendersMapPage extends BasePage {
     this.elements.organizatorInputField().type(text);
   }
 
-  clickCategoryBuildingOpenListBtn() {
-    this.elements.categoryBuildingOpenListBtn().click();
-  }
-
-  clickCategoryOthersOpenListBtn() {
-    this.elements.categoryOthersOpenListBtn().click();
-  }
-
-  clickCategoryAgriculturalOpenListBtn() {
-    this.elements.categoryAgriculturalOpenListBtn().click();
-  }
-
-  clickCategorySubItemByText(text) {
-    this.elements.categorySubItem().contains(text).click();
-  }
 
   fillBudgetFrom(amount) {
     this.elements.budgetFromItem().clear().type(amount);
