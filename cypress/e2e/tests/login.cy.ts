@@ -52,6 +52,7 @@ context("Login verification", () => {
     });
   });
 });
+
 context("C202 Login Verification 2.0", () => {
   it("Authorization with valid phone and password", () => {
     const phoneNumbers = [envs.phone, envs.phone.slice(1), envs.phone.slice(3)];
