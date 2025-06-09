@@ -41,6 +41,7 @@ context("Login verification", () => {
       loginPage.cleanInputs();
     });
   });
+  
   it("C207 Authorization with invalid credentials (phone number)", () => {
     invalidNumbers.forEach((number) => {
       loginPage.login(number, envs.password);
