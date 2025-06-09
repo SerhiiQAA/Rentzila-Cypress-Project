@@ -3,7 +3,7 @@ import header from "../components/Header";
 import { config } from "../../../config";
 import { envs } from "../utils/testData";
 import { invalidEmails } from "../utils/testData";
-import { errorMessages } from "../utils/uiTexts";
+import { uiMessages } from "../utils/uiTexts";
 import { invalidPasswords } from "../utils/testData";
 import { invalidNumbers } from "../utils/testData";
 
@@ -28,25 +28,21 @@ context("Login verification", () => {
   it("C203 Authorization with invalid credentials", () => {
     invalidEmails.forEach((email) => {
       loginPage.login(email, envs.password);
-      loginPage
-        .getErrorMsg()
-        .should("have.text", errorMessages.emailLoginError);
+      loginPage.getErrorMsg().should("have.text", uiMessages.emailLoginError);
       loginPage.cleanInputs();
     });
     invalidPasswords.forEach((password) => {
       loginPage.login(envs.email, password);
       loginPage
         .getErrorMsg()
-        .should("have.text", errorMessages.passwordLoginError);
+        .should("have.text", uiMessages.passwordLoginError);
       loginPage.cleanInputs();
     });
   });
   it("C207 Authorization with invalid credentials (phone number)", () => {
     invalidNumbers.forEach((number) => {
       loginPage.login(number, envs.password);
-      loginPage
-        .getErrorMsg()
-        .should("have.text", errorMessages.phoneLoginError);
+      loginPage.getErrorMsg().should("have.text", uiMessages.phoneLoginError);
       loginPage.cleanInputs();
     });
   });

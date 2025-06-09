@@ -62,6 +62,10 @@ class AdminPanelPage extends BasePage {
 
   };
 
+  visit(path?: string): void {
+    super.visit("/admin/");
+  }
+
   clickPanelConditionBtn() {
     this.elements.panelConditionBtn().click();
   }
