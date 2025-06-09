@@ -59,3 +59,13 @@ export const invalidNumbers = [
 ];
 
 export const symbols = ["[]", "#", "(", ")", "!", "+", "/", "123"];
+
+export const invalidCities = ["Киев", "Варшава"]
+
+export const images = {
+  jpegImage: "./cypress/e2e/utils/images/4_55.jpeg",
+  pngImage: "./cypress/e2e/utils/images/4_55.png",
+  jpgImage: "./cypress/e2e/utils/images/4_55.jpg",
+  invalidImage: "./cypress/e2e/utils/images/image.txt",
+  largeImage: "./cypress/e2e/utils/images/large.png",
+};

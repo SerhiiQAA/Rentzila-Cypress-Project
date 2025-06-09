@@ -28,6 +28,10 @@ class UserPage extends BasePage {
         .find('[data-testid="input_OwnerProfileNumber"]'),
     profileNumberLbl: () => cy.contains("Номер телефону"),
     profileEmailInput: () => this.getCustomInput("Email"),
+    smsBtn: () => cy.contains("SMS"),
+    smsCodeInput: () => cy.get('[data-testid="smsInput"]'),
+    verifyNumberBtn: () => cy.contains("Верифікувати номер телефону"),
+    sendSmsAgainBtn: () => cy.get('[data-testid="sendSmsAgain"]'),
     saveBtn: () => cy.get('[data-testid="nextButton"]'),
     viberInput: () => cy.contains("Viber").parent().find("#mobile"),
     telegramInput: () =>
@@ -35,12 +39,18 @@ class UserPage extends BasePage {
         .contains('[data-testid="customInputWrapper"]', "Telegram")
         .parent()
         .find('[data-testid="custom-input"]'),
+    choosePhotoBtn: () => cy.get('input[data-testid="leftsideFile"]'),
+    userAvatar: () => cy.get('[data-testid="photo"]'),
     phoneError: () => cy.get('[data-testid="phoneError_OwnerProfileNumber"]'),
+    imageError: () => cy.get('[data-testid="errorPopup"]'),
+    codeError: () => cy.contains("Введений код невірний"),
     notification: () =>
       cy.get(
         '[data-testid="notificationContainer"] .NotificationLikePopup_description__htlK7',
         { timeout: 5000 }
       ),
+    uploadModalUnderstoodBtn: () => cy.contains("Зрозуміло"),
+    uploadModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
   };
 
   visit(path?: string): void {
@@ -69,6 +79,9 @@ class UserPage extends BasePage {
 
   fillNumber(number: string) {
     this.elements.profileNumberInput().clear().type(number);
+  }
+  fillSmsCode(code: string) {
+    this.elements.smsCodeInput().clear().type(code);
   }
 
   fillViber(number: string) {
@@ -101,8 +114,32 @@ class UserPage extends BasePage {
     this.elements.patronimInput().clear();
   }
 
+  clickSmsBtn() {
+    this.elements.smsBtn().click();
+  }
+
+  clickVerifyNumberBtn() {
+    this.elements.verifyNumberBtn().click();
+  }
+
+  clickSendSmsAgainBtn() {
+    this.elements.sendSmsAgainBtn().click();
+  }
+
   clickNextBtn() {
     this.elements.saveBtn().click();
+  }
+
+  clickUnderstoodBtn(){
+    this.elements.uploadModalUnderstoodBtn().click();
+  }
+
+  clickCloseUploadModal(){
+    this.elements.uploadModalCloseBtn().click();
+  }
+
+  clickOutside(){
+    cy.get("body").click(0, 0);
   }
 
   selectEntityType(option: string) {
@@ -113,6 +150,10 @@ class UserPage extends BasePage {
   selectLegalEntityType(option: string) {
     this.elements.legalEntityTypeSelect().click();
     this.elements.legalEntityTypeSelect().contains(option).click();
+  }
+
+  selectPhoto(imagePath: string) {
+    this.elements.choosePhotoBtn().selectFile(imagePath, { force: true });
   }
 
   fillPersonalInfo(lastName, name, patronim, viber, telegram, city) {

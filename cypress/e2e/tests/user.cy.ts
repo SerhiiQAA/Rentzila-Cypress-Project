@@ -1,10 +1,8 @@
 import header from "../components/Header";
 import userPage from "../pages/userPage";
-import { envs } from "../utils/testData";
+import { envs, symbols, userFullData, invalidCities, images} from "../utils/testData";
 import { uiMessages } from "../utils/uiTexts";
 import LoginPage from "../pages/LoginPage";
-import { symbols } from "../utils/testData";
-import { userFullData } from "../utils/testData";
 import { faker } from "@faker-js/faker";
 import MainPage from "../pages/MainPage";
 import adminUsersPage from "../pages/AdminUsersPage";
@@ -114,26 +112,43 @@ context("User page verification (registrated via email)", () => {
       .should("have.text", uiMessages.verifyPhoneError);
   });
 
-  it(
-    "C350 Verify that validation message 'Код ЄДРПОУ не може бути коротше 8 символів' appears when user input less than 8 digits", () => {
-      userPage.selectEntityType(userFullData.legalEntity);
-      userPage.fillLegalEntityId(userFullData.legalEntityId.slice(1));
-      userPage.clickNextBtn();
-      cy.checkInputErrorByLabel("ЄДРПОУ для юридичних осіб", uiMessages.legalIdError);
-    }
-  );
+  it("C350 Verify that validation message 'Код ЄДРПОУ не може бути коротше 8 символів' appears when user input less than 8 digits", () => {
+    userPage.selectEntityType(userFullData.legalEntity);
+    userPage.fillLegalEntityId(userFullData.legalEntityId.slice(1));
+    userPage.clickNextBtn();
+    cy.checkInputErrorByLabel(
+      "ЄДРПОУ для юридичних осіб",
+      uiMessages.legalIdError
+    );
+  });
 
-  it(
-    "C351 Verify that validation message 'Код ІПН не може бути коротше 10 символів' appears when user input less than 10 digits", () => {
-      userPage.selectEntityType(userFullData.individualEntrepreneur);
-      userPage.fillIndividualEntrepreneurId(userFullData.privateEntityId.slice(1));
-      userPage.clickNextBtn();
-      cy.checkInputErrorByLabel(
-        "РНОКПП (ІПН) для ФОП",
-        uiMessages.privateIdError
-      );
-    }
-  );
+  it("C351 Verify that validation message 'Код ІПН не може бути коротше 10 символів' appears when user input less than 10 digits", () => {
+    userPage.selectEntityType(userFullData.individualEntrepreneur);
+    userPage.fillIndividualEntrepreneurId(
+      userFullData.privateEntityId.slice(1)
+    );
+    userPage.clickNextBtn();
+    cy.checkInputErrorByLabel(
+      "РНОКПП (ІПН) для ФОП",
+      uiMessages.privateIdError
+    );
+  });
+  it("C527 Verify that validation message when a user enters an invalid SMS code during phone number confirmation.", () => {
+    userPage.fillNumber("380969996972"); //change
+    userPage.clickSmsBtn();
+    userPage.fillSmsCode("111");
+    userPage.elements
+      .verifyNumberBtn()
+      .parent()
+      .should("have.class", "ItemButtons_disabled__DzqLp");
+    userPage.fillSmsCode("1111");
+    userPage.clickVerifyNumberBtn();
+    userPage.elements.codeError().should("be.visible");
+    userPage.clickSendSmsAgainBtn();
+    cy.wait(60000);
+    userPage.clickVerifyNumberBtn();
+    userPage.elements.codeError().should("be.visible");
+  });
 });
 
 context("User page verification (verified phone account)", () => {
@@ -158,7 +173,7 @@ context("User page verification (verified phone account)", () => {
       userFullData.viber,
       userFullData.telegram,
       userFullData.city
-     );
+    );
     userPage.clickNextBtn();
     userPage.elements
       .notification()
@@ -193,8 +208,8 @@ context("User page verification (verified phone account)", () => {
     header.clickUserDropdownLogoutBtn();
     header.clickSignInBtn();
     LoginPage.login(envs.adminEmail, envs.adminPassword);
-    cy.scrollTo('top');
-    header.elements.settingsBtn().should("be.visible")
+    cy.scrollTo("top");
+    header.elements.settingsBtn().should("be.visible");
     header.clickSettingsBtn();
     adminPanelPage.clickUsersBtn();
     adminUsersPage.viewUserData(envs.email);
@@ -253,5 +268,86 @@ context("User page verification (verified phone account)", () => {
         .legalEntityIdInput()
         .should("have.value", userFullData.legalEntityId);
     });
+  });
+
+  it("C359 Verify that 'Некоректно введена назва населеного пункту' validation message appears when user  fill 'Населений пункт ' field with random input", () => {
+    invalidCities.forEach((city) => {
+      userPage.fillCity(city);
+      userPage.clickNextBtn();
+      cy.checkInputErrorByLabel("Місто", uiMessages.invalidCityError);
+    });
+  });
+
+  it("C380 Verify that the user is able to change the profile photo", () => {
+    var photos = [images.jpegImage, images.jpgImage, images.pngImage];
+    
+    photos.forEach((photo) => {
+      userPage.elements.userAvatar().invoke("attr", "src").as("oldAvatar");
+  
+      userPage.selectPhoto(photo);
+  
+      cy.get("@oldAvatar").then((oldSrc) => {
+        userPage.elements
+          .userAvatar()
+          .should("have.attr", "src")
+          .and((newSrc) => {
+            expect(newSrc).not.to.eq(oldSrc);
+          });
+      });
+    })
+  });
+
+  it(
+    "C377 Verify that the user unable to change the profile photo to one of the image with unavailable extensions", () => {
+      userPage.selectPhoto(images.invalidImage);
+      userPage.elements
+        .imageError()
+        .should("be.visible")
+        .and("contain.text", uiMessages.imageFormatError);
+      userPage.clickUnderstoodBtn();
+      userPage.elements.imageError().should("not.exist");
+
+      userPage.selectPhoto(images.invalidImage);
+      userPage.elements
+        .imageError()
+        .should("be.visible")
+        .and("contain.text", uiMessages.imageFormatError);
+      userPage.clickCloseUploadModal();
+      userPage.elements.imageError().should("not.exist");
+
+      userPage.selectPhoto(images.invalidImage);
+      userPage.elements
+        .imageError()
+        .should("be.visible")
+        .and("contain.text", uiMessages.imageFormatError);
+      userPage.clickOutside();
+      userPage.elements.imageError().should("not.exist");
+    }
+  );
+
+  it("C379 Verify that the user unable to change the profile photo to one of the image with unavailable size of the image [>5MB]", () => {
+    userPage.selectPhoto(images.largeImage);
+    userPage.elements
+      .imageError()
+      .should("be.visible")
+      .and("contain.text", uiMessages.imageSizeError);
+    userPage.clickUnderstoodBtn();
+    userPage.elements.imageError().should("not.exist");
+
+    userPage.selectPhoto(images.largeImage);
+    userPage.elements
+      .imageError()
+      .should("be.visible")
+      .and("contain.text", uiMessages.imageSizeError);
+    userPage.clickCloseUploadModal();
+    userPage.elements.imageError().should("not.exist");
+
+    userPage.selectPhoto(images.largeImage);
+    userPage.elements
+      .imageError()
+      .should("be.visible")
+      .and("contain.text", uiMessages.imageSizeError);
+    userPage.clickOutside();
+    userPage.elements.imageError().should("not.exist");
   });
 });
