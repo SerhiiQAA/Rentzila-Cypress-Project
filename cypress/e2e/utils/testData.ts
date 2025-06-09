@@ -38,3 +38,4 @@ export const invalidNumbers = [
   "+10506743060",
   "+0506743060",
 ];
+export const symbols = ["[]", "#", "(", ")", "!", "+", "/", "123"];
