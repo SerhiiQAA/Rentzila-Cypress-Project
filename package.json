@@ -17,5 +17,9 @@
     "cypress": "^14.3.3",
     "cypress-dotenv": "^3.0.1",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/tesseract.js": "^2.0.0",
+    "dotenv": "^16.5.0"
   }
 }

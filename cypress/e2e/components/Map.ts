@@ -2,7 +2,7 @@ class Map {
   elements = {
     multipleTendersBadgeOnMap: () => cy.get(".leaflet-interactive div span"),
     singleTendersBadgeOnMap: () =>
-      cy.get("div.leaflet-marker-pane .leaflet-interactive").eq(1),
+      cy.get("img.leaflet-zoom-animated"),
     zoomInBtn: () => cy.get(".leaflet-control-zoom-in"),
     zoomOutBtn: () => cy.get(".leaflet-control-zoom-out"),
         mylocationBtn: () => cy.get(".leaflet-control-zoom-out"),
