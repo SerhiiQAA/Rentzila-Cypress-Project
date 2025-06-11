@@ -182,7 +182,7 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.verifyCurrentUrl("admin/categories/");
     AdminPanelMachineryPage.clickCreateBtn();
     AdminPanelMachineryPage.elements
-      .creatCategoryModalTitle()
+      .createCategoryModalTitle()
       .should("have.text", "Створити категорію");
     const randomNumber = faker.string.numeric(5);
     const categoryName = `Категорія 1 ${randomNumber}`;

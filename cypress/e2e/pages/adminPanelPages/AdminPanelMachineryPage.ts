@@ -11,18 +11,18 @@ class AdminPanelMachineryPage extends BasePage {
       cy.get('thead tr th:nth-child(2) [data-testid="sortLabelContainer"]'),
     idValue: () => cy.get("tbody tr th"),
     nameValue: () => cy.get(".MuiTableCell-root:nth-child(2)"),
-    creatCategoryModalTitle: () => cy.get("div.PopupLayout_label__pmlul"),
-    creatCategoryModalNameField: () =>
+    createCategoryModalTitle: () => cy.get("div.PopupLayout_label__pmlul"),
+    createCategoryModalNameField: () =>
       cy.get('input[data-testid="custom-input"]'),
-    creatCategoryModalParentDropdownBtn: () =>
+    createCategoryModalParentDropdownBtn: () =>
       cy.get('div[data-testid="div_CustomSelect"]'),
-    creatCategoryModalParentDropdownArea: () =>
+    createCategoryModalParentDropdownArea: () =>
       cy.get('ul[data-testid="listItems-customSelect"]'),
     creatCategoryModalCancelBtn: () =>
       cy.get("button.AdminCategoryPopup_close_btn__5UFLs"),
-    creatCategoryModalSavelBtn: () =>
+    createCategoryModalSavelBtn: () =>
       cy.get("button.AdminCategoryPopup_save_btn__0tYx_"),
-    creatCategoryModalCloselBtn: () => cy.get('[data-testid="crossIcon"]'),
+    createCategoryModalCloselBtn: () => cy.get('[data-testid="crossIcon"]'),
   };
 
   clickCreateBtn() {
@@ -30,7 +30,7 @@ class AdminPanelMachineryPage extends BasePage {
   }
 
   clickCreatCategoryModalSavelBtn() {
-    this.elements.creatCategoryModalSavelBtn().click();
+    this.elements.createCategoryModalSavelBtn().click();
   }
 
   clickCreatCategoryModalCancelBtn() {
@@ -38,7 +38,7 @@ class AdminPanelMachineryPage extends BasePage {
   }
 
   clickCreatCategoryModalCloselBtn() {
-    this.elements.creatCategoryModalCloselBtn().click();
+    this.elements.createCategoryModalCloselBtn().click();
   }
   clickSortByIdBtn() {
     this.elements.sortByIdBtn().click();
@@ -49,7 +49,7 @@ class AdminPanelMachineryPage extends BasePage {
   }
 
   fillCreatCategoryModalNameField(name: string) {
-    this.elements.creatCategoryModalNameField().clear().type(name);
+    this.elements.createCategoryModalNameField().clear().type(name);
   }
 
   fillSearchField(searchText: string) {
@@ -57,9 +57,9 @@ class AdminPanelMachineryPage extends BasePage {
   }
 
   selectCategoryModalDropdownOption(optionText: string) {
-    this.elements.creatCategoryModalParentDropdownBtn().click();
+    this.elements.createCategoryModalParentDropdownBtn().click();
     this.elements
-      .creatCategoryModalParentDropdownArea()
+      .createCategoryModalParentDropdownArea()
       .should("be.visible")
       .contains(optionText)
       .click();
