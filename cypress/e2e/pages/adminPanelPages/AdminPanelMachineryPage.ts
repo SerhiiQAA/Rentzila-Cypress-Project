@@ -2,7 +2,7 @@ import BasePage from "../BasePage";
 
 class AdminPanelMachineryPage extends BasePage {
   elements = {
-    title: () => cy.get("div.AdminLayout_title__lqIgo"),
+    title: () => cy.get('div[class*="AdminLayout_title"]'),
     createBtn: () => cy.get('[data-testid="customButtonContainer"]'),
     searchField: () => cy.get('[data-testid="input"]'),
     sortByIdBtn: () =>
@@ -11,7 +11,7 @@ class AdminPanelMachineryPage extends BasePage {
       cy.get('thead tr th:nth-child(2) [data-testid="sortLabelContainer"]'),
     idValue: () => cy.get("tbody tr th"),
     nameValue: () => cy.get(".MuiTableCell-root:nth-child(2)"),
-    createCategoryModalTitle: () => cy.get("div.PopupLayout_label__pmlul"),
+    createCategoryModalTitle: () => cy.get('div[class*="PopupLayout_label"]'),
     createCategoryModalNameField: () =>
       cy.get('input[data-testid="custom-input"]'),
     createCategoryModalParentDropdownBtn: () =>
@@ -19,9 +19,9 @@ class AdminPanelMachineryPage extends BasePage {
     createCategoryModalParentDropdownArea: () =>
       cy.get('ul[data-testid="listItems-customSelect"]'),
     createCategoryModalCancelBtn: () =>
-      cy.get("button.AdminCategoryPopup_close_btn__5UFLs"),
+      cy.get('button[class*="AdminCategoryPopup_close_btn"]'),
     createCategoryModalSavelBtn: () =>
-      cy.get("button.AdminCategoryPopup_save_btn__0tYx_"),
+      cy.get('button[class*="AdminCategoryPopup_save_btn"]'),
     createCategoryModalCloselBtn: () => cy.get('[data-testid="crossIcon"]'),
   };
 

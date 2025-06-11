@@ -2,7 +2,7 @@ import BasePage from "../BasePage";
 
 class AdminPanelEditUserPage extends BasePage {
   elements = {
-    title: () => cy.get("div.AdminLayout_title__lqIgo"),
+    title: () => cy.get('div[class*="AdminLayout_title"]'),
     allUsersDropdown: () => cy.get('[data-testid="div_CustomSelect"]'),
     usersDropdownArea: () => cy.get('[data-testid="listItems-customSelect"]'),
     subCategoryDropdownClient: () =>
@@ -21,14 +21,14 @@ class AdminPanelEditUserPage extends BasePage {
       ),
     mobileField: () => cy.get('[data-testid="OwnerProfileNumber"]'),
     viberField: () =>
-      cy.get(".OwnerProfileAdditionalInfo_input_wrapper__58OrA div #mobile"),
+      cy.get('[class*="OwnerProfileAdditionalInfo_input_wrapper"] div #mobile'),
     telegramField: () => cy.get('[data-testid="custom-input"]').eq(4),
     emailField: () =>
       cy.get(
         '[data-testid="OwnerProfileEmail"] > [data-testid="customInputWrapper"] > :nth-child(2) > [data-testid="custom-input"]'
       ),
-    closeBtn: () => cy.get(".EditUser_close_btn__rZBlh"),
-    deleteUserBtn: () => cy.get(".EditUser_delete_btn__gJXux"),
+    closeBtn: () => cy.get('[class*="EditUser_close_btn"]'),
+    deleteUserBtn: () => cy.get('[class*="EditUser_delete_btn]'),
     submitBtn: () => cy.get('[type="submit"]'),
   };
 

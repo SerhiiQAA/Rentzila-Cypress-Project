@@ -2,7 +2,7 @@ import BasePage from "../BasePage";
 
 class AdminPanelAddUserModal extends BasePage {
   elements = {
-    title: () => cy.get("div.PopupLayout_label__pmlul"),
+    title: () => cy.get('div[class*="PopupLayout_label"]'),
     allUsersDropdown: () =>
       cy.get('[data-testid="div_CustomSelect"]:nth-child(1)'),
     usersDropdownArea: () => cy.get('[data-testid="listItems-customSelect"]'),

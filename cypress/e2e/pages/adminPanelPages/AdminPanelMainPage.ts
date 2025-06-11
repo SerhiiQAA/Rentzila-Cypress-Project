@@ -4,14 +4,14 @@ class AdminPanelMainPage extends BasePage {
   elements = {
     logoBtn: () => cy.get('img[alt="rentzila"]'),
     homeBtn: () => cy.get('[data-testid="homeButton"]'),
-    title: () => cy.get("div.AdminLayout_title__lqIgo"),
+    title: () => cy.get('div[class*="AdminLayout_title"]'),
     panelConditionBtn: () =>
       cy
-        .get("div.AdminNavigationLink_iconWithTitle__p8TDQ")
+        .get('div[class*="AdminNavigationLink_iconWithTitle"]')
         .contains("Панель стану"),
     usersBtn: () =>
       cy
-        .get("div.AdminNavigationLink_iconWithTitle__p8TDQ")
+        .get('div[class*="AdminNavigationLink_iconWithTitle"]')
         .contains("Користувачі"),
     machineryBtn: () =>
       cy.get('div[data-testid="linksContainer"]').contains("Техніка"),
@@ -19,37 +19,37 @@ class AdminPanelMainPage extends BasePage {
       cy.get('div[data-testid="linksContainer"]').contains("Сервіси"),
     announcementBtn: () =>
       cy
-        .get("div.AdminNavigationLink_iconWithTitle__p8TDQ")
+        .get('div[class*="AdminNavigationLink_iconWithTitle"]')
         .contains("Оголошення"),
     tendersBtn: () =>
       cy
-        .get("div.AdminNavigationLink_iconWithTitle__p8TDQ")
+        .get('div[class*="AdminNavigationLink_iconWithTitle"]')
         .contains("Тендери"),
     jobRequestsBtn: () =>
       cy
-        .get("div.AdminNavigationLink_iconWithTitle__p8TDQ")
+        .get('div[class*="AdminNavigationLink_iconWithTitle"]')
         .contains("Запити на роботу"),
     supportBtn: () =>
-      cy.get("div.AdminNavigationLink_iconWithTitle__p8TDQ").eq(5),
-    logoutBtn: () => cy.get("div.AdminNavigation_button_wrapper__8ScL5"),
+      cy.get('div[class*="AdminNavigationLink_iconWithTitle"]').eq(5),
+    logoutBtn: () => cy.get('div[class*="AdminNavigation_button_wrapper"]'),
     switcherNowOrAllTime: () => cy.get('[data-testid="switcher"]'),
     subItemCategoryMachineryBtn: () =>
       cy
-        .get("li li .AdminNavigationLink_button__jD4Gm")
+        .get('li li [class*="AdminNavigationLink_button"]')
         .contains("Категорії техніки"),
     subItemProducerMachineryBtn: () =>
       cy
-        .get("li li .AdminNavigationLink_button__jD4Gm")
+        .get('li li [class*="AdminNavigationLink_button"]')
         .contains("Виробники техніки"),
     subItemCategoryServicesBtn: () =>
       cy
-        .get("li li .AdminNavigationLink_button__jD4Gm")
+        .get('li li [class*="AdminNavigationLink_button"]')
         .contains("Категорії сервісів"),
     subItemListServicesBtn: () =>
       cy
-        .get("li li .AdminNavigationLink_button__jD4Gm")
+        .get('li li [class*="AdminNavigationLink_button"]')
         .contains("Список сервісів"),
-    queryAnalyticsDropdown: () => cy.get("span.AdminPanelSelect_value__JQsa4"),
+    queryAnalyticsDropdown: () => cy.get('span[class*="AdminPanelSelect_value"]'),
     analyticsOfUsers: () =>
       cy.get('[data-testid="selectedItem"]').contains("Аналітика користувачів"),
     analyticsOfAd: () =>
@@ -58,7 +58,7 @@ class AdminPanelMainPage extends BasePage {
       cy.get('[data-testid="selectedItem"]').contains("Аналітика тендерів"),
     analyticsOfQuery: () =>
       cy.get('[data-testid="selectedItem"]').contains("Аналітика запитів"),
-    graphArea: () => cy.get("div.AdminPanel_chart_wrapper__enxhw"),
+    graphArea: () => cy.get('div[class*="AdminPanel_chart_wrapper__enxhw"]'),
     loginEmail: () =>
       cy.get(
         ':nth-child(3) > [data-testid="authorizationContainer"] > .Authorization_wrapper__Q_bZP > .LoginForm_form__7G3Zk > :nth-child(1) > .CustomReactHookInput_input_wrapper__UTXCw > [data-testid="reactHookInput"]'

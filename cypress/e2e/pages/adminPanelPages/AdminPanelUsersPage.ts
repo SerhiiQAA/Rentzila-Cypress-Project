@@ -2,7 +2,7 @@ import BasePage from "../BasePage";
 
 class AdminPanelUsersPage extends BasePage {
   elements = {
-    adUserBtn: () => cy.get("button.AdminCustomButton_button_wrapper__KXN18"),
+    adUserBtn: () => cy.get('button[class*="AdminCustomButton_button_wrapper"]'),
     allUsersDropdown: () => cy.get('[data-testid="div_CustomSelect"]'),
     searchField: () => cy.get('[data-testid="input"]'),
     subCategoryAllUsers: () =>
