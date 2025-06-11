@@ -129,25 +129,26 @@ describe("Admin functionality", () => {
     const lastName = faker.person.lastName();
     const operatorCode = faker.helpers.arrayElement(validOperatorCodes);
     const mobileNumber = `+38 ${operatorCode} ${faker.string.numeric(7)}`;
+    const email = faker.internet.email({ provider: "gmail.com" });
     AdminPanelAddUserModal.createNewUser({
       lastName: lastName,
       firstName: faker.person.firstName(),
       mobile: mobileNumber,
-      email: faker.internet.email({ provider: "gmail.com" }),
+      email: email,
       password:
         faker.internet.password({ length: 10, pattern: /[A-Za-z0-9]/ }) + "1Aa",
       optionName: "Клієнт",
     });
-    AdminPanelUsersPage.fillSearchField(lastName);
-    AdminPanelUsersPage.elements.nameValues().should("contain.text", lastName);
+    AdminPanelUsersPage.fillSearchField(email);
+    AdminPanelUsersPage.elements.loginValues().should("contain.text", email);
     AdminPanelUsersPage.clickActDeleteBtn();
     AdminPanelUsersPage.elements
       .deleteUserModalText()
       .should("contain.text", "Ви впевнені, що хочете видалити користувача");
     AdminPanelUsersPage.clickDeleteUserModalOkBtn();
     AdminPanelMainPage.verifyCurrentUrl("admin/users");
-    AdminPanelUsersPage.fillSearchField(lastName);
-    AdminPanelUsersPage.elements.nameValues().should("not.exist");
+    AdminPanelUsersPage.fillSearchField(email);
+    AdminPanelUsersPage.elements.loginValues().should("not.exist");
   });
 
   it("C431 Equipment menu section functionality", () => {
