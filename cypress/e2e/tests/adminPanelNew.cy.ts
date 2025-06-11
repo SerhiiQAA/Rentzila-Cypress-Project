@@ -197,7 +197,7 @@ describe("Admin functionality", () => {
       .should("contain.text", categoryName);
   });
 
-  it.only("C433 The ID and Назва filters functionality for the Категорії техніки page", () => {
+  it("C433 The ID and Назва filters functionality for the Категорії техніки page", () => {
     AdminPanelMainPage.verifyCurrentUrl("admin/");
     AdminPanelMainPage.clickMachineryBtn();
     AdminPanelMainPage.clickSubItemCategoriesMachineryBtn();
