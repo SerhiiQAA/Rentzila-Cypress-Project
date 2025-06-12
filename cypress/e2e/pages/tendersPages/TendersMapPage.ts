@@ -2,56 +2,55 @@ import BasePage from "../BasePage";
 
 class TendersMapPage extends BasePage {
   elements = {
-    showListBtn: () => cy.get("button.MapListSwitcher_switch__Jge1g"),
+    showListBtn: () => cy.get('button[class*="MapListSwitcher_switch"]'),
     tendersInformativeTitle: () => cy.get('[data-testid="count"]'),
     tenderCardFirst: () => cy.get('[data-testid="tenderLink"]').eq(0),
     tenderCard: () => cy.get('[data-testid="tenderLink"]'),
     tenderCardName: () => cy.get('[data-testid="tenderName"]'),
-    tenderCategoryName: () => cy.get("div.TenderInList_category__AKgPq"),
+    tenderCategoryName: () => cy.get('div[class*="TenderInList_category"]'),
     tenderCardOrganizationName: () =>
-      cy.get("div.ParagraphWithIcon_paragraph__5i0nJ").eq(0),
+      cy.get('div[class*="ParagraphWithIcon_paragraph"]').eq(0),
     tenderCardPrice: () => cy.get('[data-testid="tenderPrice"]'),
     tenderCardTimer: () => cy.get('[data-testid="remainingTimeDesktop"]'),
     tenderCardProposeDeniedBtn: () =>
-      cy.get("div.ProposeButton_propose_denied__SV3R3"),
-    allTenderCardsField: () => cy.get("div .Tenders_tenders__NTsrF"),
+      cy.get('div[class*="ProposeButton_propose_denied"]'),
+    allTenderCardsField: () => cy.get('div [class*="Tenders_tenders"]'),
     searchTenderField: () => cy.get('input[data-testid="search"]'),
     clearSearchTenderFieldBtn: () => cy.get('[data-testid="clear"]'),
     organizatorInputField: () => cy.get('[data-testid="edrpou"]'),
     organizatorCheckboxFirst: () =>
-      cy.get("input.FirmCheckbox_checkbox__2VlXV").eq(0),
+      cy.get('input[class*="FirmCheckbox_checkbox"]').eq(0),
     organizatorCheckboxSecond: () =>
-      cy.get("input.FirmCheckbox_checkbox__2VlXV").eq(1),
+      cy.get('input[class*="FirmCheckbox_checkbox"]').eq(1),
     organizatorCheckboxThird: () =>
-      cy.get("input.FirmCheckbox_checkbox__2VlXV").eq(2),
+      cy.get('input[class*="FirmCheckbox_checkbox"]').eq(2),
     organizatorCheckboxFirstName: () =>
-      cy.get("div.FirmCheckbox_firmName__6oVpu"),
+      cy.get('div[class*="FirmCheckbox_firmName"]'),
     organizatorCheckboxSecondName: () =>
-      cy.get("div.FirmCheckbox_firmName__6oVpu"),
+      cy.get('div[class*="FirmCheckbox_firmName"]'),
     organizatorCheckboxThirdName: () =>
-      cy.get("div.FirmCheckbox_firmName__6oVpu"),
-    organizatorCheckboxName: () => cy.get("div.FirmCheckbox_firmName__6oVpu"),
+      cy.get('div[class*="FirmCheckbox_firmName"]'),
+    organizatorCheckboxName: () => cy.get('div[class*="FirmCheckbox_firmName"]'),
     resertFiltersBtn: () => cy.get('[data-testid="resetFilters"]'),
-    categoryItem: () => cy.get("div.ItemCategory_checkboxWithLabel__gvz5O"),
+    categoryItem: () => cy.get('div[class*="ItemCategory_checkboxWithLabel"]'),
     categoryCheckbox: () =>
-      cy.get('.ItemCategory_checkbox__NE_uP[type="checkbox"]'),
-    categorySubItem: () => cy.get("div.ItemService_service__5wzpW"),
+      cy.get('[class*="ItemCategory_checkbox"][type="checkbox"]'),
+    categorySubItem: () => cy.get('div[class*="ItemService_service"]'),
     categorySubCheckbox: () =>
-      cy.get('.ItemService_checkbox__15BWs[type="checkbox"]'),
+      cy.get('[class*="ItemService_checkbox"][type="checkbox"]'),
     categoryBuildingOpenListBtn: () => cy.get('[data-testid="chevron"]').eq(0),
     categoryOthersOpenListBtn: () => cy.get('[data-testid="chevron"]').eq(1),
     categoryAgriculturalOpenListBtn: () =>
       cy.get('[data-testid="chevron"]').eq(2),
-    filterAppliedAllNames: () => cy.get("div.AppliedFilters_filter__PwGY_"),
-    filterAppliedName: () => cy.get("div.AppliedFilters_filter__PwGY_"),
+    filterAppliedAllNames: () => cy.get('[class*="AppliedFilters_wrapper"] div [class*="AppliedFilters_filter"] div'),
     budgetFromItem: () => cy.get('[data-testid="budgetFrom"]'),
     budgetToItem: () => cy.get('[data-testid="budgetTo"]'),
-    regionFilter: () => cy.get("div.TendersRegionFilter_captions__Jbd1l"),
+    regionFilter: () => cy.get('div[class*="TendersRegionFilter_captions"]'),
     regionAllCheckbox: () => cy.get("#all"),
     regionItem: () =>
-      cy.get('.RegionsList_check_label__PY3uq[data-testid="label"]'),
+      cy.get('[class*="RegionsList_check_label"][data-testid="label"]'),
     regionCheckbox: () =>
-      cy.get('.RegionsList_region__8dslR [type="checkbox"]'),
+      cy.get('[class*="RegionsList_region"] [type="checkbox"]'),
   };
 
   clickShowListBtn() {
@@ -149,7 +148,7 @@ class TendersMapPage extends BasePage {
   }
 
   verifySelectedFilters(names) {
-    this.elements.filterAppliedName().should(($elements) => {
+    this.elements.filterAppliedAllNames().should(($elements) => {
       const texts = $elements.map((index, el) => Cypress.$(el).text()).get();
       names.forEach((name) => {
         expect(texts).to.include(name);
@@ -180,7 +179,7 @@ class TendersMapPage extends BasePage {
   }
 
   validateFilterAppliedToTenders() {
-    this.elements.filterAppliedName().then((filterElements) => {
+    this.elements.filterAppliedAllNames().then((filterElements) => {
       const filterTexts = filterElements
         .map((index, el) => Cypress.$(el).text().trim())
         .get();
@@ -212,7 +211,7 @@ class TendersMapPage extends BasePage {
       });
 
       this.elements
-        .filterAppliedName()
+        .filterAppliedAllNames()
         .invoke("text")
         .then((filterText) => {
           const normalizedText = filterText.replace(/\s*\(\d+\)$/, "");
