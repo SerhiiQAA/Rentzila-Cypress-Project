@@ -10,7 +10,7 @@ import { validOperatorCodes } from "../utils/testData";
 describe("Admin functionality", () => {
   beforeEach(() => {
     AdminPanelMainPage.visit("admin/");
-    cy.wait(2000);
+    cy.wait(2500);
     AdminPanelMainPage.login(envs.email_admin, envs.password_admin);
   });
 

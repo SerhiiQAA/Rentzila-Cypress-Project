@@ -5,6 +5,7 @@ class AdminPanelEditUserPage extends BasePage {
     title: () => cy.get('div[class*="AdminLayout_title"]'),
     allUsersDropdown: () => cy.get('[data-testid="div_CustomSelect"]'),
     usersDropdownArea: () => cy.get('[data-testid="listItems-customSelect"]'),
+    usersDropdown: () => cy.get('[data-testid="span-customSelect"]'),
     subCategoryDropdownClient: () =>
       cy.get('li[data-testid="item-customSelect"]').contains("Клієнт"),
     lastNameField: () =>
@@ -81,13 +82,16 @@ class AdminPanelEditUserPage extends BasePage {
   }
 
   selectDropdownOption(optionName) {
-    this.elements.allUsersDropdown().click();
-    this.elements
-      .usersDropdownArea()
-      .should("be.visible")
-      .contains(optionName)
-      .click();
-  }
+  this.elements.allUsersDropdown().should('be.visible').click();
+  this.elements
+    .usersDropdown()
+    .contains(optionName)
+    .scrollIntoView()
+    .should('be.visible')
+    .click({ force: true });
+}
+
+
 }
 
 export default new AdminPanelEditUserPage();

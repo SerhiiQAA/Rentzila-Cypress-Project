@@ -54,7 +54,7 @@ class AdminPanelUsersPage extends BasePage {
     deleteUserModalTitle: () => cy.get('class*="PopupLayout_label"]'),
     deleteUserModalText: () => cy.get('div[class*="DialogPopup_text"]'),
     deleteUserModalCancelBtn: () => cy.get('[class*="ItemButtons_lightRedBtn"]'),
-    deleteUserModalOkBtn: () => cy.get('class*="ItemButtons_darkBlueBtn"]'),
+    deleteUserModalOkBtn: () => cy.get('[class*="ItemButtons_darkBlueBtn"]'),
     deleteUserModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
   };
 
