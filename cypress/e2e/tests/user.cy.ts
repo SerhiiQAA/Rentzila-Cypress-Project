@@ -229,7 +229,7 @@ context("User page verification (verified phone account)", () => {
     }
     );
   });
-  it.only('C342  Verify that the ""Виберіть тип особи"", ""РНОКПП (ІПН)"", ""Тип юридичної особи"" fields work correctly and that "ЄДРПОУ для юридичних осіб" field accept only digits', () => {
+  it('C342  Verify that the ""Виберіть тип особи"", ""РНОКПП (ІПН)"", ""Тип юридичної особи"" fields work correctly and that "ЄДРПОУ для юридичних осіб" field accept only digits', () => {
     userPage.selectEntityType(userFullData.individualEntrepreneur);
     userPage.fillIndividualEntrepreneurId(userFullData.privateEntityId);
     userPage.clickNextBtn();
