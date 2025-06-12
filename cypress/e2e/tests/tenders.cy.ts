@@ -17,12 +17,7 @@ describe("Tenders functionality", () => {
     TenderCreatePage.visit("owner-tenders-page/");
     LoginPage.login(envs.email, envs.password);
     TenderCreatePage.clickCloseTelegramBtn();
-    TendersOwnerPage.elements.pendingTab().scrollIntoView();
-    TendersOwnerPage.clickPendingTab();
-    TendersOwnerPage.clickCardFirstTender();
-    cy.wait(500);
-    TenderDetailPage.elements.editBtn().scrollIntoView();
-    TenderDetailPage.clickEditBtn();
+    TendersOwnerPage.clickCardFirstTenderEditBtn();
     TenderCreatePage.elements.tenderNameInput().clear();
     TenderCreatePage.clickNextBtn();
     TenderCreatePage.elements
