@@ -42,8 +42,7 @@ class TendersMapPage extends BasePage {
     categoryOthersOpenListBtn: () => cy.get('[data-testid="chevron"]').eq(1),
     categoryAgriculturalOpenListBtn: () =>
       cy.get('[data-testid="chevron"]').eq(2),
-    filterAppliedAllNames: () => cy.get('div[class*="AppliedFilters_filter"]'),
-    filterAppliedName: () => cy.get('div[class*="AppliedFilters_filter"]'),
+    filterAppliedAllNames: () => cy.get('[class*="AppliedFilters_wrapper"] div [class*="AppliedFilters_filter"] div'),
     budgetFromItem: () => cy.get('[data-testid="budgetFrom"]'),
     budgetToItem: () => cy.get('[data-testid="budgetTo"]'),
     regionFilter: () => cy.get('div[class*="TendersRegionFilter_captions"]'),
@@ -149,7 +148,7 @@ class TendersMapPage extends BasePage {
   }
 
   verifySelectedFilters(names) {
-    this.elements.filterAppliedName().should(($elements) => {
+    this.elements.filterAppliedAllNames().should(($elements) => {
       const texts = $elements.map((index, el) => Cypress.$(el).text()).get();
       names.forEach((name) => {
         expect(texts).to.include(name);
@@ -180,7 +179,7 @@ class TendersMapPage extends BasePage {
   }
 
   validateFilterAppliedToTenders() {
-    this.elements.filterAppliedName().then((filterElements) => {
+    this.elements.filterAppliedAllNames().then((filterElements) => {
       const filterTexts = filterElements
         .map((index, el) => Cypress.$(el).text().trim())
         .get();
@@ -212,7 +211,7 @@ class TendersMapPage extends BasePage {
       });
 
       this.elements
-        .filterAppliedName()
+        .filterAppliedAllNames()
         .invoke("text")
         .then((filterText) => {
           const normalizedText = filterText.replace(/\s*\(\d+\)$/, "");

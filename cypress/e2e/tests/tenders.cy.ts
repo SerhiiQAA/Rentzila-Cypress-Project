@@ -172,7 +172,7 @@ describe("Tenders functionality", () => {
     TendersMapPage;
     TendersMapPage.clickOrganizatorCheckboxFirst();
     TendersMapPage.elements
-      .filterAppliedName()
+      .filterAppliedAllNames()
       .invoke("text")
       .then((filterText) => {
         TendersMapPage.elements
@@ -191,7 +191,7 @@ describe("Tenders functionality", () => {
     TendersMapPage.clickCategoryAgriculturalOpenListBtn();
     TendersMapPage.clickCategorySubItemByText("Дискування землі");
     TendersMapPage.elements
-      .filterAppliedName()
+      .filterAppliedAllNames()
       .should("have.text", "Дискування землі");
     TendersMapPage.getTenderCardsCount().then((count) => {
       const tenderWordEnding = TendersMapPage.getTenderWordEnding(count);
@@ -273,13 +273,13 @@ describe("Tenders functionality", () => {
   it("C265 Filter the tenders (Region)", () => {
     TendersMapPage.elements.regionFilter().scrollIntoView();
     TendersMapPage.elements.regionItem().contains("Вінницька область").click();
-    TendersMapPage.elements.filterAppliedName().should("have.text", "Вінницька область");
+    TendersMapPage.elements.filterAppliedAllNames().should("have.text", "Вінницька область");
     TendersMapPage.elements.resertFiltersBtn().scrollIntoView();
     TendersMapPage.clickResertFiltersBtn();
     TendersMapPage.elements.regionAllCheckbox().should("be.checked");
     TendersMapPage.elements.regionFilter().scrollIntoView();
     TendersMapPage.elements.regionItem().contains("Волинська область").click();
-    TendersMapPage.elements.filterAppliedName().should("have.text", "Волинська область");
+    TendersMapPage.elements.filterAppliedAllNames().should("have.text", "Волинська область");
     TendersMapPage.elements.resertFiltersBtn().scrollIntoView();
     TendersMapPage.clickResertFiltersBtn();
     TendersMapPage.elements.regionAllCheckbox().should("be.checked");
