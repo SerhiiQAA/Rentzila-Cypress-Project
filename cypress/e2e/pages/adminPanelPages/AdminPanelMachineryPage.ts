@@ -20,7 +20,7 @@ class AdminPanelMachineryPage extends BasePage {
       cy.get('ul[data-testid="listItems-customSelect"]'),
     createCategoryModalCancelBtn: () =>
       cy.get('button[class*="AdminCategoryPopup_close_btn"]'),
-    createCategoryModalSavelBtn: () =>
+    createCategoryModalSaveBtn: () =>
       cy.get('button[class*="AdminCategoryPopup_save_btn"]'),
     createCategoryModalCloselBtn: () => cy.get('[data-testid="crossIcon"]'),
   };
@@ -29,15 +29,15 @@ class AdminPanelMachineryPage extends BasePage {
     this.elements.createBtn().click();
   }
 
-  clickCreateCategoryModalSavelBtn() {
-    this.elements.createCategoryModalSavelBtn().click();
+  clickCreatCategoryModalSavelBtn() {
+    this.elements.createCategoryModalSaveBtn().click();
   }
 
-  clickCreateCategoryModalCancelBtn() {
+  clickCreatCategoryModalCancelBtn() {
     this.elements.createCategoryModalCancelBtn().click();
   }
 
-  clickCreateCategoryModalCloselBtn() {
+  clickCreatCategoryModalCloselBtn() {
     this.elements.createCategoryModalCloselBtn().click();
   }
   clickSortByIdBtn() {
@@ -48,7 +48,7 @@ class AdminPanelMachineryPage extends BasePage {
     this.elements.sortByNameBtn().click();
   }
 
-  fillCreateCategoryModalNameField(name: string) {
+  fillCreatCategoryModalNameField(name: string) {
     this.elements.createCategoryModalNameField().clear().type(name);
   }
 

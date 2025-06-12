@@ -37,6 +37,13 @@ class AdminPanelMainPage extends BasePage {
       cy
         .get('li li [class*="AdminNavigationLink_button"]')
         .contains("Категорії техніки"),
+    subCategoryMachineryBtn: () =>
+      cy
+        .get('li li [class*="AdminNavigationLink_button"]')
+        .contains("Категорії техніки"),
+    subCategoryMachineryArea: () =>
+      cy.get('[data-testid="linkListsComponent"]'),
+    subCategoryMachinery: () => cy.get('[data-testid="linkListsComponent"] a'),
     subItemProducerMachineryBtn: () =>
       cy
         .get('li li [class*="AdminNavigationLink_button"]')
@@ -58,7 +65,7 @@ class AdminPanelMainPage extends BasePage {
       cy.get('[data-testid="selectedItem"]').contains("Аналітика тендерів"),
     analyticsOfQuery: () =>
       cy.get('[data-testid="selectedItem"]').contains("Аналітика запитів"),
-    graphArea: () => cy.get('div[class*="AdminPanel_chart_wrapper__enxhw"]'),
+    graphArea: () => cy.get('div[class*="AdminPanel_chart_wrapper"]'),
     loginEmail: () =>
       cy.get(
         ':nth-child(3) > [data-testid="authorizationContainer"] > .Authorization_wrapper__Q_bZP > .LoginForm_form__7G3Zk > :nth-child(1) > .CustomReactHookInput_input_wrapper__UTXCw > [data-testid="reactHookInput"]'
@@ -71,6 +78,12 @@ class AdminPanelMainPage extends BasePage {
       cy.get(
         ':nth-child(3) > [data-testid="authorizationContainer"] > .Authorization_wrapper__Q_bZP > .LoginForm_form__7G3Zk > .ItemButtons_wrapper__bOHMs > .ItemButtons_darkBlueRoundBtn___4GDw'
       ),
+      calendarBtn: () => cy.get('div[class*="AdminPanel_calendar"]'),
+    calendarCurrentMonth: () =>
+      cy.get(".react-datepicker .react-datepicker__month-container").first(),
+    calendarNextMonth: () =>
+      cy.get(".react-datepicker .react-datepicker__month-container:last-child"),
+    calendarDate: () => cy.get(".react-datepicker__day"),
   };
 
   clickPanelConditionBtn() {
@@ -146,6 +159,10 @@ class AdminPanelMainPage extends BasePage {
   }
 
   clickSubItemCategoryMachineryBtn() {
+    this.elements.subCategoryMachineryBtn().click();
+  }
+
+  clickSubItemCategoriesMachineryBtn() {
     this.elements.subItemCategoryMachineryBtn().click();
   }
 
@@ -159,6 +176,38 @@ class AdminPanelMainPage extends BasePage {
 
   clickSubItemListServicesBtn() {
     this.elements.subItemListServicesBtn().click();
+  }
+
+  clickCalendarBtn() {
+    this.elements.calendarBtn().click();
+  }
+
+  selectDateInCurrentMonth(day) {
+    this.elements.calendarCurrentMonth().within(() => {
+      this.elements.calendarDate().contains(day).click();
+    });
+  }
+
+  selectDateInNextMonth(day) {
+    this.elements.calendarNextMonth().within(() => {
+      this.elements.calendarDate().contains(day).click();
+    });
+  }
+
+  verifyChangeDateColorCurrentMonth(day) {
+    this.elements
+      .calendarCurrentMonth()
+      .find(".react-datepicker__day")
+      .contains(day)
+      .should("have.css", "background-color", "rgb(206, 255, 123)");
+  }
+
+  verifyChangeDateColorNextMonth(day) {
+    this.elements
+      .calendarNextMonth()
+      .find(".react-datepicker__day")
+      .contains(day)
+      .should("have.css", "background-color", "rgb(206, 255, 123)");
   }
 
   login(email: string, password: string) {

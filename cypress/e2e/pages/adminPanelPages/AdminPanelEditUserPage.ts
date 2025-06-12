@@ -9,15 +9,15 @@ class AdminPanelEditUserPage extends BasePage {
       cy.get('li[data-testid="item-customSelect"]').contains("Клієнт"),
     lastNameField: () =>
       cy.get(
-        ".EditUser_info_wrapper__GB7mB > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)"
+        '[class*="EditUser_info_wrapper"] > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)'
       ),
     firstNameField: () =>
       cy.get(
-        "div.CustomInput_wrapper__zU62a:nth-child(3) > div:nth-child(2) > input:nth-child(1)"
+        'div[class*="CustomInput_wrapper"]:nth-child(3) > div:nth-child(2) > input:nth-child(1)'
       ),
     middleNameField: () =>
       cy.get(
-        "div.CustomInput_wrapper__zU62a:nth-child(4) > div:nth-child(2) > input:nth-child(1)"
+        'div[class*="CustomInput_wrapper"]:nth-child(4) > div:nth-child(2) > input:nth-child(1)'
       ),
     mobileField: () => cy.get('[data-testid="OwnerProfileNumber"]'),
     viberField: () =>
