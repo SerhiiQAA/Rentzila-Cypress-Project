@@ -3,7 +3,7 @@ import BasePage from "./BasePage";
 
 class AdminUsersPage extends BasePage {
   elements = {
-    searchInput: () => cy.get(".AdminSearchInput_input__5oJIu"),
+    searchInput: () => cy.get("[class*='AdminSearchInput_input']"),
     userInfoButton: (username) =>
       cy
         .get('[data-testid="adminRowContainer"]')
@@ -27,7 +27,7 @@ class AdminUsersPage extends BasePage {
     this.elements.userInfoButton(username).click();
   }
 
-  editUserData(username: string){
+  editUserData(username: string) {
     this.searchUser(username);
     this.elements.editUserInfoButton(username).click();
   }

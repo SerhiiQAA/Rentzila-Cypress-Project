@@ -45,10 +45,9 @@ class UserPage extends BasePage {
     imageError: () => cy.get('[data-testid="errorPopup"]'),
     codeError: () => cy.contains("Введений код невірний"),
     notification: () =>
-      cy.get(
-        '[data-testid="notificationContainer"] .NotificationLikePopup_description__htlK7',
-        { timeout: 5000 }
-      ),
+      cy
+        .get('[data-testid="NotificationLikePopup"]')
+        .find('[class*="NotificationLikePopup_description"]'),
     uploadModalUnderstoodBtn: () => cy.contains("Зрозуміло"),
     uploadModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
   };
@@ -130,15 +129,15 @@ class UserPage extends BasePage {
     this.elements.saveBtn().click();
   }
 
-  clickUnderstoodBtn(){
+  clickUnderstoodBtn() {
     this.elements.uploadModalUnderstoodBtn().click();
   }
 
-  clickCloseUploadModal(){
+  clickCloseUploadModal() {
     this.elements.uploadModalCloseBtn().click();
   }
 
-  clickOutside(){
+  clickOutside() {
     cy.get("body").click(0, 0);
   }
 

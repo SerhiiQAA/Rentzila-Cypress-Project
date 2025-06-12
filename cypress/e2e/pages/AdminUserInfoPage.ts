@@ -8,8 +8,7 @@ class AdminUserInfoPage extends BasePage {
       this.getFieldElement("ЄДРПОУ для юридичних осіб"),
     individualEntrepreneurIdInput: () =>
       this.getFieldElement("РНОКПП (ІПН) для ФОП"),
-    legalEntityIdInput: () =>
-      this.getFieldElement("ЄДРПОУ для юридичних осіб"),
+    legalEntityIdInput: () => this.getFieldElement("ЄДРПОУ для юридичних осіб"),
     legalEntityNameInput: () => this.getFieldElement("Назва компанії"),
     lastNameInput: () => this.getFieldElement("Прізвище"),
     nameInput: () => this.getFieldElement("Ім'я"),
@@ -25,45 +24,47 @@ class AdminUserInfoPage extends BasePage {
     return cy.contains(title).parent().find(".AdminUserInfo_field__6X4_F");
   }
 
-  verifyUserData(
-    lastName,
-    name,
-    patronim,
-    city,
-    entityType,
-    telegram?,
-    viber?,
-    legalEntityType?,
-    privateEntityId?,
-    individualEntrepreneurId?,
-    legalEntityId?,
-    legalEntityName?
-  ) {
-    this.elements.entityTypeInput().should("contain.text", entityType);
-    legalEntityType &&
+  verifyUserData(user: {
+    lastName: string;
+    name: string;
+    patronim: string;
+    city: string;
+    entityType: string;
+    telegram?: string;
+    viber?: string;
+    legalEntityType?: string;
+    privateEntityId?: string;
+    individualEntrepreneurId?: string;
+    legalEntityId?: string;
+    legalEntityName?: string;
+  }) {
+    this.elements.entityTypeInput().should("contain.text", user.entityType);
+    user.legalEntityType &&
       this.elements
         .legalEntityTypeInput()
-        .should("contain.text", legalEntityType);
-    privateEntityId &&
+        .should("contain.text", user.legalEntityType);
+    user.privateEntityId &&
       this.elements
         .privateEntityIdInput()
-        .should("contain.text", privateEntityId);
-    individualEntrepreneurId &&
+        .should("contain.text", user.privateEntityId);
+    user.individualEntrepreneurId &&
       this.elements
         .individualEntrepreneurIdInput()
-        .should("contain.text", individualEntrepreneurId);
-    legalEntityId &&
-      this.elements.legalEntityIdInput().should("contain.text", legalEntityId);
-    legalEntityName &&
+        .should("contain.text", user.individualEntrepreneurId);
+    user.legalEntityId &&
+      this.elements
+        .legalEntityIdInput()
+        .should("contain.text", user.legalEntityId);
+    user.legalEntityName &&
       this.elements
         .legalEntityNameInput()
-        .should("contain.text", legalEntityName);
-    this.elements.lastNameInput().should("contain.text", lastName);
-    this.elements.nameInput().should("contain.text", name);
-    this.elements.patronimInput().should("contain.text", patronim);
-    this.elements.cityInput().should("contain.text", city);
-    this.elements.viberInput().should("contain.text", viber);
-    this.elements.telegramInput().should("contain.text", telegram);
+        .should("contain.text", user.legalEntityName);
+    this.elements.lastNameInput().should("contain.text", user.lastName);
+    this.elements.nameInput().should("contain.text", user.name);
+    this.elements.patronimInput().should("contain.text", user.patronim);
+    this.elements.cityInput().should("contain.text", user.city);
+    this.elements.viberInput().should("contain.text", user.viber);
+    this.elements.telegramInput().should("contain.text", user.telegram);
   }
 }
 export default new AdminUserInfoPage();

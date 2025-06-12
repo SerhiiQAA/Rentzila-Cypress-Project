@@ -7,7 +7,7 @@ import { faker } from "@faker-js/faker";
 import MainPage from "../pages/MainPage";
 import adminUsersPage from "../pages/AdminUsersPage";
 import adminUserInfoPage from "../pages/AdminUserInfoPage";
-import adminPanelPage from "../pages/AdminPanelPage";
+import adminPanelPage from "../pages/adminPanelPages/AdminPanelMainPage";
 
 context("User page verification (registrated via email)", () => {
   beforeEach(() => {
@@ -213,22 +213,23 @@ context("User page verification (verified phone account)", () => {
     header.clickSettingsBtn();
     adminPanelPage.clickUsersBtn();
     adminUsersPage.viewUserData(envs.email);
-    adminUserInfoPage.verifyUserData(
-      userFullData.lastName,
-      userFullData.name,
-      userFullData.patronim,
-      userFullData.city,
-      userFullData.legalEntity,
-      userFullData.telegram,
-      userFullData.viber,
-      userFullData.legalrEntityTypes[0],
-      null,
-      null,
-      userFullData.legalEntityId,
-      userFullData.patronim
+    adminUserInfoPage.verifyUserData({
+      lastName: userFullData.lastName,
+      name: userFullData.name,
+      patronim: userFullData.patronim,
+      city: userFullData.city,
+      entityType: userFullData.legalEntity,
+      telegram: userFullData.telegram,
+      viber: userFullData.viber,
+      legalEntityType: userFullData.legalrEntityTypes[0],
+      privateEntityId: null,
+      individualEntrepreneurId: null,
+      legalEntityId: userFullData.legalEntityId,
+      legalEntityName: userFullData.patronim
+    }
     );
   });
-  it('C342  Verify that the ""Виберіть тип особи"", ""РНОКПП (ІПН)"", ""Тип юридичної особи"" fields work correctly and that "ЄДРПОУ для юридичних осіб" field accept only digits', () => {
+  it.only('C342  Verify that the ""Виберіть тип особи"", ""РНОКПП (ІПН)"", ""Тип юридичної особи"" fields work correctly and that "ЄДРПОУ для юридичних осіб" field accept only digits', () => {
     userPage.selectEntityType(userFullData.individualEntrepreneur);
     userPage.fillIndividualEntrepreneurId(userFullData.privateEntityId);
     userPage.clickNextBtn();
@@ -279,7 +280,7 @@ context("User page verification (verified phone account)", () => {
   });
 
   it("C380 Verify that the user is able to change the profile photo", () => {
-    var photos = [images.jpegImage, images.jpgImage, images.pngImage];
+    let photos = [images.jpegImage, images.jpgImage, images.pngImage];
     
     photos.forEach((photo) => {
       userPage.elements.userAvatar().invoke("attr", "src").as("oldAvatar");
