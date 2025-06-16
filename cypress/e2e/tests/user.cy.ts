@@ -1,12 +1,18 @@
 import header from "../components/Header";
 import userPage from "../pages/userPage";
-import { envs, symbols, userFullData, invalidCities, images} from "../utils/testData";
+import {
+  envs,
+  symbols,
+  userFullData,
+  invalidCities,
+  images,
+} from "../utils/testData";
 import { uiMessages } from "../utils/uiTexts";
 import LoginPage from "../pages/LoginPage";
 import { faker } from "@faker-js/faker";
 import MainPage from "../pages/MainPage";
-import adminUsersPage from "../pages/AdminUsersPage";
-import adminUserInfoPage from "../pages/AdminUserInfoPage";
+import adminUsersPage from "../pages/adminPanelPages/AdminPanelUsersPage";
+import adminUserInfoPage from "../pages/adminPanelPages/AdminPanelUserInfoPage";
 import adminPanelPage from "../pages/adminPanelPages/AdminPanelMainPage";
 
 context("User page verification (registrated via email)", () => {
@@ -225,9 +231,8 @@ context("User page verification (verified phone account)", () => {
       privateEntityId: null,
       individualEntrepreneurId: null,
       legalEntityId: userFullData.legalEntityId,
-      legalEntityName: userFullData.patronim
-    }
-    );
+      legalEntityName: userFullData.patronim,
+    });
   });
   it('C342  Verify that the ""Виберіть тип особи"", ""РНОКПП (ІПН)"", ""Тип юридичної особи"" fields work correctly and that "ЄДРПОУ для юридичних осіб" field accept only digits', () => {
     userPage.selectEntityType(userFullData.individualEntrepreneur);
@@ -281,12 +286,12 @@ context("User page verification (verified phone account)", () => {
 
   it("C380 Verify that the user is able to change the profile photo", () => {
     let photos = [images.jpegImage, images.jpgImage, images.pngImage];
-    
+
     photos.forEach((photo) => {
       userPage.elements.userAvatar().invoke("attr", "src").as("oldAvatar");
-  
+
       userPage.selectPhoto(photo);
-  
+
       cy.get("@oldAvatar").then((oldSrc) => {
         userPage.elements
           .userAvatar()
@@ -295,36 +300,34 @@ context("User page verification (verified phone account)", () => {
             expect(newSrc).not.to.eq(oldSrc);
           });
       });
-    })
+    });
   });
 
-  it(
-    "C377 Verify that the user unable to change the profile photo to one of the image with unavailable extensions", () => {
-      userPage.selectPhoto(images.invalidImage);
-      userPage.elements
-        .imageError()
-        .should("be.visible")
-        .and("contain.text", uiMessages.imageFormatError);
-      userPage.clickUnderstoodBtn();
-      userPage.elements.imageError().should("not.exist");
+  it("C377 Verify that the user unable to change the profile photo to one of the image with unavailable extensions", () => {
+    userPage.selectPhoto(images.invalidImage);
+    userPage.elements
+      .imageError()
+      .should("be.visible")
+      .and("contain.text", uiMessages.imageFormatError);
+    userPage.clickUnderstoodBtn();
+    userPage.elements.imageError().should("not.exist");
 
-      userPage.selectPhoto(images.invalidImage);
-      userPage.elements
-        .imageError()
-        .should("be.visible")
-        .and("contain.text", uiMessages.imageFormatError);
-      userPage.clickCloseUploadModal();
-      userPage.elements.imageError().should("not.exist");
+    userPage.selectPhoto(images.invalidImage);
+    userPage.elements
+      .imageError()
+      .should("be.visible")
+      .and("contain.text", uiMessages.imageFormatError);
+    userPage.clickCloseUploadModal();
+    userPage.elements.imageError().should("not.exist");
 
-      userPage.selectPhoto(images.invalidImage);
-      userPage.elements
-        .imageError()
-        .should("be.visible")
-        .and("contain.text", uiMessages.imageFormatError);
-      userPage.clickOutside();
-      userPage.elements.imageError().should("not.exist");
-    }
-  );
+    userPage.selectPhoto(images.invalidImage);
+    userPage.elements
+      .imageError()
+      .should("be.visible")
+      .and("contain.text", uiMessages.imageFormatError);
+    userPage.clickOutside();
+    userPage.elements.imageError().should("not.exist");
+  });
 
   it("C379 Verify that the user unable to change the profile photo to one of the image with unavailable size of the image [>5MB]", () => {
     userPage.selectPhoto(images.largeImage);
