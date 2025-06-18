@@ -60,6 +60,7 @@ class AdminPanelAddUserModal extends BasePage {
     this.fillEmail(email);
     this.fillPassword(password);
     this.clickSubmitBtn();
+    this.
   }
 
 }
