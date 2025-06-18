@@ -80,4 +80,5 @@ class AdminUserInfoPage extends BasePage {
     this.elements.deleteBtn().click();
   }
 }
+
 export default new AdminUserInfoPage();

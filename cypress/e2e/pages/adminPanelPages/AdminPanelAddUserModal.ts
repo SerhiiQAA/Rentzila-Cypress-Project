@@ -52,17 +52,31 @@ class AdminPanelAddUserModal extends BasePage {
     this.elements.usersDropdownArea().contains(optionName).click();
   }
 
-  createNewUser({ lastName, firstName, mobile, email, password, optionName }) {
-    this.selectDropdownOption(optionName);
-    this.fillLastName(lastName);
-    this.fillFirstName(firstName);
-    this.fillMobileNumber(mobile);
-    this.fillEmail(email);
-    this.fillPassword(password);
+  // createNewUser({ lastName, firstName, mobile, email, password, optionName }) {
+  //   this.selectDropdownOption(optionName);
+  //   this.fillLastName(lastName);
+  //   this.fillFirstName(firstName);
+  //   this.fillMobileNumber(mobile);
+  //   this.fillEmail(email);
+  //   this.fillPassword(password);
+  //   this.clickSubmitBtn();
+  // }
+  createNewUser(userDetails: {
+    lastName: string;
+    firstName: string;
+    mobile: string;
+    email: string;
+    password: string;
+    optionName: string;
+  }) {
+    this.selectDropdownOption(userDetails.optionName);
+    this.fillLastName(userDetails.lastName);
+    this.fillFirstName(userDetails.firstName);
+    this.fillMobileNumber(userDetails.mobile);
+    this.fillEmail(userDetails.email);
+    this.fillPassword(userDetails.password);
     this.clickSubmitBtn();
-    this.
   }
-
 }
 
 export default new AdminPanelAddUserModal();

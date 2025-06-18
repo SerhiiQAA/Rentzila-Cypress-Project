@@ -56,7 +56,8 @@ class AdminPanelMainPage extends BasePage {
       cy
         .get('li li [class*="AdminNavigationLink_button"]')
         .contains("Список сервісів"),
-    queryAnalyticsDropdown: () => cy.get('span[class*="AdminPanelSelect_value"]'),
+    queryAnalyticsDropdown: () =>
+      cy.get('span[class*="AdminPanelSelect_value"]'),
     analyticsOfUsers: () =>
       cy.get('[data-testid="selectedItem"]').contains("Аналітика користувачів"),
     analyticsOfAd: () =>
@@ -68,17 +69,17 @@ class AdminPanelMainPage extends BasePage {
     graphArea: () => cy.get('div[class*="AdminPanel_chart_wrapper"]'),
     loginEmail: () =>
       cy.get(
-        ':nth-child(3) > [data-testid="authorizationContainer"] > .Authorization_wrapper__Q_bZP > .LoginForm_form__7G3Zk > :nth-child(1) > .CustomReactHookInput_input_wrapper__UTXCw > [data-testid="reactHookInput"]'
+        ':nth-child(3) > [data-testid="authorizationContainer"] > [class*="Authorization_wrapper"] > [class*="LoginForm_form"] > :nth-child(1) > [class*="CustomReactHookInput_input_wrapper"] > [data-testid="reactHookInput"]'
       ),
     loginPassword: () =>
       cy.get(
-        ':nth-child(3) > [data-testid="authorizationContainer"] > .Authorization_wrapper__Q_bZP > .LoginForm_form__7G3Zk > :nth-child(2) > .CustomReactHookInput_field__ys1mK > .CustomReactHookInput_input_wrapper__UTXCw > [data-testid="reactHookInput"]'
+        ':nth-child(3) > [data-testid="authorizationContainer"] > [class*="Authorization_wrapper"] > [class*="LoginForm_form"] > :nth-child(2) > [class*="CustomReactHookInput_field"] > [class*="CustomReactHookInput_input_wrapper"] > [data-testid="reactHookInput"]'
       ),
     loginSignInBtn: () =>
       cy.get(
-        ':nth-child(3) > [data-testid="authorizationContainer"] > .Authorization_wrapper__Q_bZP > .LoginForm_form__7G3Zk > .ItemButtons_wrapper__bOHMs > .ItemButtons_darkBlueRoundBtn___4GDw'
+        ':nth-child(3) > [data-testid="authorizationContainer"] > [class*="Authorization_wrapper"] > [class*="LoginForm_form"] > [class*="ItemButtons_wrapper"] > [class*="ItemButtons_darkBlueRoundBtn"]'
       ),
-      calendarBtn: () => cy.get('div[class*="AdminPanel_calendar"]'),
+    calendarBtn: () => cy.get('div[class*="AdminPanel_calendar"]'),
     calendarCurrentMonth: () =>
       cy.get(".react-datepicker .react-datepicker__month-container").first(),
     calendarNextMonth: () =>

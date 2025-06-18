@@ -2,7 +2,8 @@ import BasePage from "../BasePage";
 
 class AdminPanelUsersPage extends BasePage {
   elements = {
-    addUserBtn: () => cy.get('button[class*="AdminCustomButton_button_wrapper"]'),
+    addUserBtn: () =>
+      cy.get('button[class*="AdminCustomButton_button_wrapper"]'),
     allUsersDropdown: () => cy.get('[data-testid="div_CustomSelect"]'),
     allUsersDropdownArea: () =>
       cy.get('[data-testid="listItems-customSelect"]'),
@@ -66,7 +67,8 @@ class AdminPanelUsersPage extends BasePage {
         .find('[data-testid="adminPenBtn"]'),
     deleteUserModalTitle: () => cy.get('class*="PopupLayout_label"]'),
     deleteUserModalText: () => cy.get('div[class*="DialogPopup_text"]'),
-    deleteUserModalCancelBtn: () => cy.get('[class*="ItemButtons_lightRedBtn"]'),
+    deleteUserModalCancelBtn: () =>
+      cy.get('[class*="ItemButtons_lightRedBtn"]'),
     deleteUserModalOkBtn: () => cy.get('[class*="ItemButtons_darkBlueBtn"]'),
     deleteUserModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
   };
@@ -263,7 +265,7 @@ class AdminPanelUsersPage extends BasePage {
       });
   }
 
-   searchUser(username: string) {
+  searchUser(username: string) {
     this.elements.searchInput().type(username + "{enter}");
   }
 
