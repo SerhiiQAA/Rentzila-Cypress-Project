@@ -21,7 +21,7 @@ class TenderCreatePage extends BasePage {
       cy.get(".react-datepicker__time-list-item--selected"),
     budgetInput: () =>
       cy.get(
-        '.CreateItemPrice_flexRow__AFuyx > [data-testid="customInputWrapper"] > :nth-child(2) > [data-testid="custom-input"]'
+        '[class*="CreateItemPrice_flexRow"] > [data-testid="customInputWrapper"] > :nth-child(2) > [data-testid="custom-input"]'
       ),
     placeWorkMapBtn: () => cy.get('[data-testid="choseOnMap"]'),
     placeWorkMapConfirmBtn: () => cy.get('[class*="ItemButtons_darkBlueBtn"]'),
