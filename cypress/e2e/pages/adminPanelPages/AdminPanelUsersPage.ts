@@ -51,6 +51,19 @@ class AdminPanelUsersPage extends BasePage {
     paginationLeft: () => cy.get('data-testid="KeyboardArrowLeftIcon"'),
     paginationFirstPage: () => cy.get('[data-testid="FirstPageIcon"]'),
     paginationLastPage: () => cy.get('[data-testid="LastPageIcon"]'),
+    searchInput: () => cy.get("[class*='AdminSearchInput_input']"),
+    userInfoButton: (username) =>
+      cy
+        .get('[data-testid="adminRowContainer"]')
+        .contains(username)
+        .parent()
+        .find('[data-testid="adminOkoButton"]'),
+    editUserInfoButton: (username) =>
+      cy
+        .get('[data-testid="adminRowContainer"]')
+        .contains(username)
+        .parent()
+        .find('[data-testid="adminPenBtn"]'),
     deleteUserModalTitle: () => cy.get('class*="PopupLayout_label"]'),
     deleteUserModalText: () => cy.get('div[class*="DialogPopup_text"]'),
     deleteUserModalCancelBtn: () => cy.get('[class*="ItemButtons_lightRedBtn"]'),
@@ -248,6 +261,24 @@ class AdminPanelUsersPage extends BasePage {
         console.log("Expected sorted values:", sortedValues);
         expect(values).to.deep.equal(sortedValues);
       });
+  }
+
+   searchUser(username: string) {
+    this.elements.searchInput().type(username + "{enter}");
+  }
+
+  viewUserData(username: string) {
+    this.searchUser(username);
+    this.elements.userInfoButton(username).click();
+  }
+
+  editUserData(username: string) {
+    this.searchUser(username);
+    this.elements.editUserInfoButton(username).click();
+  }
+
+  visit(path?: string): void {
+    super.visit("/admin/users/");
   }
 }
 

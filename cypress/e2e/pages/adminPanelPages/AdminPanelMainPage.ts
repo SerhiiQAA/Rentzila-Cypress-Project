@@ -86,6 +86,10 @@ class AdminPanelMainPage extends BasePage {
     calendarDate: () => cy.get(".react-datepicker__day"),
   };
 
+  visit(path?: string): void {
+    super.visit("/admin/");
+  }
+
   clickPanelConditionBtn() {
     this.elements.panelConditionBtn().click();
   }

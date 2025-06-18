@@ -1,3 +1,5 @@
+import { faker } from "@faker-js/faker";
+
 export const envs = {
   email: Cypress.env("USER_EMAIL"),
   password: Cypress.env("USER_PASSWORD"),
@@ -6,6 +8,25 @@ export const envs = {
   phone: Cypress.env("USER_PHONE"),
   email_regMail: Cypress.env("USER_EMAIL_MAIL_REG"),
   pass_regMail: Cypress.env("USER_PASSWORD_MAIL_REG"),
+  adminEmail: Cypress.env("ADMIN_EMAIL"),
+  adminPassword: Cypress.env("ADMIN_PASSWORD"),
+};
+
+export const userFullData = {
+  individualEntrepreneur: "ФОП",
+  legalEntity: "Юридична особа",
+  legalrEntityTypes: ["ТОВ", "ВАТ", "ЗАТ"],
+  privateEntity: "Приватна особа",
+  legalEntityId: faker.string.numeric(8),
+  privateEntityId: faker.string.numeric(10),
+  legalEntityIdInvalid: ["   ", "!^*", "test"],
+  lastName: faker.person.lastName(),
+  name: faker.person.firstName(),
+  patronim: faker.person.middleName(),
+  viber: "+380506743060",
+  telegram: faker.word.noun({ length: { min: 5, max: 10 } }),
+  city: "Комсомольське",
+  email: envs.email,
 };
 
 export const invalidEmails = [
@@ -47,3 +68,12 @@ export const validOperatorCodes = [
 
 export const symbols = ["[]", "#", "(", ")", "!", "+", "/", "123"];
 
+export const invalidCities = ["Киев", "Варшава"]
+
+export const images = {
+  jpegImage: "./cypress/e2e/utils/images/4_55.jpeg",
+  pngImage: "./cypress/e2e/utils/images/4_55.png",
+  jpgImage: "./cypress/e2e/utils/images/4_55.jpg",
+  invalidImage: "./cypress/e2e/utils/images/image.txt",
+  largeImage: "./cypress/e2e/utils/images/large.png",
+};
