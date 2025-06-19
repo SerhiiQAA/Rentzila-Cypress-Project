@@ -26,7 +26,7 @@ class AdminUserInfoPage extends BasePage {
   };
 
   getFieldElement(title: string) {
-    return cy.contains(title).parent().find(".AdminUserInfo_field__6X4_F");
+    return cy.contains(title).parent().find('[class*="AdminUserInfo_field"]');
   }
 
   verifyUserData(user: {
