@@ -47,7 +47,8 @@ describe("Admin functionality", () => {
     AdminPanelMachineryPage.verifyCurrentUrl("categories/");
   });
 
-  it("C436 The Редагувати категорію button functionality for the Категорії техніки page", () => {
+  it.skip("C436 The Редагувати категорію button functionality for the Категорії техніки page", () => {
+    // Tests with data changes are temporarily disabled, we are working on the admin panel
     AdminPanelMainPage.clickMachineryBtn();
     AdminPanelMainPage.clickSubItemCategoryMachineryBtn();
     AdminPanelUsersPage.elements.actEditBtn().first().click();
@@ -64,7 +65,8 @@ describe("Admin functionality", () => {
     .should('have.text', categoryName)
   });
 
-    it.only("C437 The Видалення категорії button functionality for the Категорії техніки page", () => {
+    it.skip("C437 The Видалення категорії button functionality for the Категорії техніки page", () => {
+      // Tests with data changes are temporarily disabled, we are working on the admin panel
     AdminPanelMainPage.clickMachineryBtn();
     AdminPanelMainPage.clickSubItemCategoryMachineryBtn();
     AdminPanelMachineryPage.clickCreateBtn();

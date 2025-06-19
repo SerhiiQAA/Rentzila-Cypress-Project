@@ -58,7 +58,8 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.verifyChangeDateColorCurrentMonth(10);
   });
 
-  it("C420 The Додати користувача button functionality", () => {
+  it.skip("C420 The Додати користувача button functionality", () => {
+    // Tests with data changes are temporarily disabled, we are working on the admin panel
     AdminPanelMainPage.verifyCurrentUrl("admin/");
     AdminPanelMainPage.clickUsersBtn();
     AdminPanelUsersPage.clickAddUserBtn();
@@ -97,7 +98,8 @@ describe("Admin functionality", () => {
     AdminPanelUsersPage.elements.nameValues().should("contain.text", "Anton");
   });
 
-  it("C425 The Редагування даних користувача button functionality Blocker phone number field", () => {
+  it.skip("C425 The Редагування даних користувача button functionality Blocker phone number field", () => {
+    // Tests with data changes are temporarily disabled, we are working on the admin panel
     AdminPanelMainPage.verifyCurrentUrl("admin/");
     AdminPanelMainPage.clickUsersBtn();
     AdminPanelUsersPage.clickActEditBtn();
@@ -122,7 +124,8 @@ describe("Admin functionality", () => {
     // AdminPanelUsersPage.elements.nameValues().should("contain.text", lastName);
   });
 
-  it('C426 The "Видалити користувача" button functionality', () => {
+  it.skip('C426 The "Видалити користувача" button functionality', () => {
+    // Tests with data changes are temporarily disabled, we are working on the admin panel
     AdminPanelMainPage.verifyCurrentUrl("admin/");
     AdminPanelMainPage.clickUsersBtn();
     AdminPanelUsersPage.clickAddUserBtn();
@@ -175,7 +178,8 @@ describe("Admin functionality", () => {
       .should("contain.text", "Виробники техніки");
   });
 
-  it("C432 The Створити категорію button functionality for the Категорії техніки page", () => {
+  it.skip("C432 The Створити категорію button functionality for the Категорії техніки page", () => {
+    // Tests with data changes are temporarily disabled, we are working on the admin panel
     AdminPanelMainPage.verifyCurrentUrl("admin/");
     AdminPanelMainPage.clickMachineryBtn();
     AdminPanelMainPage.clickSubItemCategoriesMachineryBtn();

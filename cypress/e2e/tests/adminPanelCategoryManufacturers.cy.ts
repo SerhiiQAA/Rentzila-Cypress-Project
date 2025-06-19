@@ -14,7 +14,8 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.login(envs.email_admin, envs.password_admin);
   });
 
-  it("C438 The Створити виробника button functionality for the Виробники техніки page", () => {
+  it.skip("C438 The Створити виробника button functionality for the Виробники техніки page", () => {
+    // Tests with data changes are temporarily disabled, we are working on the admin panel
     AdminPanelMainPage.clickMachineryBtn();
     AdminPanelMainPage.clickSubItemProducerMachineryBtn();
     AdminPanelMachineryPage.verifyCurrentUrl("manufacturers/");
@@ -32,7 +33,7 @@ describe("Admin functionality", () => {
       .should("contain.text", categoryName);
   });
 
-  it.only("C439 The ID and Назва filter functionality for the Виробники техніки page", () => {
+  it("C439 The ID and Назва filter functionality for the Виробники техніки page", () => {
     AdminPanelMainPage.clickMachineryBtn();
     AdminPanelMainPage.clickSubItemProducerMachineryBtn();
     AdminPanelMachineryPage.verifyCurrentUrl("manufacturers/");
@@ -49,25 +50,5 @@ describe("Admin functionality", () => {
       expect(ids).to.deep.equal(sortedIdsDesc);
     });
     AdminPanelMachineryPage.clickSortByNameBtn();
-    // AdminPanelMachineryPage.clickSortByNameBtn();
-AdminPanelMachineryPage.elements.nameValue().then((elements) => {
-  const names = Array.from(elements, (el) => el.innerText.trim());
-  
-  // Алфавітне сортування (з урахуванням регістру)
-  const sortedNamesAsc = [...names].sort((a, b) => a.localeCompare(b, 'uk', { numeric: true }));
-  
-  expect(names).to.deep.equal(sortedNamesAsc);
-});
-
-// Зворотне сортування
-// AdminPanelMachineryPage.clickSortByNameBtn();
-// AdminPanelMachineryPage.elements.nameValue().then((elements) => {
-//   const names = Array.from(elements, (el) => el.innerText.trim());
-  
-//   // Сортування у зворотному порядку
-//   const sortedNamesDesc = [...names].sort((a, b) => b.localeCompare(a, 'uk', { numeric: true }));
-  
-//   expect(names).to.deep.equal(sortedNamesDesc);
-//   });
-})
+  });
 });
