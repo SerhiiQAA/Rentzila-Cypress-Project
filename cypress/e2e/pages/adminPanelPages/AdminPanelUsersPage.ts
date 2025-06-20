@@ -2,8 +2,11 @@ import BasePage from "../BasePage";
 
 class AdminPanelUsersPage extends BasePage {
   elements = {
-    adUserBtn: () => cy.get("button.AdminCustomButton_button_wrapper__KXN18"),
+    addUserBtn: () =>
+      cy.get('button[class*="AdminCustomButton_button_wrapper"]'),
     allUsersDropdown: () => cy.get('[data-testid="div_CustomSelect"]'),
+    allUsersDropdownArea: () =>
+      cy.get('[data-testid="listItems-customSelect"]'),
     searchField: () => cy.get('[data-testid="input"]'),
     subCategoryAllUsers: () =>
       cy.get('[data-testid="span-customSelect"]').contains("Всі користувачі"),
@@ -49,7 +52,6 @@ class AdminPanelUsersPage extends BasePage {
     paginationLeft: () => cy.get('data-testid="KeyboardArrowLeftIcon"'),
     paginationFirstPage: () => cy.get('[data-testid="FirstPageIcon"]'),
     paginationLastPage: () => cy.get('[data-testid="LastPageIcon"]'),
-    // may be removed while conflict solving
     searchInput: () => cy.get("[class*='AdminSearchInput_input']"),
     userInfoButton: (username) =>
       cy
@@ -63,10 +65,32 @@ class AdminPanelUsersPage extends BasePage {
         .contains(username)
         .parent()
         .find('[data-testid="adminPenBtn"]'),
+    deleteUserModalTitle: () => cy.get('class*="PopupLayout_label"]'),
+    deleteUserModalText: () => cy.get('div[class*="DialogPopup_text"]'),
+    deleteUserModalCancelBtn: () =>
+      cy.get('[class*="ItemButtons_lightRedBtn"]'),
+    deleteUserModalOkBtn: () => cy.get('[class*="ItemButtons_darkBlueBtn"]'),
+    deleteUserModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
   };
 
   clickIdSort() {
     this.elements.sortIdBtn().find("svg").click({ force: true });
+  }
+
+  clickActEyeBtn() {
+    this.elements.actEyeBtn().find("svg").click({ force: true });
+  }
+
+  clickActEditBtn() {
+    this.elements.actEditBtn().find("svg").click({ force: true });
+  }
+
+  clickActDeleteBtn() {
+    this.elements.actDeleteBtn().find("svg").click({ force: true });
+  }
+
+  clickAddUserBtn() {
+    this.elements.addUserBtn().click();
   }
 
   clickLoginSort() {
@@ -96,11 +120,26 @@ class AdminPanelUsersPage extends BasePage {
   clickPagesSort10() {
     this.elements.pagesSort10().click();
   }
+
   clickPagesSort20() {
     this.elements.pagesSort20().click();
   }
+
   clickPagesSort50() {
     this.elements.pagesSort50().click();
+  }
+
+  clickDeleteUserModalOkBtn() {
+    this.elements.deleteUserModalOkBtn().click();
+  }
+
+  fillSearchField(value) {
+    this.elements.searchField().clear().type(value);
+  }
+
+  selectDropdownOption(optionText) {
+    this.elements.allUsersDropdown().click();
+    this.elements.allUsersDropdownArea().contains(optionText).click();
   }
 
   verifyDropdownOptions(...expectedOptions) {
@@ -226,7 +265,7 @@ class AdminPanelUsersPage extends BasePage {
       });
   }
 
-   searchUser(username: string) {
+  searchUser(username: string) {
     this.elements.searchInput().type(username + "{enter}");
   }
 

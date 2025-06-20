@@ -59,6 +59,13 @@ export const invalidNumbers = [
   "+10506743060",
   "+0506743060",
 ];
+
+export const validOperatorCodes = [
+  "050", "066", "095", "099", 
+  "067", "068", "096", "097", "098", 
+  "063", "073", "093", "091", "092", "094"
+];
+
 export const symbols = ["[]", "#", "(", ")", "!", "+", "/", "123"];
 
 export const invalidCities = ["Киев", "Варшава"]

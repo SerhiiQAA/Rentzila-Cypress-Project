@@ -6,7 +6,7 @@ class TenderCreatePage extends BasePage {
     findServiceInput: () =>
       cy.get('[data-testid="input-customSelectWithSearch"]'),
     findServiceInputSelected: () =>
-      cy.get(".CustomSelectWithSearch_serviceText__seBcv"),
+      cy.get('[class*="CustomSelectWithSearch_serviceText"]'),
     serviceListBtn: () => cy.get('[data-testid="item-customSelectWithSearch"]'),
     serviceListCloseBtn: () => cy.get('[data-testid="closeButton"]'),
     dateBeginningBtn: () => cy.get('[data-testid="datePicker"]').eq(0),
@@ -21,23 +21,23 @@ class TenderCreatePage extends BasePage {
       cy.get(".react-datepicker__time-list-item--selected"),
     budgetInput: () =>
       cy.get(
-        '.CreateItemPrice_flexRow__AFuyx > [data-testid="customInputWrapper"] > :nth-child(2) > [data-testid="custom-input"]'
+        '[class*="CreateItemPrice_flexRow"] > [data-testid="customInputWrapper"] > :nth-child(2) > [data-testid="custom-input"]'
       ),
     placeWorkMapBtn: () => cy.get('[data-testid="choseOnMap"]'),
-    placeWorkMapConfirmBtn: () => cy.get(".ItemButtons_darkBlueBtn__juupv"),
+    placeWorkMapConfirmBtn: () => cy.get('[class*="ItemButtons_darkBlueBtn"]'),
     additionalInformationInput: () => cy.get('[data-testid="textAreaInput"]'),
     nextBtn: () => cy.get('[data-testid="nextButton"]'),
     tenderNameInputErrorMsg: () =>
       cy.get('[data-testid="descriptionError"]').eq(0),
     findServiceInputErrorMsg: () =>
-      cy.get("div.CustomSelectWithSearch_errorTextVisible__B5lZH"),
+      cy.get('div[class*="CustomSelectWithSearch_errorTextVisible"]'),
     findServiceModalErrorMsg: () =>
       cy.get('[data-testid="p2-notFound-addNewItem"]'),
     dateEndingErrorMsg: () =>
-      cy.get("div.DateContainer_errorTextVisible__of2cc"),
+      cy.get('div[class*="DateContainer_errorTextVisible"]'),
     budgetInputErrorMsg: () => cy.get('[data-testid="descriptionError"]'),
     placeWorkMapErrorMsg: () =>
-      cy.get(".AddressSelectionBlock_errorTextVisible__IAGKS"),
+      cy.get('[class*="AddressSelectionBlock_errorTextVisible"]'),
     additionalInformationErrorMsg: () =>
       cy.get('[data-testid="textAreaError"]'),
     allErrorMsg: () => cy.get(".error-message"),

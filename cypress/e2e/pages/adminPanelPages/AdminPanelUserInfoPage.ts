@@ -18,10 +18,15 @@ class AdminUserInfoPage extends BasePage {
     profileEmailInput: () => this.getFieldElement("Емейл"),
     viberInput: () => this.getFieldElement("Viber"),
     telegramInput: () => this.getFieldElement("Telegram"),
+    title: () => cy.get('div[class*="AdminLayout_title"]'),
+    allUserFields: () => cy.get('div[class*="AdminUserInfo_field"]'),
+    closeBtn: () => cy.get('[data-testid="closeBtn"]'),
+    deleteBtn: () =>
+      cy.get('[class*="AdminUserInfo_buttons_wrapper"] button:last-child'),
   };
 
   getFieldElement(title: string) {
-    return cy.contains(title).parent().find(".AdminUserInfo_field__6X4_F");
+    return cy.contains(title).parent().find('[class*="AdminUserInfo_field"]');
   }
 
   verifyUserData(user: {
@@ -66,5 +71,14 @@ class AdminUserInfoPage extends BasePage {
     this.elements.viberInput().should("contain.text", user.viber);
     this.elements.telegramInput().should("contain.text", user.telegram);
   }
+
+  clickCloseBtn() {
+    this.elements.closeBtn().scrollIntoView().click();
+  }
+
+  clickDeleteBtn() {
+    this.elements.deleteBtn().click();
+  }
 }
+
 export default new AdminUserInfoPage();

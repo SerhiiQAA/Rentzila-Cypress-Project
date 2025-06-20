@@ -3,9 +3,9 @@ import BasePage from "../BasePage";
 class TenderDetailPage extends BasePage {
   elements = {
     receivingProposalsText: () =>
-      cy.get("div.ProposeButton_propose_denied__SV3R3"),
-    budgetAnnouncedValue: () => cy.get("span.Additional_budget__qN_zb"),
-    editBtn: () => cy.get(".CurrentTenderButtons_fillBtn__HCP5l"),
+      cy.get('div[class*="ProposeButton_propose_denied"]'),
+    budgetAnnouncedValue: () => cy.get('span[class*="Additional_budget"]'),
+    editBtn: () => cy.get('class*="CurrentTenderButtons_fillBtn"]'),
   };
 
   clickEditBtn() {
