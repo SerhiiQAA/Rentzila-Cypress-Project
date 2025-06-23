@@ -65,11 +65,11 @@ describe("Admin functionality", () => {
     AdminPanelUsersPage.clickAddUserBtn();
     AdminPanelAddUserModal.selectDropdownOption("Відділ менеджменту");
     const lastName = faker.person.lastName();
+    const operatorCode = faker.helpers.arrayElement(validOperatorCodes);
+    const mobileNumber = `+38 ${operatorCode} ${faker.string.numeric(7)}`;
     AdminPanelAddUserModal.fillLastName(lastName);
     AdminPanelAddUserModal.fillFirstName(faker.person.firstName());
     AdminPanelAddUserModal.fillMiddleName(faker.person.middleName());
-    const operatorCode = faker.helpers.arrayElement(validOperatorCodes);
-    const mobileNumber = `+38 ${operatorCode} ${faker.string.numeric(7)}`;
     AdminPanelAddUserModal.fillMobileNumber(mobileNumber);
     AdminPanelAddUserModal.fillEmail(
       faker.internet.email({ provider: "gmail.com" })
