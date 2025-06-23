@@ -49,7 +49,7 @@ class AdminPanelUsersPage extends BasePage {
     rowsNumberInTable: () => cy.get("tbody tr"),
     pagesCountTitle: () => cy.get(".MuiTablePagination-displayedRows"),
     paginationRight: () => cy.get('[data-testid="KeyboardArrowRightIcon"]'),
-    paginationLeft: () => cy.get('data-testid="KeyboardArrowLeftIcon"'),
+    paginationLeft: () => cy.get('[data-testid="KeyboardArrowLeftIcon"]'),
     paginationFirstPage: () => cy.get('[data-testid="FirstPageIcon"]'),
     paginationLastPage: () => cy.get('[data-testid="LastPageIcon"]'),
     searchInput: () => cy.get("[class*='AdminSearchInput_input']"),
@@ -65,6 +65,10 @@ class AdminPanelUsersPage extends BasePage {
         .contains(username)
         .parent()
         .find('[data-testid="adminPenBtn"]'),
+    viewUserModalTitle: () => cy.get('[class*="PopupLayout_label"]'),
+    viewUserModalText: () => cy.get('div[class*="DialogPopup_text"]'),
+    viewUserModalOkBtn: () => cy.get('[class*="ItemButtons_darkBlueBtn"]'),
+    viewUserModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
     deleteUserModalTitle: () => cy.get('class*="PopupLayout_label"]'),
     deleteUserModalText: () => cy.get('div[class*="DialogPopup_text"]'),
     deleteUserModalCancelBtn: () =>
