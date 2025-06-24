@@ -1,11 +1,7 @@
-import AdminPanelMainPage from "../pages/adminPanelPages/AdminPanelMainPage";
-import AdminPanelUsersPage from "../pages/adminPanelPages/AdminPanelUsersPage";
-import AdminPanelAddUserModal from "../pages/adminPanelPages/AdminPanelAddUserModal";
-import AdminPanelEditUserPage from "../pages/adminPanelPages/AdminPanelEditUserPage";
-import AdminPanelMachineryPage from "../pages/adminPanelPages/AdminPanelMachineryPage";
+import AdminPanelMainPage from "../../pages/adminPanelPages/AdminPanelMainPage";
+import AdminPanelMachineryPage from "../../pages/adminPanelPages/AdminPanelMachineryPage";
 import { faker } from "@faker-js/faker";
-import { envs } from "../utils/testData";
-import { validOperatorCodes } from "../utils/testData";
+import { envs } from "../../utils/testData";
 
 describe("Admin functionality", () => {
   beforeEach(() => {
