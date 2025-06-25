@@ -109,7 +109,7 @@ class AdminPanelMachineryPage extends BasePage {
     this.elements.editMachineryModalNameField().clear().type(name);
   }
 
-  fillCreatCategoryModalNameField(name: string) {
+  fillCreateCategoryModalNameField(name: string) {
     this.elements.createCategoryModalNameField().clear().type(name);
   }
 

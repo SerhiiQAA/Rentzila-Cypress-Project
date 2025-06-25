@@ -4,7 +4,6 @@ import { envs } from "../../utils/testData";
 describe("Admin functionality", () => {
   beforeEach(() => {
     AdminPanelMainPage.visit("admin/");
-    cy.wait(2000);
     AdminPanelMainPage.login(envs.email_admin, envs.password_admin);
   });
 

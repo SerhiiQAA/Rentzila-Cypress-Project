@@ -11,7 +11,6 @@ import { last } from "cypress/types/lodash";
 describe("Admin functionality", () => {
   beforeEach(() => {
     AdminPanelMainPage.visit("admin/");
-    cy.wait(2000);
     AdminPanelMainPage.login(envs.email_admin, envs.password_admin);
   });
 
@@ -67,27 +66,20 @@ describe("Admin functionality", () => {
     AdminPanelUsersPage.clickIdSort();
     AdminPanelUsersPage.verifyIdValues("asc");
     AdminPanelUsersPage.clickIdSort();
-    cy.wait(2000);
     AdminPanelUsersPage.verifyIdValues("desc");
     AdminPanelUsersPage.clickIdSort();
-    cy.wait(2000);
     AdminPanelUsersPage.verifyIdValues("asc");
     AdminPanelUsersPage.clickLoginSort();
-    cy.wait(2000);
     AdminPanelUsersPage.verifyLoginValues("asc");
     AdminPanelUsersPage.clickLoginSort();
     AdminPanelUsersPage.verifyLoginSortBtnStateDescending();
     AdminPanelUsersPage.clickDateSort();
-    cy.wait(2000);
     AdminPanelUsersPage.verifyDateValues("asc");
     AdminPanelUsersPage.clickDateSort();
-    cy.wait(2000);
     AdminPanelUsersPage.verifyDateValues("desc");
     AdminPanelUsersPage.clickNameSort();
-    cy.wait(2000);
     AdminPanelUsersPage.verifyNameValues("asc");
     AdminPanelUsersPage.clickNameSort();
-    cy.wait(2000);
     AdminPanelUsersPage.verifyNameValues("desc");
   });
 
@@ -177,8 +169,7 @@ describe("Admin functionality", () => {
       .rowsNumberInTable()
       .its("length")
       .should("eq", 20);
-    AdminPanelUsersPage.clickPagesDropdown();
-    AdminPanelUsersPage.clickPagesSort50();
+    AdminPanelUsersPage.selectPagesSortingOption(50);
     AdminPanelUsersPage.elements
       .rowsNumberInTable()
       .its("length")

@@ -7,7 +7,6 @@ import { envs } from "../../utils/testData";
 describe("Admin functionality", () => {
   beforeEach(() => {
     AdminPanelMainPage.visit("admin/");
-    cy.wait(2500);
     AdminPanelMainPage.login(envs.email_admin, envs.password_admin);
   });
 
@@ -45,7 +44,7 @@ describe("Admin functionality", () => {
       .should("have.text", "Створити категорію");
     const randomNumber = faker.string.numeric(5);
     const categoryName = `Категорія 1 ${randomNumber}`;
-    AdminPanelMachineryPage.fillCreatCategoryModalNameField(categoryName);
+    AdminPanelMachineryPage.fillCreateCategoryModalNameField(categoryName);
     AdminPanelMachineryPage.selectCategoryModalDropdownOption(
       "Складська техніка"
     );
@@ -86,13 +85,12 @@ describe("Admin functionality", () => {
       .should("eq", 10);
     AdminPanelUsersPage.clickPagesDropdown();
     AdminPanelUsersPage.verifyDropdownOptions("10", "20", "50");
-    AdminPanelUsersPage.clickPagesSort20();
+    AdminPanelUsersPage.selectPagesSortingOption(20);
     AdminPanelUsersPage.elements
       .rowsNumberInTable()
       .its("length")
       .should("eq", 20);
-    AdminPanelUsersPage.clickPagesDropdown();
-    AdminPanelUsersPage.clickPagesSort50();
+    AdminPanelUsersPage.selectPagesSortingOption(50);
     AdminPanelUsersPage.elements
       .rowsNumberInTable()
       .its("length")
@@ -142,7 +140,7 @@ describe("Admin functionality", () => {
       .should("have.text", "Створити категорію");
     const randomNumber = faker.string.numeric(5);
     const categoryName = `Категорія 1 ${randomNumber}`;
-    AdminPanelMachineryPage.fillCreatCategoryModalNameField(categoryName);
+    AdminPanelMachineryPage.fillCreateCategoryModalNameField(categoryName);
     AdminPanelMachineryPage.selectCategoryModalDropdownOption(
       "Складська техніка"
     );
