@@ -214,6 +214,7 @@ describe("Tenders functionality", () => {
         `Знайдено ${count} ${tenderWordEnding} на видимій території`
       );
     });
+    TendersMapPage.clickCategoryAgriculturalOpenListBtn();
     TendersMapPage.clickCategorySubItemByText("Полив урожаю");
     TendersMapPage.elements.categoryBuildingOpenListBtn().scrollIntoView();
     TendersMapPage.clickCategoryBuildingOpenListBtn();
