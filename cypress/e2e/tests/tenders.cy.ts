@@ -4,7 +4,6 @@ import TendersMapPage from "../pages/tendersPages/TendersMapPage";
 import LoginPage from "../pages/LoginPage";
 import TendersOwnerPage from "../pages/tendersPages/TendersOwnerPage";
 import TenderCreatePage from "../pages/tendersPages/TenderCreatePage";
-import TenderDetailPage from "../pages/tendersPages/TenderDetailPage";
 import { envs } from "../utils/testData";
 
 describe("Tenders functionality", () => {

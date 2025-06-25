@@ -2,9 +2,11 @@ import AdminPanelMainPage from "../../pages/adminPanelPages/AdminPanelMainPage";
 import AdminPanelUsersPage from "../../pages/adminPanelPages/AdminPanelUsersPage";
 import AdminPanelAddUserModal from "../../pages/adminPanelPages/AdminPanelAddUserModal";
 import AdminPanelEditUserPage from "../../pages/adminPanelPages/AdminPanelEditUserPage";
+import AdminUserInfoPage from "../../pages/adminPanelPages/AdminPanelUserInfoPage";
 import { envs } from "../../utils/testData";
 import { faker } from "@faker-js/faker";
 import { validOperatorCodes } from "../../utils/testData";
+import { last } from "cypress/types/lodash";
 
 describe("Admin functionality", () => {
   beforeEach(() => {
@@ -87,6 +89,23 @@ describe("Admin functionality", () => {
     AdminPanelUsersPage.clickNameSort();
     cy.wait(2000);
     AdminPanelUsersPage.verifyNameValues("desc");
+  });
+
+  it("C424 The Редагування даних користувача button functionality Blocker phone number field", () => {
+    AdminPanelMainPage.verifyCurrentUrl("admin/");
+    AdminPanelMainPage.clickUsersBtn();
+    AdminPanelUsersPage.clickActEyeBtn();
+    AdminUserInfoPage.elements
+      .title()
+      .should("contain.text", "Перегляд користувача");
+    AdminUserInfoPage.elements.allUserFields().each(($field) => {
+      cy.wrap($field).find("input, textarea, select").should("not.exist");
+    });
+    AdminUserInfoPage.clickCloseBtn();
+    AdminPanelMainPage.verifyCurrentUrl("/admin/users");
+    AdminUserInfoPage.elements
+      .title()
+      .should("contain.text", "Користувачі");
   });
 
   it.skip("C425 The Редагування даних користувача button functionality Blocker phone number field", () => {
