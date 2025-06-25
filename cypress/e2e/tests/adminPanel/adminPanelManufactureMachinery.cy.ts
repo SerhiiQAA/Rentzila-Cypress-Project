@@ -18,7 +18,7 @@ describe("Admin functionality", () => {
     AdminPanelMachineryPage.clickCreateBtn();
     const randomNumber = faker.string.numeric(5);
     const categoryName = `Категорія 1 ${randomNumber}`;
-    AdminPanelMachineryPage.fillCreatCategoryModalNameField(categoryName);
+    AdminPanelMachineryPage.fillCreateCategoryModalNameField(categoryName);
     AdminPanelMachineryPage.clickCreateManufactureModalSubmitBtn();
     AdminPanelMachineryPage.elements
       .title()

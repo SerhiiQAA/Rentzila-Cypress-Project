@@ -6,7 +6,6 @@ import AdminUserInfoPage from "../../pages/adminPanelPages/AdminPanelUserInfoPag
 import { envs } from "../../utils/testData";
 import { faker } from "@faker-js/faker";
 import { validOperatorCodes } from "../../utils/testData";
-import { last } from "cypress/types/lodash";
 
 describe("Admin functionality", () => {
   beforeEach(() => {
