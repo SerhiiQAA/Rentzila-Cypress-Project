@@ -20,7 +20,6 @@ class AdminPanelUserInfoPage extends BasePage {
     telegramInput: () => this.getFieldElement("Telegram"),
     title: () => cy.get('div[class*="AdminLayout_title"]'),
     allUserFields: () => cy.get('div[class*="AdminUserInfo_field"]'),
-
     closeBtn: () => cy.get('[data-testid="closeBtn"]'),
     deleteBtn: () =>
       cy.get('[class*="AdminUserInfo_buttons_wrapper"] button:last-child'),
