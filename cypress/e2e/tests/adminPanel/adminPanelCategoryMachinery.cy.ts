@@ -85,7 +85,7 @@ describe("Admin functionality", () => {
       .should("eq", 10);
     AdminPanelUsersPage.clickPagesDropdown();
     AdminPanelUsersPage.verifyDropdownOptions("10", "20", "50");
-    AdminPanelUsersPage.selectPagesSortingOption(20);
+    AdminPanelUsersPage.clickPagesSort20();
     AdminPanelUsersPage.elements
       .rowsNumberInTable()
       .its("length")
@@ -161,10 +161,9 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.clickMachineryBtn();
     AdminPanelMainPage.clickSubItemCategoriesMachineryBtn();
     AdminPanelMachineryPage.verifyCurrentUrl("admin/categories/");
-    AdminPanelMachineryPage.clickSortByIdBtn();
-    AdminPanelMachineryPage.fillSearchField("Категорія 1 17235");
+    AdminPanelMachineryPage.fillSearchField("стелажі складські");
     AdminPanelMachineryPage.elements
       .nameValue()
-      .should("contain.text", "Категорія 1 17235");
+      .should("contain.text", "стелажі складські");
   });
 });
