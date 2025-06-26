@@ -1,8 +1,8 @@
 import AdminPanelMainPage from "../../pages/adminPanelPages/AdminPanelMainPage";
 import AdminPanelUsersPage from "../../pages/adminPanelPages/AdminPanelUsersPage";
 import AdminPanelMachineryPage from "../../pages/adminPanelPages/AdminPanelMachineryPage";
-import { faker } from "@faker-js/faker";
 import { envs } from "../../utils/testData";
+import { categoryName } from "../../utils/testData";
 
 describe("Admin functionality", () => {
   beforeEach(() => {
@@ -42,15 +42,16 @@ describe("Admin functionality", () => {
     AdminPanelMachineryPage.elements
       .createCategoryModalTitle()
       .should("have.text", "Створити категорію");
-    const randomNumber = faker.string.numeric(5);
-    const categoryName = `Категорія 1 ${randomNumber}`;
-    AdminPanelMachineryPage.fillCreateCategoryModalNameField(categoryName);
+    const generatedCategoryName = categoryName();
+    AdminPanelMachineryPage.fillCreateCategoryModalNameField(
+      generatedCategoryName
+    );
     AdminPanelMachineryPage.selectCategoryModalDropdownOption(
       "Складська техніка"
     );
     AdminPanelMachineryPage.clickCreatCategoryModalSavelBtn();
     AdminPanelMainPage.verifyCurrentUrl("admin/categories/");
-    AdminPanelMachineryPage.fillSearchField(categoryName);
+    AdminPanelMachineryPage.fillSearchField(generatedCategoryName);
     AdminPanelMachineryPage.elements
       .nameValue()
       .should("contain.text", categoryName);
@@ -116,14 +117,15 @@ describe("Admin functionality", () => {
     AdminPanelMachineryPage.elements
       .viewMachineryModalTitle()
       .should("have.text", "Редагувати категорію");
-    const randomNumber = faker.string.numeric(5);
-    const categoryName = `Категорія 1 ${randomNumber}`;
-    AdminPanelMachineryPage.fillEditMachineryModalNameField(categoryName);
+    const generatedCategoryName = categoryName();
+    AdminPanelMachineryPage.fillEditMachineryModalNameField(
+      generatedCategoryName
+    );
     AdminPanelMachineryPage.selectCategoryEditMachineryModalDropdown(
       "Комунальна техніка"
     );
     AdminPanelMachineryPage.clickEditMachineryModalSubmitBtn();
-    AdminPanelMachineryPage.fillSearchField(categoryName);
+    AdminPanelMachineryPage.fillSearchField(generatedCategoryName);
     AdminPanelMachineryPage.elements
       .nameValue()
       .eq(1)
@@ -138,21 +140,22 @@ describe("Admin functionality", () => {
     AdminPanelMachineryPage.elements
       .createCategoryModalTitle()
       .should("have.text", "Створити категорію");
-    const randomNumber = faker.string.numeric(5);
-    const categoryName = `Категорія 1 ${randomNumber}`;
-    AdminPanelMachineryPage.fillCreateCategoryModalNameField(categoryName);
+    const generatedCategoryName = categoryName();
+    AdminPanelMachineryPage.fillCreateCategoryModalNameField(
+      generatedCategoryName
+    );
     AdminPanelMachineryPage.selectCategoryModalDropdownOption(
       "Складська техніка"
     );
     AdminPanelMachineryPage.clickCreatCategoryModalSavelBtn();
-    AdminPanelMachineryPage.fillSearchField(categoryName);
+    AdminPanelMachineryPage.fillSearchField(generatedCategoryName);
     cy.wait(500);
     AdminPanelUsersPage.elements.actDeleteBtn().first().click();
     AdminPanelMachineryPage.elements
       .viewMachineryModalTitle()
       .should("have.text", "Видалення категорії");
     AdminPanelMachineryPage.clickDeleteMachineryModalSubmitBtn();
-    AdminPanelMachineryPage.fillSearchField(categoryName);
+    AdminPanelMachineryPage.fillSearchField(generatedCategoryName);
     AdminPanelMachineryPage.elements.nameValue().eq(1).should("not.exist");
   });
 
