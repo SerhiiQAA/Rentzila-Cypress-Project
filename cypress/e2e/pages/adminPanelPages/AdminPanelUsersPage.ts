@@ -49,7 +49,7 @@ class AdminPanelUsersPage extends BasePage {
     rowsNumberInTable: () => cy.get("tbody tr"),
     pagesCountTitle: () => cy.get(".MuiTablePagination-displayedRows"),
     paginationRight: () => cy.get('[data-testid="KeyboardArrowRightIcon"]'),
-    paginationLeft: () => cy.get('data-testid="KeyboardArrowLeftIcon"'),
+    paginationLeft: () => cy.get('[data-testid="KeyboardArrowLeftIcon"]'),
     paginationFirstPage: () => cy.get('[data-testid="FirstPageIcon"]'),
     paginationLastPage: () => cy.get('[data-testid="LastPageIcon"]'),
     searchInput: () => cy.get("[class*='AdminSearchInput_input']"),
@@ -65,7 +65,11 @@ class AdminPanelUsersPage extends BasePage {
         .contains(username)
         .parent()
         .find('[data-testid="adminPenBtn"]'),
-    deleteUserModalTitle: () => cy.get('class*="PopupLayout_label"]'),
+    viewUserModalTitle: () => cy.get('[class*="PopupLayout_label"]'),
+    viewUserModalText: () => cy.get('div[class*="DialogPopup_text"]'),
+    viewUserModalOkBtn: () => cy.get('[class*="ItemButtons_darkBlueBtn"]'),
+    viewUserModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
+    deleteUserModalTitle: () => cy.get('[class*="PopupLayout_label"]'),
     deleteUserModalText: () => cy.get('div[class*="DialogPopup_text"]'),
     deleteUserModalCancelBtn: () =>
       cy.get('[class*="ItemButtons_lightRedBtn"]'),
@@ -73,41 +77,47 @@ class AdminPanelUsersPage extends BasePage {
     deleteUserModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
   };
 
-  clickIdSort() {
-    this.elements.sortIdBtn().find("svg").click({ force: true });
-  }
-
+  
   clickActEyeBtn() {
     this.elements.actEyeBtn().find("svg").click({ force: true });
   }
-
+  
   clickActEditBtn() {
     this.elements.actEditBtn().find("svg").click({ force: true });
   }
-
+  
   clickActDeleteBtn() {
     this.elements.actDeleteBtn().find("svg").click({ force: true });
   }
-
+  
   clickAddUserBtn() {
     this.elements.addUserBtn().click();
+  }
+  
+  clickIdSort() {
+    this.elements.sortIdBtn().find("svg").click({ force: true });
+    cy.wait(2000);
   }
 
   clickLoginSort() {
     this.elements.sortLoginBtn().click();
+    cy.wait(2000);
+  }
+  
+  clickDateSort() {
+    this.elements.sortDateBtn().click();
+    cy.wait(2000);
   }
 
   clickNameSort() {
     this.elements.sortNameBtn().click();
+    cy.wait(2000);
   }
 
   clickGroupeSort() {
     this.elements.sortGroupeBtn().click();
   }
 
-  clickDateSort() {
-    this.elements.sortDateBtn().click();
-  }
 
   clickActionSort() {
     this.elements.sortActionBtn().click();
@@ -135,6 +145,15 @@ class AdminPanelUsersPage extends BasePage {
 
   fillSearchField(value) {
     this.elements.searchField().clear().type(value);
+  }
+
+  /**
+   * Selects a sorting option from the pagination dropdown.
+   * @param {10 | 20 | 50} option - Number of rows per page (accepted: 10, 20, 50)
+   */
+  selectPagesSortingOption(option: 10 | 20 | 50) {
+    this.clickPagesDropdown();
+    cy.get(`li[data-value="${option}"]`).should("be.visible").click();
   }
 
   selectDropdownOption(optionText) {

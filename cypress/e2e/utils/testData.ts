@@ -77,3 +77,8 @@ export const images = {
   invalidImage: "./cypress/e2e/utils/images/image.txt",
   largeImage: "./cypress/e2e/utils/images/large.png",
 };
+
+export const categoryName = (prefix = 'Категорія'): string => {
+  const randomWord = faker.word.noun(); 
+  return `${prefix} ${randomWord}`;
+};

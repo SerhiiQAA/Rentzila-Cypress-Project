@@ -1,6 +1,6 @@
 import BasePage from "../BasePage";
 
-class AdminUserInfoPage extends BasePage {
+class AdminPanelUserInfoPage extends BasePage {
   elements = {
     entityTypeInput: () => this.getFieldElement("Тип особи"),
     legalEntityTypeInput: () => this.getFieldElement("Тип юридичної особи"),
@@ -27,6 +27,23 @@ class AdminUserInfoPage extends BasePage {
 
   getFieldElement(title: string) {
     return cy.contains(title).parent().find('[class*="AdminUserInfo_field"]');
+  }
+
+  verifyUserDataFieldsExist() {
+    this.elements.entityTypeInput().should("exist");
+    this.elements.legalEntityTypeInput().should("exist");
+    this.elements.privateEntityIdInput().should("exist");
+    this.elements.individualEntrepreneurIdInput().should("exist");
+    this.elements.legalEntityIdInput().should("exist");
+    this.elements.legalEntityNameInput().should("exist");
+    this.elements.lastNameInput().should("exist");
+    this.elements.nameInput().should("exist");
+    this.elements.patronimInput().should("exist");
+    this.elements.cityInput().should("exist");
+    this.elements.profileNumberInput().should("exist");
+    this.elements.profileEmailInput().should("exist");
+    this.elements.viberInput().should("exist");
+    this.elements.telegramInput().should("exist");
   }
 
   verifyUserData(user: {
@@ -81,4 +98,4 @@ class AdminUserInfoPage extends BasePage {
   }
 }
 
-export default new AdminUserInfoPage();
+export default new AdminPanelUserInfoPage();

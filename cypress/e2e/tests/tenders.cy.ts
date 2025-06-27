@@ -4,7 +4,6 @@ import TendersMapPage from "../pages/tendersPages/TendersMapPage";
 import LoginPage from "../pages/LoginPage";
 import TendersOwnerPage from "../pages/tendersPages/TendersOwnerPage";
 import TenderCreatePage from "../pages/tendersPages/TenderCreatePage";
-import TenderDetailPage from "../pages/tendersPages/TenderDetailPage";
 import { envs } from "../utils/testData";
 
 describe("Tenders functionality", () => {
@@ -215,6 +214,7 @@ describe("Tenders functionality", () => {
         `Знайдено ${count} ${tenderWordEnding} на видимій території`
       );
     });
+    TendersMapPage.clickCategoryAgriculturalOpenListBtn();
     TendersMapPage.clickCategorySubItemByText("Полив урожаю");
     TendersMapPage.elements.categoryBuildingOpenListBtn().scrollIntoView();
     TendersMapPage.clickCategoryBuildingOpenListBtn();
