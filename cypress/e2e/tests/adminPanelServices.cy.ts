@@ -44,13 +44,13 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
     AdminPanelServicesPage.clickEditCategoryBtn();
     AdminPanelServicesPage.verifyEditCategoryInput("Сільськогосподарські");
-    AdminPanelServicesPage.fillEditCategoryInput("Сільськогосподарськіtest");
-    AdminPanelServicesPage.clickEditCategorySaveBtn();
+    AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарськіtest");
+    AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
-    AdminPanelServicesPage.verifyCategoryElementName("Сільськогосподарськіtest");
+    AdminPanelServicesPage.verifyCategoryElement("Сільськогосподарськіtest");
     AdminPanelServicesPage.clickEditCategoryBtn();
-    AdminPanelServicesPage.fillEditCategoryInput("Сільськогосподарські");
-    AdminPanelServicesPage.clickEditCategorySaveBtn();
+    AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарські");
+    AdminPanelServicesPage.clickCategoryPopupYesBtn();
   });
 
   it.skip("C372 The Видалення категорії button functionality for Категорії сервісів page", () => {
@@ -64,5 +64,29 @@ describe("Admin functionality", () => {
     AdminPanelServicesPage.elements.categoryElementSilskogospodarski()
       .should("not.exist");
   });
+
+  it("C373 The  Створити категорію button functionality for Категорії сервісів page", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemCategoryServicesBtn();
+    AdminPanelServicesPage.clickCreateCategoryBtn();
+    AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподорські");
+    AdminPanelServicesPage.clickCategoryPopupYesBtn();
+    cy.reload();
+    AdminPanelServicesPage.verifyCategoryElement("Сільськогосподорські");
+
+    AdminPanelServicesPage.deleteCategory("Сільськогосподорські");
+  
+  });
+
+  it.skip("C374 The ID, Назва and Категорія filters functionality for  Список сервісів page", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemListServicesBtn();
+    
+    AdminPanelServicesPage.sortIdAndVerify();
+    
+    AdminPanelServicesPage.sortNameAndVerify();
+    
+    AdminPanelServicesPage.sortCategoryAndVerify(); // Client side error
+  }); 
 
 });
