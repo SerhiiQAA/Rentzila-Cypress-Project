@@ -23,6 +23,35 @@ class AdminPanelMachineryPage extends BasePage {
     createCategoryModalSaveBtn: () =>
       cy.get('button[class*="AdminCategoryPopup_save_btn"]'),
     createCategoryModalCloselBtn: () => cy.get('[data-testid="crossIcon"]'),
+
+    createManufactureModalSubmitBtn: () =>
+      cy.get('[data-testid="submitBtn"]'),
+    createManufactureModalNameField: () =>
+      cy.get('[data-testid="custom-input"]'),
+
+    dataTable: () => cy.get('[data-testid="categoriesContainer"]'),
+    viewMachineryModalTitle: () => cy.get('[class*="PopupLayout_label"]'),
+    viewMachineryModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
+    viewMachineryModalCancelBtn: () =>
+      cy.get('[class*="AdminCategoryPopup_buttons"] button'),
+    editMachineryModalTitle: () => cy.get('[class*="PopupLayout_label"]'),
+    editMachineryModalCloseBtn: () => cy.get('[data-testid="closeIcon"]'),
+    editMachineryModalNameField: () => cy.get('[data-testid="custom-input"]'),
+    editMachineryModalCancelBtn: () =>
+      cy.get('[class*="AdminCategoryPopup_buttons"] button:nth-child(1)'),
+    editMachineryModalSubmitBtn: () =>
+      cy.get('[class*="AdminCategoryPopup_buttons"] button:nth-child(2)'),
+    editMachineryModalCategoryDropdown: () =>
+      cy.get('[data-testid="div_CustomSelect"]'),
+    editMachineryModalCategoryDropdownArea: () =>
+      cy.get('[data-testid="listItems-customSelect"]'),
+
+    deleteMachineryModalTitle: () => cy.get('[class*="PopupLayout_label"]'),
+    deleteMachineryModalText: () => cy.get('[class*="DialogPopup_text"]'),
+    deleteMachineryModalCancelBtn: () =>
+      cy.get('[class*="ItemButtons_lightRedBtn"]'),
+    deleteMachineryModalSubmitBtn: () =>
+      cy.get('[class*="ItemButtons_darkBlueBtn"]'),
   };
 
   clickCreateBtn() {
@@ -31,6 +60,10 @@ class AdminPanelMachineryPage extends BasePage {
 
   clickCreatCategoryModalSavelBtn() {
     this.elements.createCategoryModalSaveBtn().click();
+  }
+
+  clickCreateManufactureModalSubmitBtn() {
+    this.elements.createManufactureModalSubmitBtn().click();
   }
 
   clickCreatCategoryModalCancelBtn() {
@@ -48,7 +81,35 @@ class AdminPanelMachineryPage extends BasePage {
     this.elements.sortByNameBtn().click();
   }
 
-  fillCreatCategoryModalNameField(name: string) {
+  clickViewMachineryModalCancelBtn() {
+    this.elements.viewMachineryModalCancelBtn().click();
+  }
+
+  clickEditMachineryModalCloseBtn() {
+    this.elements.editMachineryModalCloseBtn().click();
+  }
+
+  clickEditMachineryModalCancelBtn() {
+    this.elements.editMachineryModalCancelBtn().click();
+  }
+
+  clickEditMachineryModalSubmitBtn() {
+    this.elements.editMachineryModalSubmitBtn().click();
+  }
+
+  clickDeleteMachineryModalSubmitBtn() {
+    this.elements.deleteMachineryModalSubmitBtn().click();
+  }
+
+  clickDeleteMachineryModalCancelBtn() {
+    this.elements.deleteMachineryModalCancelBtn().click();
+  }
+
+  fillEditMachineryModalNameField(name) {
+    this.elements.editMachineryModalNameField().clear().type(name);
+  }
+
+  fillCreateCategoryModalNameField(name: string) {
     this.elements.createCategoryModalNameField().clear().type(name);
   }
 
@@ -62,6 +123,14 @@ class AdminPanelMachineryPage extends BasePage {
       .createCategoryModalParentDropdownArea()
       .should("be.visible")
       .contains(optionText)
+      .click();
+  }
+
+  selectCategoryEditMachineryModalDropdown(categoryName) {
+    this.elements.editMachineryModalCategoryDropdown().click();
+    this.elements
+      .editMachineryModalCategoryDropdownArea()
+      .contains(categoryName)
       .click();
   }
 }

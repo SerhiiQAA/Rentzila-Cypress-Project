@@ -216,12 +216,18 @@ class AdminPanelMainPage extends BasePage {
   }
 
   login(email: string, password: string) {
-    this.elements.loginEmail().should("exist").should("be.visible").type(email);
+    this.elements
+      .loginEmail()
+      .should("exist", { timeout: 15000 })
+      .should("be.visible")
+      .type(email);
+
     this.elements
       .loginPassword()
-      .should("exist")
+      .should("exist", { timeout: 15000 })
       .should("be.visible")
       .type(password, { log: false });
+
     this.elements.loginSignInBtn().should("be.visible").click();
   }
 }
