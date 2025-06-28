@@ -86,7 +86,7 @@ describe("Admin functionality", () => {
     
     AdminPanelServicesPage.sortNameAndVerify();
     
-    AdminPanelServicesPage.sortCategoryAndVerify(); // Client side error
+    AdminPanelServicesPage.sortCategoryAndVerify(); // Client side error, no useful data on the network tab, but the sort is not working as expected.
   }); 
 
 });
