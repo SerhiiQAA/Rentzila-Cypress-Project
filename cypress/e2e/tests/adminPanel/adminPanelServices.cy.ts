@@ -1,6 +1,6 @@
-import AdminPanelMainPage from "../pages/adminPanelPages/AdminPanelMainPage";
-import AdminPanelServicesPage from "../pages/adminPanelPages/AdminPanelServicesPage";
-import { envs } from "../utils/testData";
+import AdminPanelMainPage from "../../pages/adminPanelPages/AdminPanelMainPage";
+import AdminPanelServicesPage from "../../pages/adminPanelPages/AdminPanelServicesPage";
+import { envs } from "../../utils/testData";
 
 describe("Admin functionality", () => {
   beforeEach(() => {
@@ -22,13 +22,11 @@ describe("Admin functionality", () => {
 
   it("C369 The number of service categories on the page functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
-    AdminPanelMainPage.clickSubItemListServicesBtn();
+    AdminPanelMainPage.clickSubItemCategoryServicesBtn();
     AdminPanelServicesPage.clickPaginationDropdown();
     AdminPanelServicesPage.clickPaginationSelect20();
-    AdminPanelServicesPage.verifyRowsCount(20);
     AdminPanelServicesPage.clickPaginationDropdown();
     AdminPanelServicesPage.clickPaginationSelect50();
-    AdminPanelServicesPage.verifyRowsCount(50);
   });
 
   it("С370 The Перегляд категорії button functionality for Категорії сервісів page", () => {
@@ -47,7 +45,7 @@ describe("Admin functionality", () => {
     AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарськіtest");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
-    AdminPanelServicesPage.verifyCategoryElement("Сільськогосподарськіtest");
+    AdminPanelServicesPage.verifyTableElement("Сільськогосподарськіtest");
     AdminPanelServicesPage.clickEditCategoryBtn();
     AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарські");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
@@ -72,7 +70,7 @@ describe("Admin functionality", () => {
     AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподорські");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
-    AdminPanelServicesPage.verifyCategoryElement("Сільськогосподорські");
+    AdminPanelServicesPage.verifyTableElement("Сільськогосподорські");
 
     AdminPanelServicesPage.deleteCategory("Сільськогосподорські");
   
@@ -87,6 +85,25 @@ describe("Admin functionality", () => {
     AdminPanelServicesPage.sortNameAndVerify();
     
     AdminPanelServicesPage.sortCategoryAndVerify(); // Client side error, no useful data on the network tab, but the sort is not working as expected.
-  }); 
+  });
+
+  it("C394 The Знайти по назві search field functionality for Список сервісів page", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemListServicesBtn();
+    AdminPanelServicesPage.fillSearchField("прибирання снігу");
+    cy.wait(1000);
+    AdminPanelServicesPage.verifyTableElement("Прибирання снігу");
+  });
+
+  it("C395 The number of service categories on the page functionality for Список сервісів  page", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemListServicesBtn();
+    AdminPanelServicesPage.clickPaginationDropdown();
+    AdminPanelServicesPage.clickPaginationSelect20();
+    AdminPanelServicesPage.verifyRowsCount(20);
+    AdminPanelServicesPage.clickPaginationDropdown();
+    AdminPanelServicesPage.clickPaginationSelect50();
+    AdminPanelServicesPage.verifyRowsCount(50);
+  });
 
 });

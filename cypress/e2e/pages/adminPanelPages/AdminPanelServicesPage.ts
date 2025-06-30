@@ -37,7 +37,7 @@ class AdminPanelServicesPage extends BasePage {
     
 
     categoryNameField: () => cy.get('div[class*="AdminServiceCategoriesPopup_field"]'),
-    categoryElement: () => cy.get('td'),
+    tableElement: () => cy.get('td'),
     categoryElementSilskogospodarski: () => cy.get('td').contains("Сільськогосподарські"),
 
     idSortLabel: () => cy.get('span[data-testid="sortLabelContainer"]').contains("ID"),
@@ -130,19 +130,19 @@ class AdminPanelServicesPage extends BasePage {
       this.elements.categoryPopupInput().should("have.value", name);
   }
   
-  verifyCategoryElement(name: string) {
-      this.elements.categoryElement().should("contain.text", name);
+  verifyTableElement(name: string) {
+      this.elements.tableElement().should("contain.text", name);
   }
 
   deleteCategory(name: string) {
-      this.elements.categoryElement()
+      this.elements.tableElement()
         .contains(name)
         .parents('tr')
         .find('button[class*="AdminButtons_bucket"]')
         .click();
       this.clickDeleteCategoryPopupBtn();
       cy.reload();
-      this.elements.categoryElement()
+      this.elements.tableElement()
         .contains(name)
         .should("not.exist");
   }
