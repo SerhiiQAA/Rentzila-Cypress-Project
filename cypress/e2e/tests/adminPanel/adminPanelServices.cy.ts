@@ -32,7 +32,7 @@ describe("Admin functionality", () => {
   it("С370 The Перегляд категорії button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
-    AdminPanelServicesPage.clickViewCategoryBtn();
+    AdminPanelServicesPage.clickViewCategoryBtnByName("Сільськогосподарські");
     AdminPanelServicesPage.verifyViewCategoryName("Сільськогосподарські");
     
   });
@@ -40,27 +40,32 @@ describe("Admin functionality", () => {
   it("C371 The Редагувати категорію button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
-    AdminPanelServicesPage.clickEditCategoryBtn();
+    AdminPanelServicesPage.clickEditCategoryBtnByName("Сільськогосподарські");
     AdminPanelServicesPage.verifyEditCategoryInput("Сільськогосподарські");
     AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарськіtest");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
     AdminPanelServicesPage.verifyTableElement("Сільськогосподарськіtest");
-    AdminPanelServicesPage.clickEditCategoryBtn();
+    AdminPanelServicesPage.clickEditCategoryBtnByName("Сільськогосподарськіtest");
     AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарські");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
   });
 
-  it.skip("C372 The Видалення категорії button functionality for Категорії сервісів page", () => {
+  it("C372 The Видалення категорії button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
     AdminPanelServicesPage.elements.categoryElementSilskogospodarski()
       .should("exist");
-    AdminPanelServicesPage.clickDeleteCategoryBtn();
+    AdminPanelServicesPage.clickDeleteCategoryBtnByName("Сільськогосподарські");
     AdminPanelServicesPage.clickDeleteCategoryPopupBtn(); //Error 500 - ReadOnlyError at /api/crm/service/categories/2/
     cy.reload();
     AdminPanelServicesPage.elements.categoryElementSilskogospodarski()
       .should("not.exist");
+    
+    AdminPanelServicesPage.clickCreateCategoryBtn();
+    AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарські");
+    AdminPanelServicesPage.clickCategoryPopupYesBtn();
+    cy.reload();
   });
 
   it("C373 The  Створити категорію button functionality for Категорії сервісів page", () => {

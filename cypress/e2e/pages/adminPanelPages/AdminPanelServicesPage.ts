@@ -62,20 +62,8 @@ class AdminPanelServicesPage extends BasePage {
       this.elements.subItemListServicesBtn().click();
   }
 
-  clickViewCategoryBtn() {
-      this.elements.viewCategoryBtn().click();
-  }
-
-  clickEditCategoryBtn() {
-      this.elements.editCategoryBtn().click();
-  }
-
   clickCategoryPopupYesBtn() {
       this.elements.categoryPopupYesBtn().click();
-  }
-
-  clickDeleteCategoryBtn() {
-      this.elements.deleteCategoryBtn().click();
   }
 
   clickDeleteCategoryPopupBtn() {
@@ -84,6 +72,30 @@ class AdminPanelServicesPage extends BasePage {
 
   clickCreateCategoryBtn() {
       this.elements.createCategoryBtn().click();
+  }
+
+  clickViewCategoryBtnByName(name: string) {
+      this.elements.tableElement()
+        .contains(name)
+        .parents('tr')
+        .find('button[data-testid="adminOkoButton"]')
+        .click();
+  }
+
+  clickEditCategoryBtnByName(name: string) {
+      this.elements.tableElement()
+        .contains(name)
+        .parents('tr')
+        .find('button[data-testid="adminPenBtn"]')
+        .click();
+  }
+
+  clickDeleteCategoryBtnByName(name: string) {
+      this.elements.tableElement()
+        .contains(name)
+        .parents('tr')
+        .find('button[class*="AdminButtons_bucket"]')
+        .click();
   }
 
   clickPaginationDropdown() {
@@ -224,7 +236,6 @@ class AdminPanelServicesPage extends BasePage {
 
       });
   }
-
 }
 
 export default new AdminPanelServicesPage();
