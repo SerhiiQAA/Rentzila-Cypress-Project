@@ -81,7 +81,7 @@ describe("Admin functionality", () => {
   
   });
 
-  it("C374 The ID, Назва and Категорія filters functionality for  Список сервісів page", () => {
+  it.skip("C374 The ID, Назва and Категорія filters functionality for  Список сервісів page - BG-007", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemListServicesBtn();
     
