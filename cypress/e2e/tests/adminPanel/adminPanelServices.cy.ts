@@ -14,10 +14,7 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
     AdminPanelServicesPage.fillSearchField("Інші");
     cy.wait(1000);
-    AdminPanelServicesPage.elements
-      .tableRows()
-      .should("have.length", 1)
-      .and("contain.text", "Інші");
+    AdminPanelServicesPage.verifyTableElement("Інші");
   });
 
   it("C369 The number of service categories on the page functionality for Категорії сервісів page", () => {

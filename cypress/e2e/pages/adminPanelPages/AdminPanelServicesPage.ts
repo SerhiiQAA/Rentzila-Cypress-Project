@@ -27,14 +27,14 @@ class AdminPanelServicesPage extends BasePage {
     viewCategoryBtn: () => cy.get('button[data-testid="adminOkoButton"]').first(),
     
     editCategoryBtn: () => cy.get('button[data-testid="adminPenBtn"]').first(),
-    categoryPopupYesBtn: () => cy.get('button[class*="AdminServiceCategoriesPopup_save_btn"]'),
     
     deleteCategoryBtn: () => cy.get('button[class*="AdminButtons_bucket"]').first(),
     deleteCategoryPopupBtn: () => cy.get('div[class*="ItemButtons_wrapper"] button[class*="ItemButtons_darkBlueBtn"]'),
-    categoryPopupInput: () => cy.get('input[data-testid="custom-input"]'),
-
-    createCategoryBtn: () => cy.get('button[data-testid="customButtonContainer"]'),
     
+    createCategoryBtn: () => cy.get('button[data-testid="customButtonContainer"]'),
+
+    categoryPopupYesBtn: () => cy.get('button[class*="AdminServiceCategoriesPopup_save_btn"]'),
+    categoryPopupInput: () => cy.get('input[data-testid="custom-input"]'),
 
     categoryNameField: () => cy.get('div[class*="AdminServiceCategoriesPopup_field"]'),
     tableElement: () => cy.get('td'),
