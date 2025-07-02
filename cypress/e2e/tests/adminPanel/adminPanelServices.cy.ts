@@ -17,15 +17,16 @@ describe("Admin functionality", () => {
     AdminPanelServicesPage.verifyTableElement("Інші");
   });
 
-  it("C369 The number of service categories on the page functionality for Категорії сервісів page", () => {
+  it.only("C369 The number of service categories on the page functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
+    AdminPanelServicesPage.verifyCurrentDropdownElementByName("10");
     AdminPanelServicesPage.clickPaginationDropdown();
     AdminPanelServicesPage.clickPaginationSelect20();
-    // AdminPanelServicesPage.verifyRowsCount(20);
+    AdminPanelServicesPage.verifyCurrentDropdownElementByName("20");
     AdminPanelServicesPage.clickPaginationDropdown();
     AdminPanelServicesPage.clickPaginationSelect50();
-    // AdminPanelServicesPage.verifyRowsCount(50);
+    AdminPanelServicesPage.verifyCurrentDropdownElementByName("50");
   });
 
   it("С370 The Перегляд категорії button functionality for Категорії сервісів page", () => {

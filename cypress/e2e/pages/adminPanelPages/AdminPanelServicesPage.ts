@@ -137,6 +137,11 @@ class AdminPanelServicesPage extends BasePage {
       this.elements.tableElement().should("contain.text", name);
   }
 
+  verifyCurrentDropdownElementByName(name: string) {
+      this.elements.paginationDropdown()
+        .should("contain.text", name);
+  }
+
   deleteCategory(name: string) {
       this.elements.tableElement()
         .contains(name)
