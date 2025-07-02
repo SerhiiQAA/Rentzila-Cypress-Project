@@ -22,14 +22,16 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
     AdminPanelServicesPage.clickPaginationDropdown();
     AdminPanelServicesPage.clickPaginationSelect20();
+    // AdminPanelServicesPage.verifyRowsCount(20);
     AdminPanelServicesPage.clickPaginationDropdown();
     AdminPanelServicesPage.clickPaginationSelect50();
+    // AdminPanelServicesPage.verifyRowsCount(50);
   });
 
   it("С370 The Перегляд категорії button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
-    AdminPanelServicesPage.clickViewCategoryBtnByName("Сільськогосподарські");
+    AdminPanelServicesPage.clickCategoryActionBtnByName("Сільськогосподарські", "view");
     AdminPanelServicesPage.verifyViewCategoryName("Сільськогосподарські");
     
   });
@@ -37,13 +39,13 @@ describe("Admin functionality", () => {
   it("C371 The Редагувати категорію button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
-    AdminPanelServicesPage.clickEditCategoryBtnByName("Сільськогосподарські");
+    AdminPanelServicesPage.clickCategoryActionBtnByName("Сільськогосподарські", "edit");
     AdminPanelServicesPage.verifyEditCategoryInput("Сільськогосподарські");
     AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарськіtest");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
     AdminPanelServicesPage.verifyTableElement("Сільськогосподарськіtest");
-    AdminPanelServicesPage.clickEditCategoryBtnByName("Сільськогосподарськіtest");
+    AdminPanelServicesPage.clickCategoryActionBtnByName("Сільськогосподарськіtest", "edit");
     AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарські");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
   });
@@ -53,7 +55,7 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
     AdminPanelServicesPage.elements.categoryElementSilskogospodarski()
       .should("exist");
-    AdminPanelServicesPage.clickDeleteCategoryBtnByName("Сільськогосподарські");
+    AdminPanelServicesPage.clickCategoryActionBtnByName("Сільськогосподарські", "delete");
     AdminPanelServicesPage.clickDeleteCategoryPopupBtn(); //Error 500 - ReadOnlyError at /api/crm/service/categories/2/
     cy.reload();
     AdminPanelServicesPage.elements.categoryElementSilskogospodarski()

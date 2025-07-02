@@ -1,4 +1,3 @@
-import { create } from "cypress/types/lodash";
 import BasePage from "../BasePage";
 
 class AdminPanelServicesPage extends BasePage {
@@ -74,28 +73,20 @@ class AdminPanelServicesPage extends BasePage {
       this.elements.createCategoryBtn().click();
   }
 
-  clickViewCategoryBtnByName(name: string) {
-      this.elements.tableElement()
-        .contains(name)
-        .parents('tr')
-        .find('button[data-testid="adminOkoButton"]')
-        .click();
-  }
+  clickCategoryActionBtnByName(name: string, action: string) {
+    const selectors = {
+    view: 'button[data-testid="adminOkoButton"]',
+    edit: 'button[data-testid="adminPenBtn"]',
+    delete: 'button[class*="AdminButtons_bucket"]',
+  };
 
-  clickEditCategoryBtnByName(name: string) {
-      this.elements.tableElement()
-        .contains(name)
-        .parents('tr')
-        .find('button[data-testid="adminPenBtn"]')
-        .click();
-  }
+  const buttonSelector = selectors[action];
 
-  clickDeleteCategoryBtnByName(name: string) {
-      this.elements.tableElement()
-        .contains(name)
-        .parents('tr')
-        .find('button[class*="AdminButtons_bucket"]')
-        .click();
+  this.elements.tableElement()
+    .contains(name)
+    .parents('tr')
+    .find(buttonSelector)
+    .click();
   }
 
   clickPaginationDropdown() {
