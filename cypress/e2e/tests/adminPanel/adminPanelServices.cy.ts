@@ -17,7 +17,7 @@ describe("Admin functionality", () => {
     AdminPanelServicesPage.verifyTableElement("Інші");
   });
 
-  it.only("C369 The number of service categories on the page functionality for Категорії сервісів page", () => {
+  it("C369 The number of service categories on the page functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
     AdminPanelServicesPage.verifyCurrentDropdownElementByName("10");
