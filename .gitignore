@@ -5,11 +5,12 @@ cypress/screenshots/
 cypress/videos/
 
 allure-results/
+allure-report/
 
 *.log
 *.tmp
 
-.env
+*.env
 cypress.env.json
 
 .vscode/
@@ -20,5 +21,3 @@ coverage/
 
 .DS_Store
 Thumbs.db
-
-.env
