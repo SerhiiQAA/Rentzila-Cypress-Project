@@ -160,81 +160,61 @@ class AdminPanelServicesPage extends BasePage {
   }
 
   sortIdAndVerify() {
-      this.clickIdSort();
-      cy.get('tbody tr th').then($cells => {
-        const displayedIDs = Array.from($cells, cell =>
-          Number(cell.innerText.trim())
-        );
+    this.clickIdSort();
+    cy.get('tbody tr th').then($cells => {
+      const displayedIDs = Array.from($cells, cell =>
+        Number(cell.innerText.trim())
+      );
+      const expectedAscending = [...displayedIDs].sort((a, b) => a - b);
+      expect(displayedIDs).to.deep.equal(expectedAscending);
+    });
+    this.clickIdSort();
+    cy.get('tbody tr th').then($cells => {
+      const displayedIDs = Array.from($cells, cell =>
+        Number(cell.innerText.trim())
+      );
+      const expectedDescending = [...displayedIDs].sort((a, b) => b - a);
+      expect(displayedIDs).to.deep.equal(expectedDescending);
 
-        const expectedAscending = [...displayedIDs].sort((a, b) => a - b);
-        expect(displayedIDs).to.deep.equal(expectedAscending);
-      });
-
-      
-      this.clickIdSort();
-
-      
-      cy.get('tbody tr th').then($cells => {
-        const displayedIDs = Array.from($cells, cell =>
-          Number(cell.innerText.trim())
-        );
-
-        const expectedDescending = [...displayedIDs].sort((a, b) => b - a);
-        expect(displayedIDs).to.deep.equal(expectedDescending);
-
-      });
+    });
   }
 
   sortNameAndVerify() {
-      this.clickNameSort();
-      cy.get('tbody tr td:nth-of-type(1)').then($cells => {
-        const displayedNames = Array.from($cells, cell =>
-          Number(cell.innerText.trim())
-        );
-
-        const expectedAscending = [...displayedNames].sort((a, b) => a - b);
-        expect(displayedNames).to.deep.equal(expectedAscending);
-      });
-
-      
-      this.clickNameSort();
-
-      
-      cy.get('tbody tr td:nth-of-type(1)').then($cells => {
-        const displayedNames = Array.from($cells, cell =>
-          Number(cell.innerText.trim())
-        );
-
-        const expectedDescending = [...displayedNames].sort((a, b) => b - a);
-        expect(displayedNames).to.deep.equal(expectedDescending);
-
-      });
+    this.clickNameSort();
+    cy.get('tbody tr td:nth-of-type(1)').then($cells => {
+      const displayedNames = Array.from($cells, cell =>
+        Number(cell.innerText.trim())
+      );
+      const expectedAscending = [...displayedNames].sort((a, b) => a - b);
+      expect(displayedNames).to.deep.equal(expectedAscending);
+    });
+    this.clickNameSort();
+    cy.get('tbody tr td:nth-of-type(1)').then($cells => {
+      const displayedNames = Array.from($cells, cell =>
+        Number(cell.innerText.trim())
+      );
+      const expectedDescending = [...displayedNames].sort((a, b) => b - a);
+      expect(displayedNames).to.deep.equal(expectedDescending);
+    });
   }
 
   sortCategoryAndVerify() {
-      this.clickCategorySort();
-      cy.get('tbody tr td:nth-of-type(2)').then($cells => {
-        const displayedCategories = Array.from($cells, cell =>
-          Number(cell.innerText.trim())
-        );
-
-        const expectedAscending = [...displayedCategories].sort((a, b) => a - b);
-        expect(displayedCategories).to.deep.equal(expectedAscending);
-      });
-
-      
-      this.clickCategorySort();
-
-      
-      cy.get('tbody tr td:nth-of-type(2)').then($cells => {
-        const displayedCategories = Array.from($cells, cell =>
-          Number(cell.innerText.trim())
-        );
-
-        const expectedDescending = [...displayedCategories].sort((a, b) => b - a);
-        expect(displayedCategories).to.deep.equal(expectedDescending);
-
-      });
+    this.clickCategorySort();
+    cy.get('tbody tr td:nth-of-type(2)').then($cells => {
+      const displayedCategories = Array.from($cells, cell =>
+        Number(cell.innerText.trim())
+      );
+      const expectedAscending = [...displayedCategories].sort((a, b) => a - b);
+      expect(displayedCategories).to.deep.equal(expectedAscending);
+    });
+    this.clickCategorySort();
+    cy.get('tbody tr td:nth-of-type(2)').then($cells => {
+      const displayedCategories = Array.from($cells, cell =>
+        Number(cell.innerText.trim())
+      );
+      const expectedDescending = [...displayedCategories].sort((a, b) => b - a);
+      expect(displayedCategories).to.deep.equal(expectedDescending);
+    });
   }
 }
 
