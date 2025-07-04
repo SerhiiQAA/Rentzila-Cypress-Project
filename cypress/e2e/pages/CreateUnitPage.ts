@@ -1,7 +1,6 @@
 import BasePage from "./BasePage";
 
 class CreateUnitPage extends BasePage {
-
   elements = {
     map: () => cy.get("#map"),
     searchResultsCardsNames: () => cy.get('[data-testid="unitName"]').first(),
@@ -13,7 +12,8 @@ class CreateUnitPage extends BasePage {
     categoryInputField: () => cy.get('[data-testid="buttonDiv"]'),
     categoryInputFieldArrow: () => cy.get('img[alt="Arrow-down"]'),
     nextBtn: () => cy.get('[data-testid="nextButton"]'),
-    categoryErrorMessage: () => cy.get(".CategorySelect_errorTextVisible__1Oyzh"),
+    categoryErrorMessage: () =>
+      cy.get(".CategorySelect_errorTextVisible__1Oyzh"),
     categoryPopup: () => cy.get(".CategoryPopup_content__gOnMw"),
     categoryPopupTitle: () => cy.get(".CategoryPopup_title__19YOz"),
     categoryPopupCloseIcon: () => cy.get('[data-testid="closeIcon"]'),
@@ -38,7 +38,8 @@ class CreateUnitPage extends BasePage {
       cy.get(".CustomSelectWithSearch_searchedServicesCat_wrapper__aOGc3"),
     selectManufactureSearchResults: () =>
       cy.get('[data-testid="item-customSelectWithSearch"]'),
-    absentManufacturerMessage: ()=> cy.get('[data-testid="p2-notFound-addNewItem"]'),
+    absentManufacturerMessage: () =>
+      cy.get('[data-testid="p2-notFound-addNewItem"]'),
     modelInputTitle: () => cy.contains("Назва моделі"),
     modelInput: () => cy.get('[maxlength="25"]'),
     modelInputError: () => cy.get('[data-testid="descriptionError"]'),
@@ -65,10 +66,22 @@ class CreateUnitPage extends BasePage {
       cy
         .get('[data-testid="item-customSelectWithSearch"]')
         .contains("AEBI SCHMIDT"),
+    imageUploadTitle: () => cy.get("[class^='ImagesUnitFlow_paragraph']"),
+    clueImageLine: () => cy.get("[class^='ImagesUnitFlow_descr']"),
+    imageUploadBlock: () => cy.get('[data-testid="imageBlock"]'),
+    fileInput: () => cy.get('[data-testid="input_ImagesUnitFlow"]'),
+    mainImageLabel: () => cy.get("[data-testid='mainImageLabel']"),
+    unitImage: () => cy.get('[data-testid="unitImage"]'),
+    deleteImageIcon: () => cy.get('[data-testid="deleteImage"]'),
+    invalidImagePopup: () => cy.get('[class^="NotValidImagePopup_wrap"]'),
+    crossIconInvalidImagePopup: () => cy.get('[data-testid="crossIcon"]'),
+    upoloadedImage: () => cy.get('[class*="ImagesUnitFlow_fullSize"]'),
+    invalidImagePopupBtn: () => cy.get('[class^="ItemButtons_wrapper"]'),
+    sericesTabTitle: () => cy.get('[class^="ServicesUnitFlow_title"]'),
   };
 
   clickNextBtn() {
-    this.elements.nextBtn().click();
+    this.elements.nextBtn().click({ timeout: 30000 });
   }
 
   clickCategoryInputField() {
@@ -95,6 +108,18 @@ class CreateUnitPage extends BasePage {
     this.elements.cancelBtn().click();
   }
 
+  clickUploadElement(index: number) {
+    this.elements.imageUploadBlock().eq(index).click();
+  }
+
+  clickCrossIconInvalidImagePopup() {
+    this.elements.crossIconInvalidImagePopup().click();
+  }
+
+  clickInvalidImagePopupBtn() {
+    this.elements.invalidImagePopupBtn().click();
+  }
+
   clearCustomInputField() {
     this.elements.customInputField().clear();
   }
@@ -106,7 +131,7 @@ class CreateUnitPage extends BasePage {
   fillCustomInputField(text: string) {
     this.elements.customInputField().clear().type(text);
   }
-  
+
   fillSelectManufactureInput(option: string) {
     this.elements.selectManufactureInput().type(option, { delay: 200 });
   }
@@ -160,7 +185,11 @@ class CreateUnitPage extends BasePage {
   }
 
   pasteDescription(text: string) {
-    this.elements.descriptionArea().clear().invoke("val", text).trigger("input");
+    this.elements
+      .descriptionArea()
+      .clear()
+      .invoke("val", text)
+      .trigger("input");
   }
 
   selectNewAddress() {
@@ -169,6 +198,19 @@ class CreateUnitPage extends BasePage {
 
   openPopup() {
     cy.get('[data-testid="buttonDiv"]').as("popup").click();
+  }
+
+  uploadImage(imageName: string) {
+    this.elements
+      .fileInput()
+      .selectFile(`cypress/fixtures/${imageName}`, { force: true });
+  }
+
+  dragImage(fromIndex: number, toIndex: number) {
+    this.elements
+      .unitImage()
+      .eq(fromIndex)
+      .drag(`[data-testid="unitImage"]:eq(${toIndex})`);
   }
 }
 
