@@ -16,6 +16,8 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import "allure-cypress";
+import '@4tw/cypress-drag-drop';
+import "cypress-real-events";
 
 Cypress.on("uncaught:exception", (err, runnable) => {
     if (err.message.includes("Request failed with status code 404")) {
