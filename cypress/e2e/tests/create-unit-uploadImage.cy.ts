@@ -65,7 +65,7 @@ describe("Create Unit page tests", () => {
 
     createUnitPage.clickCrossIconInvalidImagePopup();
     createUnitPage.elements.invalidImagePopup().should("not.exist");
-    createUnitPage.elements.upoloadedImage().should("have.length", 1);
+    createUnitPage.elements.uploadedImage().should("have.length", 1);
     createUnitPage.elements.imageUploadBlock().eq(1).click();
     createUnitPage.uploadImage("image-1.jpg");
     createUnitPage.elements
@@ -74,12 +74,12 @@ describe("Create Unit page tests", () => {
       .and("have.text", "Зрозуміло");
     createUnitPage.clickInvalidImagePopupBtn();
     createUnitPage.elements.invalidImagePopup().should("not.exist");
-    createUnitPage.elements.upoloadedImage().should("have.length", 1);
+    createUnitPage.elements.uploadedImage().should("have.length", 1);
     createUnitPage.elements.imageUploadBlock().eq(1).click();
     createUnitPage.uploadImage("image-1.jpg");
     createUnitPage.clickOutsidePopup();
     createUnitPage.elements.invalidImagePopup().should("not.exist");
-    createUnitPage.elements.upoloadedImage().should("have.length", 1);
+    createUnitPage.elements.uploadedImage().should("have.length", 1);
   });
 
   it("C401 - Verify uploading of invalid file type", () => {
@@ -92,7 +92,7 @@ describe("Create Unit page tests", () => {
       .and("contain.text", createUnitData.imagePopupText);
     createUnitPage.clickCrossIconInvalidImagePopup();
     createUnitPage.elements.invalidImagePopup().should("not.exist");
-    createUnitPage.elements.upoloadedImage().should("not.exist");
+    createUnitPage.elements.uploadedImage().should("not.exist");
     createUnitPage.elements.imageUploadBlock().eq(0).click();
     createUnitPage.uploadImage("Lorem ipsum.docx");
     createUnitPage.elements
@@ -101,12 +101,12 @@ describe("Create Unit page tests", () => {
       .and("have.text", "Зрозуміло");
     createUnitPage.clickInvalidImagePopupBtn();
     createUnitPage.elements.invalidImagePopup().should("not.exist");
-    createUnitPage.elements.upoloadedImage().should("not.exist");
+    createUnitPage.elements.uploadedImage().should("not.exist");
     createUnitPage.elements.imageUploadBlock().eq(0).click();
     createUnitPage.uploadImage("Lorem ipsum.docx");
     createUnitPage.clickOutsidePopup();
     createUnitPage.elements.invalidImagePopup().should("not.exist");
-    createUnitPage.elements.upoloadedImage().should("not.exist");
+    createUnitPage.elements.uploadedImage().should("not.exist");
   });
 
   it("C405  -  Verify uploading of invalid size file", () => {
@@ -119,7 +119,7 @@ describe("Create Unit page tests", () => {
       .and("contain.text", createUnitData.imagePopupText);
     createUnitPage.clickCrossIconInvalidImagePopup();
     createUnitPage.elements.invalidImagePopup().should("not.exist");
-    createUnitPage.elements.upoloadedImage().should("not.exist");
+    createUnitPage.elements.uploadedImage().should("not.exist");
 
     createUnitPage.elements.imageUploadBlock().eq(0).click();
     createUnitPage.uploadImage("bigFile.mp4");
@@ -129,13 +129,13 @@ describe("Create Unit page tests", () => {
       .and("have.text", "Зрозуміло");
     createUnitPage.clickInvalidImagePopupBtn();
     createUnitPage.elements.invalidImagePopup().should("not.exist");
-    createUnitPage.elements.upoloadedImage().should("not.exist");
+    createUnitPage.elements.uploadedImage().should("not.exist");
 
     createUnitPage.elements.imageUploadBlock().eq(0).click();
     createUnitPage.uploadImage("bigFile.mp4");
     createUnitPage.clickOutsidePopup();
     createUnitPage.elements.invalidImagePopup().should("not.exist");
-    createUnitPage.elements.upoloadedImage().should("not.exist");
+    createUnitPage.elements.uploadedImage().should("not.exist");
   });
 
   it("C390 - Verify 'Назад' button", () => {
@@ -171,7 +171,7 @@ describe("Create Unit page tests", () => {
     createUnitPage.elements
       .createUnitPageTitle()
       .should("have.text", "Створити оголошення");
-    createUnitPage.elements.sericesTabTitle().should("have.text", "Послуги");
+    createUnitPage.elements.servicesTabTitle().should("have.text", "Послуги");
     createUnitPage.elements.tabsTitles().each((tab, index) => {
       cy.wrap(tab).should("have.text", createUnitData.tabTitles[index]);
     });

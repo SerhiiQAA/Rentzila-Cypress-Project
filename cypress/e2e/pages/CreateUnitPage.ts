@@ -4,38 +4,38 @@ class CreateUnitPage extends BasePage {
   elements = {
     map: () => cy.get("#map"),
     searchResultsCardsNames: () => cy.get('[data-testid="unitName"]').first(),
-    createUnitPageTitle: () => cy.get(".CreateEditFlowLayout_title__0A3ik"),
+    createUnitPageTitle: () => cy.get("[class^='CreateEditFlowLayout_title']"),
     tabsCreateUnit: () => cy.get('button[role="tab"]'),
     tabsNumbers: () => cy.get('[data-testid="labelNumber"]'),
-    tabsTitles: () => cy.get(".CustomLabel_labelTitle__O2bFl"),
-    mainInfoCategory: () => cy.get(".CategorySelect_title__W8Hgo"),
+    tabsTitles: () => cy.get("[class^='CustomLabel_labelTitle']"),
+    mainInfoCategory: () => cy.get("[class^='CategorySelect_title']"),
     categoryInputField: () => cy.get('[data-testid="buttonDiv"]'),
     categoryInputFieldArrow: () => cy.get('img[alt="Arrow-down"]'),
     nextBtn: () => cy.get('[data-testid="nextButton"]'),
     categoryErrorMessage: () =>
-      cy.get(".CategorySelect_errorTextVisible__1Oyzh"),
-    categoryPopup: () => cy.get(".CategoryPopup_content__gOnMw"),
-    categoryPopupTitle: () => cy.get(".CategoryPopup_title__19YOz"),
+      cy.get("[class^='CategorySelect_errorTextVisible']"),
+    categoryPopup: () => cy.get("[class^='CategoryPopup_content']"),
+    categoryPopupTitle: () => cy.get("[class^='CategoryPopup_title']"),
     categoryPopupCloseIcon: () => cy.get('[data-testid="closeIcon"]'),
     firstCategoryInPopup: () => cy.get('[data-testid="firstCategoryLabel"]'),
-    secondCategoryInPopup: () => cy.get(".SecondCategory_check_label__CpNA3"),
+    secondCategoryInPopup: () => cy.get("[class^='SecondCategory_check_label']"),
     thirdCategoryInPopup: () => cy.get('[data-testid="thirdCategoryLabel"]'),
     customInput: () => cy.contains("Назва оголошення"),
     customInputField: () => cy.get('[maxlength="101"]'),
     customInputFieldErrorMessage: () =>
       cy.get('.CustomInput_inputError__L195T~[data-testid="descriptionError"]'),
-    selectManufactureTitle: () => cy.get(".SelectManufacturer_title__X9AEw"),
+    selectManufactureTitle: () => cy.get("[class^='SelectManufacturer_title']"),
     selectManufactureInput: () =>
       cy.get('[data-testid="input-customSelectWithSearch"]'),
-    loupeIcon: () => cy.get(".CustomSelectWithSearch_searchInput__UySwA>svg"),
+    loupeIcon: () => cy.get("[class^='CustomSelectWithSearch_searchInput']"),
     selectManuctureErrorMessage: () =>
-      cy.get(".CustomSelectWithSearch_errorTextVisible__B5lZH"),
+      cy.get("[class^='CustomSelectWithSearch_errorTextVisible']"),
     selectManufactureInputField: () =>
       cy.get(
         ".CustomSelectWithSearch_searchResult__qY1GJ.CustomSelectWithSearch_searchResultError__Q9xtO"
       ),
     selectManufacturDropdown: () =>
-      cy.get(".CustomSelectWithSearch_searchedServicesCat_wrapper__aOGc3"),
+      cy.get("[class^='CustomSelectWithSearch_searchedServicesCat_wrapper']"),
     selectManufactureSearchResults: () =>
       cy.get('[data-testid="item-customSelectWithSearch"]'),
     absentManufacturerMessage: () =>
@@ -49,25 +49,25 @@ class CreateUnitPage extends BasePage {
     descriptionTitle: () => cy.contains("Детальний опис"),
     descriptionArea: () =>
       cy.get('[data-testid="textarea-customTextAriaDescription"]').last(),
-    addressSelectionTitle: () => cy.get(".AddressSelectionBlock_title__pTi78"),
+    addressSelectionTitle: () => cy.get("[class^='AddressSelectionBlock_title']"),
     addressSelectionField: () => cy.get('[data-testid="mapLabel"]'),
     addressSelectionErrorMessage: () =>
-      cy.get(".AddressSelectionBlock_errorTextVisible__IAGKS"),
-    selectOnMapBtn: () => cy.get(".AddressSelectionBlock_locationBtn__IvqEL"),
+      cy.get("[class^='AddressSelectionBlock_errorTextVisible']"),
+    selectOnMapBtn: () => cy.get("[class^='AddressSelectionBlock_locationBtn']"),
     mapPopup: () => cy.get('[data-testid="div-mapPopup"]'),
-    mapPopupTitle: () => cy.get(".MapPopup_title__ykbd3"),
-    mapPopupCloseIcon: () => cy.get(".MapPopup_icon__aJopq"),
+    mapPopupTitle: () => cy.get("[class^='MapPopup_title']"),
+    mapPopupCloseIcon: () => cy.get("[class^='MapPopup_icon']"),
     mapPopupAddressInputField: () => cy.get('[data-testid="address"]'),
-    mapElementPopup: () => cy.get(".MapPopup_map__ss3EW"),
+    mapElementPopup: () => cy.get("[class^='MapPopup_map']"),
     cancelBtn: () => cy.get('[data-testid="prevButton"]'),
     confirmSelectionOnMapBtn: () =>
-      cy.get(".ItemButtons_darkBlueBtn__juupv.ItemButtons_fullWidth__3HqA0"),
+      cy.get("[class^='ItemButtons_darkBlueBtn'][class^='ItemButtons_fullWidth']"),
     validManufacturer: () =>
       cy
         .get('[data-testid="item-customSelectWithSearch"]')
         .contains("AEBI SCHMIDT"),
     imageUploadTitle: () => cy.get("[class^='ImagesUnitFlow_paragraph']"),
-    clueImageLine: () => cy.get("[class^='ImagesUnitFlow_descr']"),
+    clueImageLine: () => cy.get('[data-testid="description"]'),
     imageUploadBlock: () => cy.get('[data-testid="imageBlock"]'),
     fileInput: () => cy.get('[data-testid="input_ImagesUnitFlow"]'),
     mainImageLabel: () => cy.get("[data-testid='mainImageLabel']"),
@@ -75,9 +75,9 @@ class CreateUnitPage extends BasePage {
     deleteImageIcon: () => cy.get('[data-testid="deleteImage"]'),
     invalidImagePopup: () => cy.get('[class^="NotValidImagePopup_wrap"]'),
     crossIconInvalidImagePopup: () => cy.get('[data-testid="crossIcon"]'),
-    upoloadedImage: () => cy.get('[class*="ImagesUnitFlow_fullSize"]'),
+    uploadedImage: () => cy.get('[class*="ImagesUnitFlow_fullSize"]'),
     invalidImagePopupBtn: () => cy.get('[class^="ItemButtons_wrapper"]'),
-    sericesTabTitle: () => cy.get('[class^="ServicesUnitFlow_title"]'),
+    servicesTabTitle: () => cy.get('[class^="ServicesUnitFlow_title"]'),
   };
 
   clickNextBtn() {
@@ -197,7 +197,7 @@ class CreateUnitPage extends BasePage {
   }
 
   openPopup() {
-    cy.get('[data-testid="buttonDiv"]').as("popup").click();
+    cy.get('[data-testid="buttonDiv"]').click();
   }
 
   uploadImage(imageName: string) {

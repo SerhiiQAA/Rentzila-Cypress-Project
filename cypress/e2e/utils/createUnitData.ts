@@ -55,17 +55,16 @@ export const createUnitData = {
     "Формат зображення не підтримується. Допустимі формати: .jpg, .jpeg, .png. Ви не можете завантажити файл більше 20 МВ.",
   imageFiles : [
   'image-1.jpg',
-  'image-2.jpeg',
-  'image-3.jpeg',
-  'image-4.jpeg',
+  'image-2.jpg',
+  'image-3.jpg',
+  'image-4.jpg',
   'image-5.jpeg',
   'image-6.jpeg',
-  'image-7.jpeg',
-  'image-8.jpeg',
-  'image-9.jpeg',
+  'image-7.png',
+  'image-8.jpg',
+  'image-9.png',
   'image-10.jpeg',
   'image-11.jpeg',
   'image-12.jpg',
 ],
 };
-
