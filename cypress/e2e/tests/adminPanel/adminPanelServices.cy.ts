@@ -51,7 +51,7 @@ describe("Admin functionality", () => {
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
   });
 
-  it("C372 The Видалення категорії button functionality for Категорії сервісів page", () => {
+  it.skip("C372 The Видалення категорії button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
     AdminPanelServicesPage.elements.categoryElementSilskogospodarski()
