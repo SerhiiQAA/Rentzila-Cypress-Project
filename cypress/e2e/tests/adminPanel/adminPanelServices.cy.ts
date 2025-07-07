@@ -97,7 +97,7 @@ describe("Admin functionality", () => {
   
   });
 
-  it.skip("C374 The ID, Назва and Категорія filters functionality for  Список сервісів page - BG-007", () => {
+  it("C374 The ID, Назва and Категорія filters functionality for  Список сервісів page - BG-007", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemListServicesBtn();
     
@@ -105,7 +105,7 @@ describe("Admin functionality", () => {
     
     AdminPanelServicesPage.sortNameAndVerify();
     
-    //AdminPanelServicesPage.sortCategoryAndVerify(); // Client side error, no useful data on the network tab, but the sort is not working as expected.
+    AdminPanelServicesPage.sortCategoryAndVerify(); // Server response didnt return name - fixed
   });
 
   it("C394 The Знайти по назві search field functionality for Список сервісів page", () => {
