@@ -44,6 +44,10 @@ class AdminPanelServicesPage extends BasePage {
     categorySortLabel: () => cy.get('span[data-testid="sortLabelContainer"]').contains("Категорія"),
   };
 
+  verifyTitle(name: string) {
+      this.elements.title().should("contain.text", name);
+  }
+
   fillSearchField(searchText: string) {
       this.elements.searchField().clear().type(searchText);
   }

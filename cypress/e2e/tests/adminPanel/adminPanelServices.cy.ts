@@ -9,6 +9,22 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.login(envs.email_admin, envs.password_admin);
   });
 
+  it("C365 The services menu section functionality", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemCategoryServicesBtn();
+    AdminPanelServicesPage.verifyTitle("Категорії сервісів");
+    AdminPanelMainPage.clickSubItemListServicesBtn();
+    AdminPanelServicesPage.verifyTitle("Сервіси");
+  });
+
+  it("367 The ID and Назва filters functionality for Категорії сервісів page", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemCategoryServicesBtn();
+    AdminPanelServicesPage.verifyTitle("Категорії сервісів");
+    AdminPanelServicesPage.sortIdAndVerify();
+    AdminPanelServicesPage.sortNameAndVerify();
+  });
+
   it("C368 The Знайти по назві search field functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
