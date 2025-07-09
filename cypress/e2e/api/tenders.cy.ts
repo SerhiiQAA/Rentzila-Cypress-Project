@@ -1,4 +1,4 @@
-describe("Public Tenders List API Endpoints", () => {
+describe("Tenders API Endpoints", () => {
   context("GET /tenders/ - Retrieve list of all Tenders", () => {
     it("should successfully retrieve a list of all tenders (Status 200) without filters", () => {
       cy.request({

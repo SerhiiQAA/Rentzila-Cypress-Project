@@ -1,4 +1,4 @@
-describe("Tender API Endpoints - Status 200 & Keys Presence", () => {
+describe("Tender API Endpoints", () => {
   context("GET /tender/attachment-file/", () => {
     it("should successfully retrieve a list of attachment files (Status 200) and ensure all expected keys are present", () => {
       cy.request({
