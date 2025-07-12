@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES5",
     "lib": ["es5", "dom"],
-    "types": ["cypress", "node", "cypress-real-events"]
+    "types": ["cypress", "node", "cypress-real-events", "allure-cypress"]
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "cypress/**/*.js", "cypress/**/*.d.ts"]
 }
