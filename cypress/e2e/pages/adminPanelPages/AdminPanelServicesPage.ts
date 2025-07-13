@@ -23,7 +23,7 @@ class AdminPanelServicesPage extends BasePage {
     paginationSelect20:() => cy.get('ul[class*="MuiList-padding"] li[data-value="20"]'),
     paginationSelect50:() => cy.get('ul[class*="MuiList-padding"] li[data-value="50"]'),
 
-    createServiceBtn: () => cy.get('button[data-testid="customButtonContainer"]'),
+    createBtn: () => cy.get('button[data-testid="customButtonContainer"]'),
 
     imageInput: () => cy.get('input[data-testid="imageInput"]'),
     
@@ -33,8 +33,6 @@ class AdminPanelServicesPage extends BasePage {
     
     deleteCategoryBtn: () => cy.get('button[class*="AdminButtons_bucket"]').first(),
     deleteCategoryPopupBtn: () => cy.get('div[class*="ItemButtons_wrapper"] button[class*="ItemButtons_darkBlueBtn"]'),
-    
-    createCategoryBtn: () => cy.get('button[data-testid="customButtonContainer"]'),
 
     categoryPopupYesBtn: () => cy.get('button[class*="AdminServiceCategoriesPopup_save_btn"]'),
     elementPopupInput: () => cy.get('input[data-testid="custom-input"]'),
@@ -83,12 +81,8 @@ class AdminPanelServicesPage extends BasePage {
       this.elements.deleteCategoryPopupBtn().click();
   }
 
-  clickCreateCategoryBtn() {
-      this.elements.createCategoryBtn().click();
-  }
-
-  clickCreateServiceBtn() {
-      this.elements.createServiceBtn().click();
+  clickCreateBtn() {
+      this.elements.createBtn().click();
   }
 
   clickElementActionBtnByName(name: string, action: string) {
@@ -96,15 +90,15 @@ class AdminPanelServicesPage extends BasePage {
     view: 'button[data-testid="adminOkoButton"]',
     edit: 'button[data-testid="adminPenBtn"]',
     delete: 'button[class*="AdminButtons_bucket"]',
-  };
+    };
 
-  const buttonSelector = selectors[action];
+    const buttonSelector = selectors[action];
 
-  this.elements.tableElement()
-    .contains(name)
-    .parents('tr')
-    .find(buttonSelector)
-    .click();
+    this.elements.tableElement()
+      .contains(name)
+      .parents('tr')
+      .find(buttonSelector)
+      .click();
   }
 
   clickPaginationDropdown() {

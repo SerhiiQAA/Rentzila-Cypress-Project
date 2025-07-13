@@ -78,7 +78,7 @@ describe("Admin functionality", () => {
     AdminPanelServicesPage.elements.categoryElementSilskogospodarski()
       .should("not.exist");
     
-    AdminPanelServicesPage.clickCreateCategoryBtn();
+    AdminPanelServicesPage.clickCreateBtn();
     AdminPanelServicesPage.fillElementPopupInput("Сільськогосподарські");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
@@ -87,7 +87,7 @@ describe("Admin functionality", () => {
   it("C373 The  Створити категорію button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
-    AdminPanelServicesPage.clickCreateCategoryBtn();
+    AdminPanelServicesPage.clickCreateBtn();
     AdminPanelServicesPage.fillElementPopupInput("Сільськогосподорські");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
@@ -154,7 +154,7 @@ describe("Admin functionality", () => {
     const imagepath = "cypress/fixtures/placeholder-img.jpg";
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemListServicesBtn();
-    AdminPanelServicesPage.clickCreateServiceBtn();
+    AdminPanelServicesPage.clickCreateBtn();
     AdminPanelServicesPage.fillElementPopupInput("test_service");
     AdminPanelServicesPage.uploadImage(imagepath);
     AdminPanelServicesPage.clickServicePopupYesBtn();
