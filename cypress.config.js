@@ -11,6 +11,6 @@ module.exports = defineConfig({
       config.env = { ...config.env, ...process.env };
       return config;
     },
-    baseUrl: "https://dev.rentzila.com.ua/",
+    baseUrl: process.env.UI_BASE_URL,
   },
 });
