@@ -1,6 +1,6 @@
 describe("GET all units api/units/", () => {
 
-  it("responce status", () => {
+  it("response status", () => {
     cy.request("/api/units/").then((response) => {
       assert.equal(200, response.status);
       expect(response.body).to.have.property("results");
@@ -36,7 +36,7 @@ describe("GET /api/units/{id} - Get Single Unit", () => {
     });
   });
 
-  it("responce for non-existent unit", () => {
+  it("response for non-existent unit", () => {
     let id = 999999;
     cy.request({
       method: "GET",
