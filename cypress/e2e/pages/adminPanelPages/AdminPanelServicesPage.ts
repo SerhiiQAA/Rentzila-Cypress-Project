@@ -22,6 +22,10 @@ class AdminPanelServicesPage extends BasePage {
     paginationSelect10:() => cy.get('ul[class*="MuiList-padding"] li[data-value="10"]'),
     paginationSelect20:() => cy.get('ul[class*="MuiList-padding"] li[data-value="20"]'),
     paginationSelect50:() => cy.get('ul[class*="MuiList-padding"] li[data-value="50"]'),
+
+    createBtn: () => cy.get('button[data-testid="customButtonContainer"]'),
+
+    imageInput: () => cy.get('input[data-testid="imageInput"]'),
     
     viewCategoryBtn: () => cy.get('button[data-testid="adminOkoButton"]').first(),
     
@@ -29,25 +33,33 @@ class AdminPanelServicesPage extends BasePage {
     
     deleteCategoryBtn: () => cy.get('button[class*="AdminButtons_bucket"]').first(),
     deleteCategoryPopupBtn: () => cy.get('div[class*="ItemButtons_wrapper"] button[class*="ItemButtons_darkBlueBtn"]'),
-    
-    createCategoryBtn: () => cy.get('button[data-testid="customButtonContainer"]'),
 
     categoryPopupYesBtn: () => cy.get('button[class*="AdminServiceCategoriesPopup_save_btn"]'),
-    categoryPopupInput: () => cy.get('input[data-testid="custom-input"]'),
+    elementPopupInput: () => cy.get('input[data-testid="custom-input"]'),
+    popupCloseBtn: () => cy.get('div[data-testid="closeIcon"]'),
+    popupCancelBtn: () => cy.get('button[class*="AdminServicePopup_close_btn_"]'),
+
 
     categoryNameField: () => cy.get('div[class*="AdminServiceCategoriesPopup_field"]'),
+
+    servicePopupField: () => cy.get('div[class*="AdminServicePopup_field"]'),
+    servicePopupYesBtn: () => cy.get('button[data-testid="submitBtn"]'),
+
     tableElement: () => cy.get('td'),
     categoryElementSilskogospodarski: () => cy.get('td').contains("Сільськогосподарські"),
-
+    
     idSortLabel: () => cy.get('span[data-testid="sortLabelContainer"]').contains("ID"),
     nameSortLabel: () => cy.get('span[data-testid="sortLabelContainer"]').contains("Назва"),
     categorySortLabel: () => cy.get('span[data-testid="sortLabelContainer"]').contains("Категорія"),
   };
 
+  verifyTitle(name: string) {
+      this.elements.title().should("contain.text", name);
+  }
+
   fillSearchField(searchText: string) {
       this.elements.searchField().clear().type(searchText);
   }
-
 
   clickServicesBtn() {
       this.elements.servicesBtn().click();
@@ -69,24 +81,24 @@ class AdminPanelServicesPage extends BasePage {
       this.elements.deleteCategoryPopupBtn().click();
   }
 
-  clickCreateCategoryBtn() {
-      this.elements.createCategoryBtn().click();
+  clickCreateBtn() {
+      this.elements.createBtn().click();
   }
 
-  clickCategoryActionBtnByName(name: string, action: string) {
+  clickElementActionBtnByName(name: string, action: string) {
     const selectors = {
     view: 'button[data-testid="adminOkoButton"]',
     edit: 'button[data-testid="adminPenBtn"]',
     delete: 'button[class*="AdminButtons_bucket"]',
-  };
+    };
 
-  const buttonSelector = selectors[action];
+    const buttonSelector = selectors[action];
 
-  this.elements.tableElement()
-    .contains(name)
-    .parents('tr')
-    .find(buttonSelector)
-    .click();
+    this.elements.tableElement()
+      .contains(name)
+      .parents('tr')
+      .find(buttonSelector)
+      .click();
   }
 
   clickPaginationDropdown() {
@@ -117,6 +129,22 @@ class AdminPanelServicesPage extends BasePage {
       this.elements.categorySortLabel().click();
   }
 
+  clickPopupCloseBtn() {
+      this.elements.popupCloseBtn().click();
+  }
+
+  clickPopupCancelBtn() {
+      this.elements.popupCancelBtn().click();
+  }
+
+  clickServicePopupYesBtn() {
+      this.elements.servicePopupYesBtn().click();
+  }
+
+  uploadImage(imagePath: string) {
+      this.elements.imageInput().selectFile(imagePath, { force: true });
+  }
+
   verifyRowsCount(count: number) {
       this.elements.tableRows().should("have.length", count);
   }
@@ -125,14 +153,18 @@ class AdminPanelServicesPage extends BasePage {
       this.elements.categoryNameField().should("contain.text", name);
   }
 
-  fillCategoryPopupInput(name: string) {
-      this.elements.categoryPopupInput().clear().type(name);
+  fillElementPopupInput(name: string) {
+      this.elements.elementPopupInput().clear().type(name);
   }
   
-  verifyEditCategoryInput(name: string) {
-      this.elements.categoryPopupInput().should("have.value", name);
+  verifyEditElementPopupInput(name: string) {
+      this.elements.elementPopupInput().should("have.value", name);
   }
-  
+
+  verifyServicePopupNameField(name: string) {
+      this.elements.servicePopupField().should("have.text", name);
+  }
+
   verifyTableElement(name: string) {
       this.elements.tableElement().should("contain.text", name);
   }

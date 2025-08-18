@@ -9,6 +9,22 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.login(envs.email_admin, envs.password_admin);
   });
 
+  it("C365 The services menu section functionality", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemCategoryServicesBtn();
+    AdminPanelServicesPage.verifyTitle("Категорії сервісів");
+    AdminPanelMainPage.clickSubItemListServicesBtn();
+    AdminPanelServicesPage.verifyTitle("Сервіси");
+  });
+
+  it("367 The ID and Назва filters functionality for Категорії сервісів page", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemCategoryServicesBtn();
+    AdminPanelServicesPage.verifyTitle("Категорії сервісів");
+    AdminPanelServicesPage.sortIdAndVerify();
+    AdminPanelServicesPage.sortNameAndVerify();
+  });
+
   it("C368 The Знайти по назві search field functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
@@ -32,7 +48,7 @@ describe("Admin functionality", () => {
   it("С370 The Перегляд категорії button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
-    AdminPanelServicesPage.clickCategoryActionBtnByName("Сільськогосподарські", "view");
+    AdminPanelServicesPage.clickElementActionBtnByName("Сільськогосподарські", "view");
     AdminPanelServicesPage.verifyViewCategoryName("Сільськогосподарські");
     
   });
@@ -40,14 +56,14 @@ describe("Admin functionality", () => {
   it("C371 The Редагувати категорію button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
-    AdminPanelServicesPage.clickCategoryActionBtnByName("Сільськогосподарські", "edit");
-    AdminPanelServicesPage.verifyEditCategoryInput("Сільськогосподарські");
-    AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарськіtest");
+    AdminPanelServicesPage.clickElementActionBtnByName("Сільськогосподарські", "edit");
+    AdminPanelServicesPage.verifyEditElementPopupInput("Сільськогосподарські");
+    AdminPanelServicesPage.fillElementPopupInput("Сільськогосподарськіtest");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
     AdminPanelServicesPage.verifyTableElement("Сільськогосподарськіtest");
-    AdminPanelServicesPage.clickCategoryActionBtnByName("Сільськогосподарськіtest", "edit");
-    AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарські");
+    AdminPanelServicesPage.clickElementActionBtnByName("Сільськогосподарськіtest", "edit");
+    AdminPanelServicesPage.fillElementPopupInput("Сільськогосподарські");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
   });
 
@@ -56,14 +72,14 @@ describe("Admin functionality", () => {
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
     AdminPanelServicesPage.elements.categoryElementSilskogospodarski()
       .should("exist");
-    AdminPanelServicesPage.clickCategoryActionBtnByName("Сільськогосподарські", "delete");
+    AdminPanelServicesPage.clickElementActionBtnByName("Сільськогосподарські", "delete");
     AdminPanelServicesPage.clickDeleteCategoryPopupBtn(); //Error 500 - ReadOnlyError at /api/crm/service/categories/2/
     cy.reload();
     AdminPanelServicesPage.elements.categoryElementSilskogospodarski()
       .should("not.exist");
     
-    AdminPanelServicesPage.clickCreateCategoryBtn();
-    AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподарські");
+    AdminPanelServicesPage.clickCreateBtn();
+    AdminPanelServicesPage.fillElementPopupInput("Сільськогосподарські");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
   });
@@ -71,8 +87,8 @@ describe("Admin functionality", () => {
   it("C373 The  Створити категорію button functionality for Категорії сервісів page", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemCategoryServicesBtn();
-    AdminPanelServicesPage.clickCreateCategoryBtn();
-    AdminPanelServicesPage.fillCategoryPopupInput("Сільськогосподорські");
+    AdminPanelServicesPage.clickCreateBtn();
+    AdminPanelServicesPage.fillElementPopupInput("Сільськогосподорські");
     AdminPanelServicesPage.clickCategoryPopupYesBtn();
     cy.reload();
     AdminPanelServicesPage.verifyTableElement("Сільськогосподорські");
@@ -81,7 +97,7 @@ describe("Admin functionality", () => {
   
   });
 
-  it.skip("C374 The ID, Назва and Категорія filters functionality for  Список сервісів page - BG-007", () => {
+  it("C374 The ID, Назва and Категорія filters functionality for  Список сервісів page - BG-007", () => {
     AdminPanelMainPage.clickServicesBtn();
     AdminPanelMainPage.clickSubItemListServicesBtn();
     
@@ -89,7 +105,7 @@ describe("Admin functionality", () => {
     
     AdminPanelServicesPage.sortNameAndVerify();
     
-    //AdminPanelServicesPage.sortCategoryAndVerify(); // Client side error, no useful data on the network tab, but the sort is not working as expected.
+    // AdminPanelServicesPage.sortCategoryAndVerify(); // Server response didnt return name - fixed ------> Same issue again
   });
 
   it("C394 The Знайти по назві search field functionality for Список сервісів page", () => {
@@ -109,6 +125,52 @@ describe("Admin functionality", () => {
     AdminPanelServicesPage.clickPaginationDropdown();
     AdminPanelServicesPage.clickPaginationSelect50();
     AdminPanelServicesPage.verifyRowsCount(50);
+  });
+
+  it("C512 The Перегляд сервісу button functionality for Список сервісів page", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemListServicesBtn();
+    AdminPanelServicesPage.clickElementActionBtnByName("Посів технічних та зернових культур", "view");
+    AdminPanelServicesPage.verifyServicePopupNameField("Посів технічних та зернових культур");
+    AdminPanelServicesPage.clickPopupCloseBtn();
+    AdminPanelServicesPage.clickElementActionBtnByName("Посів технічних та зернових культур", "view");
+    AdminPanelServicesPage.clickPopupCancelBtn();
+  });
+
+  it("C513 The Редагувати сервіс button functionality for Список сервісів page", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemListServicesBtn();
+    AdminPanelServicesPage.clickElementActionBtnByName("Обприскування", "edit");
+    AdminPanelServicesPage.verifyEditElementPopupInput("Обприскування");
+    AdminPanelServicesPage.fillElementPopupInput("Обприскуванняtest");
+    AdminPanelServicesPage.clickServicePopupYesBtn();
+    cy.reload();
+    AdminPanelServicesPage.verifyTableElement("Обприскуванняtest");
+    AdminPanelServicesPage.clickElementActionBtnByName("Обприскуванняtest", "edit");
+    AdminPanelServicesPage.fillElementPopupInput("Обприскування");    
+  });
+
+  it("C514 The Створити сервіс button functionality for Сервіси page", () => {
+    const imagepath = "cypress/fixtures/placeholder-img.jpg";
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemListServicesBtn();
+    AdminPanelServicesPage.clickCreateBtn();
+    AdminPanelServicesPage.fillElementPopupInput("test_service");
+    AdminPanelServicesPage.uploadImage(imagepath);
+    AdminPanelServicesPage.clickServicePopupYesBtn();
+    AdminPanelServicesPage.clickServicePopupYesBtn(); // Needs to be clicked twice for service to be created BG-009
+    AdminPanelServicesPage.clickPopupCloseBtn();
+    cy.reload();
+    AdminPanelServicesPage.fillSearchField("test_");
+    AdminPanelServicesPage.verifyTableElement("test_service");
+  }); 
+
+  it("C515 The Видалення сервісу button functionality for Сервіси page", () => {
+    AdminPanelMainPage.clickServicesBtn();
+    AdminPanelMainPage.clickSubItemListServicesBtn();
+    AdminPanelServicesPage.fillSearchField("test_");
+    AdminPanelServicesPage.verifyTableElement("test_service");
+    AdminPanelServicesPage.deleteCategory("test_service");
   });
 
 });

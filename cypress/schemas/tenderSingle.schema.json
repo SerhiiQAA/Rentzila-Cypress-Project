@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "id", "name", "slug", "description", "customer", "executor", "city",
+    "state", "country", "category", "services", "amount_of_work",
+    "start_price", "currency", "payment_method", "type_of_work", "time_of_work",
+    "amount_of_props", "lat", "lng", "start_propose_date", "end_propose_date",
+    "start_tender_date", "end_tender_date", "date_created", "date_updated",
+    "date_closed", "is_closed_successfully", "close_request", "close_reason",
+    "first_name", "last_name", "phone", "is_moderated", "is_closed",
+    "is_disput", "tender_file"
+  ],
+  "properties": {
+    "id": { "type": "integer" },
+    "name": { "type": "string" },
+    "slug": { "type": "string" },
+    "description": { "type": "string" },
+    "customer": {
+      "type": "object",
+      "required": [
+        "id", "avatar", "first_name", "last_name", "middle_name", "phone",
+        "email", "telegram", "viber", "country", "city", "street", "region",
+        "house", "edrpou", "inn", "company_name", "rating", "type_of",
+        "type_legal", "telegram_chat_id", "is_phone_verified", "postcode",
+        "is_email_verified", "coins", "amount_reviews"
+      ],
+      "properties": {
+        "id": { "type": "integer" },
+        "avatar": { "type": ["string", "null"] },
+        "first_name": { "type": ["string", "null"] },
+        "last_name": { "type": ["string", "null"] },
+        "middle_name": { "type": ["string", "null"] },
+        "phone": { "type": ["string", "null"] },
+        "email": { "type": ["string", "null"] },
+        "telegram": { "type": ["string", "null"] },
+        "viber": { "type": ["string", "null"] },
+        "country": { "type": ["string", "null"] },
+        "city": { "type": ["string", "null"] },
+        "street": { "type": ["string", "null"] },
+        "region": { "type": ["string", "null"] },
+        "house": { "type": ["string", "null"] },
+        "edrpou": { "type": ["string", "null"] },
+        "inn": { "type": ["string", "null"] },
+        "company_name": { "type": ["string", "null"] },
+        "rating": { "type": ["number", "null"] },
+        "type_of": { "type": ["string", "null"] },
+        "type_legal": { "type": ["string", "null"] },
+        "telegram_chat_id": { "type": ["string", "null"] },
+        "is_phone_verified": { "type": "boolean" },
+        "postcode": { "type": ["string", "null"] },
+        "is_email_verified": { "type": "boolean" },
+        "coins": { "type": "integer" },
+        "amount_reviews": { "type": "integer" }
+      }
+    },
+    "category": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" }
+      }
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "image", "category"],
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "image": { "type": ["string", "null"] },
+          "category": {
+            "type": "array",
+            "items": { "type": "integer" }
+          }
+        }
+      }
+    }
+  }
+}
