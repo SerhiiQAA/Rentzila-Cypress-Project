@@ -112,7 +112,7 @@ describe("Tender API Endpoints", () => {
                 expect(response.body).to.be.an("array");
 
                 if (response.body.length > 0) {
-                    const validate = ajv.compile(tenderUpdateSchema);
+                    const validate = ajv.compile(tenderSingleSchema);
                     response.body.forEach((tender, index) => {
                         const valid = validate(tender);
                         if (!valid) {
@@ -138,11 +138,11 @@ describe("Tender API Endpoints", () => {
                 expect(response.body).to.be.an("object");
                 expect(response.body.id).to.eq(EXISTING_TENDER_ID);
 
-                const validateTenderSingle = ajv.compile(tenderSingleSchema);
-                const valid = validateTenderSingle(response.body);
+                const validate = ajv.compile(tenderSingleSchema);
+                const valid = validate(response.body);
                 if (!valid) {
                     throw new Error(
-                    `Schema validation failed:\n${ajv.errorsText(validateTenderSingle.errors, { separator: "\n" })}`
+                    `Schema validation failed:\n${ajv.errorsText(validate.errors, { separator: "\n" })}`
                     );
                 }
             });
