@@ -147,7 +147,10 @@ describe("Admin functionality", () => {
     cy.reload();
     AdminPanelServicesPage.verifyTableElement("Обприскуванняtest");
     AdminPanelServicesPage.clickElementActionBtnByName("Обприскуванняtest", "edit");
-    AdminPanelServicesPage.fillElementPopupInput("Обприскування");    
+    AdminPanelServicesPage.fillElementPopupInput("Обприскування");
+    AdminPanelServicesPage.clickServicePopupYesBtn();
+    cy.reload();
+    AdminPanelServicesPage.verifyTableElement("Обприскування");
   });
 
   it("C514 The Створити сервіс button functionality for Сервіси page", () => {
